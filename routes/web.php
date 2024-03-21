@@ -20,13 +20,18 @@ Route::post('/login', 'Auth\LoginController@login');
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function(){
-
+/* profile */
 Route::get('/profileadmin', [AdminController::class, 'profileadmin'])->name('profileadmin');
 Route::get('/editprofileadmin/{id}', [AdminController::class, 'editprofile'])->name('admin.editprofile');
 Route::post('/editprofileadmin/{id}', [AdminController::class, 'updateprofile'])->name('admin.updateprofile');
-Route::get('/usersadmin', [AdminController::class, 'usersadmin'])->name('usersadmin');
-Route::get('/userswholesalers', [AdminController::class, 'userswholesalers'])->name('userswholesalers');
-Route::get('/usersretailers', [AdminController::class, 'usersretailers'])->name('usersretailers');
+/* users */
+Route::get('/riders', [AdminController::class, 'riders'])->name('riders');
+Route::get('/vendors', [AdminController::class, 'vendors'])->name('vendors');
+Route::get('/users', [AdminController::class, 'users'])->name('users');
+
+Route::get('/restaurants', [AdminController::class, 'restaurants'])->name('restaurants');
+Route::get('/restaurantsection', [AdminController::class, 'restaurantsection'])->name('restaurantsection');
+Route::get('/configuration', [AdminController::class, 'configuration'])->name('configuration');
 });
 
 Route::post('/auth/signup', [SignUpController::class, 'signUp']);

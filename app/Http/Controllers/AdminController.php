@@ -38,31 +38,30 @@ class AdminController extends Controller
         return view('admin.editprofileadmin', compact('user'));
     }
 
-    public function usersadmin()
+    public function users()
     {
         //
         $users=User::all();
-        $users=DB::select('SELECT * FROM users WHERE access="admin"');
+        /* $users=DB::select('SELECT * FROM users WHERE access="admin"'); */
 
-        return view('admin.usersadmin')->with('users', $users);
+        return view('admin.users')->with('users', $users);
     }
 
-    public function userswholesalers()
+    public function vendors()
     {
         //
         $users=User::all();
-        $users=DB::select('SELECT * FROM users WHERE access="wholesaler"');
-
-        return view('admin.userswholesalers')->with('users', $users);
+        /* $users=DB::select('SELECT * FROM users WHERE access="admin"'); */
+        return view('admin.vendors')->with('users', $users);
     }
 
-    public function usersretailers()
+    public function riders()
     {
         //
         $users=User::all();
-        $users=DB::select('SELECT * FROM users WHERE access="retailer"');
+        /* $users=DB::select('SELECT * FROM users WHERE access="retailer"'); */
 
-        return view('admin.usersretailers')->with('users', $users);
+        return view('admin.riders')->with('users', $users);
     }
     
     /**

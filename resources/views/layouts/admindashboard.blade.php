@@ -36,8 +36,11 @@
   <header id="header" class="header fixed-top d-flex align-items-center " style="margin-bottom:3%">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="{{ url('/home') }}" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block"> <img src="assets/img/icon.png" alt="" width="60" height="100"></span>
+      <a href="{{ route('home') }}" class="logo d-flex align-items-center">
+        <span class="d-none d-lg-block ">
+          <img src="assets/img/icon.png" alt="" width="200" height="1000">
+          {{-- {{ config('app.name', 'GoDeliveries') }} --}}
+        </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -112,7 +115,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ url('/home') }}">
+        <a class="nav-link " href="{{ route('home') }}">
           <i class="bi bi-house-fill"></i>
           <span>Home</span>
         </a>
@@ -121,35 +124,35 @@
       <li class="nav-heading">General</li> 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('vendors') }}">
           <i class="ri ri-hand-coin-fill"></i>
           <span>Vendors</span>
         </a>
       </li><!-- End Nav item -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('restaurants') }}">
           <i class="ri ri-government-line"></i>
           <span>Restaurants</span>
         </a>
       </li><!-- End Nav item -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('restaurantsection') }}">
           <i class="bi bi-tools"></i>
           <span>Restaurant Section</span>
         </a>
       </li><!-- End Nav item -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('users') }}">
           <i class="bi bi-people-fill"></i>
           <span>Users</span>
         </a>
       </li><!-- End Nav item -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('riders') }}">
           <i class="ri ri-motorbike-line"></i>
           <span>Riders</span>
         </a>
@@ -158,13 +161,13 @@
       <li class="nav-heading">MANAGEMENT</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="{{ route('configuration') }}">
           <i class="bi bi-gear-fill"></i>
           <span>Configuration</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
           <i class="bi bi-credit-card-2-back-fill"></i>
           <span>Coupons</span>
         </a>
