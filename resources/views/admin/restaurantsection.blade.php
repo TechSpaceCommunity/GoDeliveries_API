@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
               <a href="{{route('home')}}">Home</a>
             </li>
-            <li class="breadcrumb-item active">Vendors</li>
+            <li class="breadcrumb-item active">Restaurant Section</li>
           </ol>
         </nav>
       </div>
@@ -21,10 +21,10 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header w-50 bg-warning fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
-                            {{ __('Add Vendor') }}</div>
+                            {{ __('Add Restaurant Section') }}</div>
         
                         <div class="card-body">
-                            <form method="POST" action="{{ route('createvendor') }}">
+                            <form method="POST" action="{{ route('createrestaurantsection') }}">
                                 @csrf
         
                                 <div class="row mb-3 d-block">
@@ -69,16 +69,15 @@
             </div>
         </div>
     </section>
-
     @endif
-    
+
     <section class="section">
         <div class="container">
             <div class="row ">
                 <div class="col-md-12">
                     <div class="card " style="border-radius: 10px">
                         <div class="card-header bg-white fw-bolder" >
-                            {{ __('Vendors') }}</div>
+                            {{ __('Restaurant Sections') }}</div>
                         <div class="card-body" style="margin: -1.3%">                            
                             @if (count($users)>=1)
                             <table  class="table table-hover">
@@ -106,7 +105,7 @@
                             </table>
                             @else
                                 <div>
-                                    <div class="alert alert-danger text-white fw-bolder bg-danger">No Vendors Found!</div>
+                                    <div class="alert alert-danger text-white fw-bolder bg-danger">No Restaurant Section Found!</div>
                                 </div>
                             @endif
                         </div>

@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vendor extends Model
+class Rider extends Model
 {
     protected $fillable = [
-        'email',
+        'username',
+        'name',
+        'number',
+        'zone',
         'password',
     ];
     use HasFactory;

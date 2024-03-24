@@ -28,7 +28,7 @@
                 class="rounded-circle"
               />
               <h2>{{ Auth::user()->name }}</h2>
-              <h3>admin</h3>
+              <h3>{{ Auth::user()->role }}</h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"

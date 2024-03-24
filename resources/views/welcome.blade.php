@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4 ">
+            <img src="assets/img/LoginPage.gif" alt="" width="400">
+        </div>
+        <div class="col-md-6 py-4" >
+            <div class="card border-0 bg-white rounded" style="margin: 8% 1%; border-radius:10px" >
+                <div class="card-header w-50 bg-warning fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px">{{ __('Login to GoDeliveries') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -15,7 +18,7 @@
                             <label for="email" class="col-md-4 col-form-label fw-bolder">{{ __('Email Address') }}</label>
 
                             <div class="col-md-12">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" style="border:none; border-bottom:1px solid black" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control rounded-pill @error('email') is-invalid @enderror" style="border:none; border-bottom:1px solid black" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +32,7 @@
                             <label for="password" class="col-md-4 col-form-label fw-bolder">{{ __('Password') }}</label>
 
                             <div class="col-md-12">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" style="border:none; border-bottom:1px solid black" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" class="form-control rounded-pill @error('password') is-invalid @enderror" style="border:none; border-bottom:1px solid black" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

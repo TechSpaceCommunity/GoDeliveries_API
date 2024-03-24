@@ -26,11 +26,18 @@ Route::get('/editprofileadmin/{id}', [AdminController::class, 'editprofile'])->n
 Route::post('/editprofileadmin/{id}', [AdminController::class, 'updateprofile'])->name('admin.updateprofile');
 /* users */
 Route::get('/riders', [AdminController::class, 'riders'])->name('riders');
+Route::post('/riders', [AdminController::class, 'createrider'])->name('createrider');
 Route::get('/vendors', [AdminController::class, 'vendors'])->name('vendors');
+Route::post('/vendors', [AdminController::class, 'createvendor'])->name('createvendor');
 Route::get('/users', [AdminController::class, 'users'])->name('users');
+Route::post('/users', [AdminController::class, 'createuser'])->name('createuser');
+Route::delete('/users/{id}', [AdminController::class, 'destroyuser'])->name('destroyuser');
+Route::put('/users/{id}', [AdminController::class, 'activateuser'])->name('activateuser');
 
 Route::get('/restaurants', [AdminController::class, 'restaurants'])->name('restaurants');
+Route::post('/restaurants', [AdminController::class, 'createrestaurant'])->name('createrestaurant');
 Route::get('/restaurantsection', [AdminController::class, 'restaurantsection'])->name('restaurantsection');
+Route::post('/restaurantsection', [AdminController::class, 'createrestaurantsection'])->name('createrestaurantsection');
 Route::get('/configuration', [AdminController::class, 'configuration'])->name('configuration');
 });
 
