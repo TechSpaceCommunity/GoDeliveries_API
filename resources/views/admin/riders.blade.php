@@ -146,7 +146,13 @@
                                         <td>{{$user->password}}</td>
                                         <td>{{$user->number}}</td>
                                         <td>{{$user->zone}}</td>
-                                        <td><input type="checkbox" name="" class="forn-control" id=""></td>
+                                        <td>
+                                            <form action="">
+                                                <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" >
+                                                </div>
+                                            </form>
+                                        </td>
                                          <td>
                                             
                                             <i class="ri ri-more-2-fill fw-bolder"></i>
