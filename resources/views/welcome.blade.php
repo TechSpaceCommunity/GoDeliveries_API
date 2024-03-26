@@ -56,7 +56,7 @@
                                     </button><br>
                                 </div>
                             </div>
-                            <div class="row mb-3 d-block mt-4 d-flex justify-content-between align-content-center">
+                            <div class="row mb-3 d-block mt-4 d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
