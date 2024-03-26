@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container shadow-lg bg-white mt-lg-5 min-h-screen">
+    <div class="container shadow-lg bg-white min-h-screen" style="margin-top: 90px">
         <div class="row d-flex justify-content-between">
             <div class="col-md-4">
                 <img src="assets/img/LoginPage.gif" alt="" width="100%" height="100%">
