@@ -110,9 +110,9 @@
       <li class="nav-heading">General</li> 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('vendors') }}">
+        <a class="nav-link collapsed" href="{{ route('customers') }}">
           <i class="ri ri-hand-coin-fill"></i>
-          <span>Vendors</span>
+          <span>App Customers</span>
         </a>
       </li><!-- End Nav item -->
 
@@ -185,7 +185,7 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('notifications') }}">
           <i class="bi bi-bell-fill"></i>
           <span>Notifications</span>
         </a>
