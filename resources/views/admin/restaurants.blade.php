@@ -122,6 +122,7 @@
                                 <div class="row mb-3 d-flex">
                                     <div class="col-12">
                                         <div class="col-md-12">
+                                            
                                             <input id="cover_image" type="file" class="form-control rounded-pill @error('cover_image') is-invalid @enderror"  name="cover_image" value="{{ old('cover_image') }}" required autocomplete="cover_image" autofocus >
             
                                             @error('cover_image')
@@ -151,7 +152,7 @@
     <section class="section">
         <div class="container">
             <div class="row ">
-                <div class="col-md-12">
+                <div class="col-md-12 ">
                     <div class="card " style="border-radius: 10px">
                         <div class="card-header bg-white fw-bolder" >
                             {{ __('Restaurants') }}</div>

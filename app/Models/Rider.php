@@ -13,6 +13,8 @@ class Rider extends Model
         'number',
         'zone',
         'password',
+        'rider_image',
+        'bike_image'
     ];
     use HasFactory;
 }

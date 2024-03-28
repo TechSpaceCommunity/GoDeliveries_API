@@ -169,15 +169,50 @@ class AdminController extends Controller
             'number' => ['required', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
             'zone' => ['required', 'string', 'max:255'],
+            'rider_image' => 'image|max:3000|nullable',
+            'bike_image' => 'image|max:3000|nullable',
          ]);
          
-         
+         if ($request->hasFile('rider_image')) {
+            # get file name with extension
+            $filenameWithExt=$request->file('rider_image')->getClientOriginalName();
+            //get file name
+            $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get ext
+            $extension=$request->file('rider_image')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore=$filename.'_'.time().'.'.$extension;
+            //upload the rider_image
+            $path=$request->file('rider_image')->storeAs('public/rider_images/', $fileNameToStore);
+        }
+        else{
+            $fileNameToStore='noImage.png';
+        }
+
+        if ($request->hasFile('bike_image')) {
+            # get file name with extension
+            $filenameWithExt=$request->file('bike_image')->getClientOriginalName();
+            //get file name
+            $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get ext
+            $extension=$request->file('bike_image')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStoreBike=$filename.'_'.time().'.'.$extension;
+            //upload the bike_image
+            $path=$request->file('bike_image')->storeAs('public/bike_images/', $fileNameToStoreBike);
+        }
+        else{
+            $fileNameToStoreBike='noImage.png';
+        }
+
          $user= new Rider();
          $user->name=$request->input('name');
          $user->username=$request->input('username');
          $user->number=$request->input('number');
          $user->password=$request->input('password');
          $user->zone=$request->input('zone');
+         $user->rider_image=$fileNameToStore;
+         $user->bike_image=$fileNameToStoreBike;
          $user->save();
          
          return redirect('riders')->with('success', 'Rider Added Successfully!!');
