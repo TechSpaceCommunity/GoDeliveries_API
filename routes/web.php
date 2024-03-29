@@ -44,6 +44,9 @@ Route::get('/configuration', [AdminController::class, 'configuration'])->name('c
 Route::get('/notifications', [AdminController::class, 'notifications'])->name('notifications');
 Route::post('/notifications', [AdminController::class, 'createnotification'])->name('createnotification');
 Route::delete('/notifications/{id}', [AdminController::class, 'destroynotification'])->name('destroynotification');
+Route::get('/zones', [AdminController::class, 'zones'])->name('zones');
+Route::post('/zones', [AdminController::class, 'createzone'])->name('createzone');
+Route::delete('/zones/{id}', [AdminController::class, 'destroyzone'])->name('destroyzone');
 });
 
 Route::post('/auth/signup', [SignUpController::class, 'signUp']);

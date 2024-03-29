@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chat;
 use App\Models\Customer;
-use App\Models\Feedback;
-use App\Models\LoginActivity;
 use Illuminate\Http\Request;
-use App\Models\Products;
-use Illuminate\Support\Facades\DB;
-use App\Models\Message;
 use App\Models\Notification;
-use App\Models\Order;
-use App\Models\Payment;
 use App\Models\Restaurant;
 use App\Models\Rider;
 use App\Models\User;
 use App\Models\Vendor;
-use Illuminate\Support\Carbon;
+use App\Models\Zone;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -75,6 +67,12 @@ class AdminController extends Controller
     {
         $users=Notification::all();
         return view('admin.notifications')->with('users', $users);
+    }
+
+    public function zones()
+    {
+        $users=Zone::all();
+        return view('admin.zones')->with('users', $users);
     }
 
     public function createcustomer(Request $request)
@@ -258,6 +256,26 @@ class AdminController extends Controller
          
          return redirect('notifications')->with('success', 'Notification Added Successfully!!');
      }
+
+     /* zones */
+     public function createzone(Request $request)
+     {
+         //validation for the required fields
+         $this->validate($request, [
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'cordinates' => ['required', 'string'],
+         ]);
+         
+         
+         $user= new zone();
+         $user->title=$request->input('title');
+         $user->description=$request->input('description');
+         $user->cordinates=$request->input('cordinates');
+         $user->save();
+         
+         return redirect('zones')->with('success', 'Zone Added Successfully!!');
+     }
     /**
      * Update the specified resource in storage.
      *
@@ -312,5 +330,12 @@ class AdminController extends Controller
         $user=notification::find($id);
         $user->delete();
         return redirect('notifications')->with('success', 'Notification Deleted Successfully!!');
+    }
+
+    public function destroyzone($id)
+    {
+        $user=zone::find($id);
+        $user->delete();
+        return redirect('zones')->with('success', 'Zone Deleted Successfully!!');
     }
 }

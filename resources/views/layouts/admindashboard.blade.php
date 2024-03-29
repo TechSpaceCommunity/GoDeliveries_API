@@ -29,6 +29,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQMAYTywUqaahxnQUe-Y-C5GVMVb-Bwc8&libraries=drawing"></script>
 </head>
 <body class="page-index">
     {{-- <div id="app"> --}}
@@ -172,7 +173,7 @@
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('zones') }}">
           <i class="bi bi-upc-scan"></i>
           <span>Zone</span>
         </a>
