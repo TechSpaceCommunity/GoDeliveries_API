@@ -30,7 +30,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQMAYTywUqaahxnQUe-Y-C5GVMVb-Bwc8&libraries=drawing"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQMAYTywUqaahxnQUe-Y-C5GVMVb-Bwc8&libraries=drawing">
+    </script>
 </head>
 
 <body class="page-index">
@@ -114,9 +115,9 @@
             <li class="nav-heading">General</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('vendors') }}">
+                <a class="nav-link collapsed" href="{{ route('customers') }}">
                     <i class="ri ri-hand-coin-fill"></i>
-                    <span>Vendors</span>
+                    <span>App Customers</span>
                 </a>
             </li><!-- End Nav item -->
 
@@ -176,7 +177,7 @@
                 </a>
             </li><!-- End Profile Page Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
+                <a class="nav-link collapsed" href="{{ route('zones') }}">
                     <i class="bi bi-upc-scan"></i>
                     <span>Zone</span>
                 </a>
@@ -189,7 +190,7 @@
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
+                <a class="nav-link collapsed" href="{{ route('notifications') }}">
                     <i class="bi bi-bell-fill"></i>
                     <span>Notifications</span>
                 </a>
@@ -234,143 +235,7 @@
 
     </aside><!-- End Sidebar-->
 
-  </header><!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link " href="{{ route('home') }}">
-          <i class="bi bi-house-fill"></i>
-          <span>Home</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-      <li class="nav-heading">General</li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('customers') }}">
-          <i class="ri ri-hand-coin-fill"></i>
-          <span>App Customers</span>
-        </a>
-      </li><!-- End Nav item -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('restaurants') }}">
-          <i class="ri ri-government-line"></i>
-          <span>Restaurants</span>
-        </a>
-      </li><!-- End Nav item -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('restaurantsection') }}">
-          <i class="bi bi-tools"></i>
-          <span>Restaurant Section</span>
-        </a>
-      </li><!-- End Nav item -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('users') }}">
-          <i class="bi bi-people-fill"></i>
-          <span>Users</span>
-        </a>
-      </li><!-- End Nav item -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('riders') }}">
-          <i class="ri ri-motorbike-line"></i>
-          <span>Riders</span>
-        </a>
-      </li><!-- End Nav item -->
-
-      <li class="nav-heading">MANAGEMENT</li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('configuration') }}">
-          <i class="bi bi-gear-fill"></i>
-          <span>Configuration</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-credit-card-2-back-fill"></i>
-          <span>Coupons</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-credit-card-2-front-fill"></i>
-          <span>Cousines</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-cash-coin"></i>
-          <span>Tipping</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('zones') }}">
-          <i class="bi bi-upc-scan"></i>
-          <span>Zone</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-truck"></i>
-          <span>Dispatch</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('notifications') }}">
-          <i class="bi bi-bell-fill"></i>
-          <span>Notifications</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-bootstrap-reboot"></i>
-          <span>Commission Rates</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-slack"></i>
-          <span>Withdraw Requests</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();"><i class="bi bi-box-arrow-in-left pl-3 ml-3"></i>
-         {{ __('Logout') }}
-     </a>
-     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
-
-    </li>
-      <!-- End Login Page Nav -->
-
-    </ul>
-
-  </aside><!-- End Sidebar-->
-
-       <div class="" style="padding-top: 0%">
+    <div class="" style="padding-top: 0%">
         <main class="py-4">
             @include('inc.messages')
             @yield('content')
