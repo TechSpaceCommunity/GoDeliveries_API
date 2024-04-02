@@ -131,7 +131,7 @@
                             <tbody>
                                 @foreach ($users as $user)
                                 <tr>
-                                    <td><a href="#" class="text-primary fw-bold">{{$user->name}}</a></td>
+                                    <td><a href="#" class="text-primary text-decoration-none text-dark">{{$user->name}}</a></td>
                                     <td>{{$user->email}}</td>
                                     <td>@if ($user->number == '')
                                         Null
