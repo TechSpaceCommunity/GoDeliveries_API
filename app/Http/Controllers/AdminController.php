@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chat;
-use App\Models\Feedback;
-use App\Models\LoginActivity;
+use App\Models\Customer;
 use Illuminate\Http\Request;
-use App\Models\Products;
-use Illuminate\Support\Facades\DB;
-use App\Models\Message;
-use App\Models\Order;
-use App\Models\Payment;
+use App\Models\Notification;
+use App\Models\Restaurant;
 use App\Models\Rider;
 use App\Models\User;
 use App\Models\Vendor;
-use Illuminate\Support\Carbon;
+use App\Models\Zone;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -44,21 +39,21 @@ class AdminController extends Controller
         return view('admin.users')->with('users', $users);
     }
 
-    public function vendors()
+    public function customers()
     {
-        $users=Vendor::all();
-        return view('admin.vendors')->with('users', $users);
+        $users=Customer::all();
+        return view('admin.customers')->with('users', $users);
     }
 
     public function restaurants()
     {
-        $users=Vendor::all();
+        $users=Restaurant::all();
         return view('admin.restaurants')->with('users', $users);
     }
 
     public function restaurantsection()
     {
-        $users=Vendor::all();
+        $users=Customer::all();
         return view('admin.restaurantsection')->with('users', $users);
     }
 
@@ -68,37 +63,79 @@ class AdminController extends Controller
         return view('admin.riders')->with('users', $users);
     }
 
-    public function createvendor(Request $request)
+    public function notifications()
+    {
+        $users=Notification::all();
+        return view('admin.notifications')->with('users', $users);
+    }
+
+    public function zones()
+    {
+        $users=Zone::all();
+        return view('admin.zones')->with('users', $users);
+    }
+
+    public function createcustomer(Request $request)
      {
          //validation for the required fields
          $this->validate($request, [
-            'email' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255', 'unique:users'],
+            'number' => ['required', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
          ]);
          
          
-         $user= new Vendor();
+         $user= new Customer();
+         $user->name=$request->input('name');
          $user->email=$request->input('email');
+         $user->number=$request->input('number');
          $user->password=$request->input('password');
-         $user->restaurants=1;
          $user->save();
          
-         return redirect('vendors')->with('success', 'Vendor Added Successfully!!');
+         return redirect('customers')->with('success', 'Customer Added Successfully!!');
      }
 
      public function createrestaurant(Request $request)
      {
+       
          //validation for the required fields
          $this->validate($request, [
-            'email' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'delivery_time' => ['required', 'string', 'max:255'],
+            'minimum_order' => ['required'],
+            'sales_tax' => ['required'],
+            'cover_image' => 'image|max:3000|nullable',
             'password' => ['required', 'string', 'max:255'],
          ]);
          
-         
-         $user= new Vendor();
-         $user->email=$request->input('email');
+         if ($request->hasFile('cover_image')) {
+            # get file name with extension
+            $filenameWithExt=$request->file('cover_image')->getClientOriginalName();
+            //get file name
+            $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get ext
+            $extension=$request->file('cover_image')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore=$filename.'_'.time().'.'.$extension;
+            //upload the cover_image
+            $path=$request->file('cover_image')->storeAs('public/restaurant_cover_images/', $fileNameToStore);
+        }
+        else{
+            $fileNameToStore='noImage.png';
+        }
+
+         $user= new Restaurant();
+         $user->name=$request->input('name');
+         $user->username=$request->input('username');
+         $user->address=$request->input('address');
+         $user->delivery_time=$request->input('delivery_time');
+         $user->minimum_order=$request->input('minimum_order');
+         $user->sales_tax=$request->input('sales_tax');
+         $user->cover_image=$fileNameToStore;
          $user->password=$request->input('password');
-         $user->restaurants=1;
          $user->save();
          
          return redirect('restaurants')->with('success', 'Restaurant Added Successfully!!');
@@ -130,15 +167,50 @@ class AdminController extends Controller
             'number' => ['required', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
             'zone' => ['required', 'string', 'max:255'],
+            'rider_image' => 'image|max:3000|nullable',
+            'bike_image' => 'image|max:3000|nullable',
          ]);
          
-         
+         if ($request->hasFile('rider_image')) {
+            # get file name with extension
+            $filenameWithExt=$request->file('rider_image')->getClientOriginalName();
+            //get file name
+            $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get ext
+            $extension=$request->file('rider_image')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore=$filename.'_'.time().'.'.$extension;
+            //upload the rider_image
+            $path=$request->file('rider_image')->storeAs('public/rider_images/', $fileNameToStore);
+        }
+        else{
+            $fileNameToStore='noImage.png';
+        }
+
+        if ($request->hasFile('bike_image')) {
+            # get file name with extension
+            $filenameWithExt=$request->file('bike_image')->getClientOriginalName();
+            //get file name
+            $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get ext
+            $extension=$request->file('bike_image')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStoreBike=$filename.'_'.time().'.'.$extension;
+            //upload the bike_image
+            $path=$request->file('bike_image')->storeAs('public/bike_images/', $fileNameToStoreBike);
+        }
+        else{
+            $fileNameToStoreBike='noImage.png';
+        }
+
          $user= new Rider();
          $user->name=$request->input('name');
          $user->username=$request->input('username');
          $user->number=$request->input('number');
          $user->password=$request->input('password');
          $user->zone=$request->input('zone');
+         $user->rider_image=$fileNameToStore;
+         $user->bike_image=$fileNameToStoreBike;
          $user->save();
          
          return redirect('riders')->with('success', 'Rider Added Successfully!!');
@@ -165,6 +237,44 @@ class AdminController extends Controller
          $user->save();
          
          return redirect('users')->with('success', 'User Added Successfully!!');
+     }
+
+     /* notifications */
+     public function createnotification(Request $request)
+     {
+         //validation for the required fields
+         $this->validate($request, [
+            'title' => ['required', 'string', 'max:255'],
+            'body' => ['required', 'string'],
+         ]);
+         
+         
+         $user= new Notification();
+         $user->title=$request->input('title');
+         $user->body=$request->input('body');
+         $user->save();
+         
+         return redirect('notifications')->with('success', 'Notification Added Successfully!!');
+     }
+
+     /* zones */
+     public function createzone(Request $request)
+     {
+         //validation for the required fields
+         $this->validate($request, [
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'cordinates' => ['required', 'string'],
+         ]);
+         
+         
+         $user= new zone();
+         $user->title=$request->input('title');
+         $user->description=$request->input('description');
+         $user->cordinates=$request->input('cordinates');
+         $user->save();
+         
+         return redirect('zones')->with('success', 'Zone Added Successfully!!');
      }
     /**
      * Update the specified resource in storage.
@@ -208,6 +318,24 @@ class AdminController extends Controller
         return redirect('users')->with('success', 'User Deactivated Successfully!!');
     }
 
+    public function destroycustomer($id)
+    {
+        $user=Customer::find($id);
+        $user->delete();
+        return redirect('customers')->with('success', 'Customer Deleted Successfully!!');
+    }
     
-    
+    public function destroynotification($id)
+    {
+        $user=notification::find($id);
+        $user->delete();
+        return redirect('notifications')->with('success', 'Notification Deleted Successfully!!');
+    }
+
+    public function destroyzone($id)
+    {
+        $user=zone::find($id);
+        $user->delete();
+        return redirect('zones')->with('success', 'Zone Deleted Successfully!!');
+    }
 }
