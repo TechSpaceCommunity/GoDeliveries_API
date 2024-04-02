@@ -21,7 +21,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalcustomers=Customer::all()->count();
+        
+        return view('home', compact('totalcustomers'));
     }
     public function profileadmin()
     {

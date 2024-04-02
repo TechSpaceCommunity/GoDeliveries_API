@@ -31,7 +31,7 @@
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQMAYTywUqaahxnQUe-Y-C5GVMVb-Bwc8&libraries=drawing"></script>
 </head>
-<body class="page-index">
+<body class="page-index" style="background-image: url('assets/img/loginBg.png')">
     {{-- <div id="app"> --}}
        <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center " style="margin-bottom:3%">
@@ -258,6 +258,7 @@
     </div>
 
     <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -270,6 +271,7 @@
  <!-- Scripts -->
  <script src="{{ asset('js/main1.js') }}" ></script>
  <script src="{{ asset('js/main.js') }}" ></script>
+ <script src="{{ asset('vendor/apexcharts/apexcharts.min.js') }}" ></script>
  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" ></script>
  <script src="{{ asset('vendor/aos/aos.js') }}" ></script>
  <script src="{{ asset('vendor/glightbox/js/glightbox.min.js') }}" ></script>
