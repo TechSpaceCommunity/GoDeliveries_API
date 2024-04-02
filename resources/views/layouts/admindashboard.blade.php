@@ -40,7 +40,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <span class="d-none d-lg-block ">
-                    <img src="assets/img/icon.png" alt="" width="200" height="1000">
+                    <img src="assets/img/icon.png" alt="portal logo" width="200" height="1500">
                     {{-- {{ config('app.name', 'GoDeliveries') }} --}}
                 </span>
             </a>
@@ -255,7 +255,7 @@
         </div>
     </div>
 
-    </footer>
+    {{-- </footer> --}}
     <!-- End Footer -->
 
     <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 "
