@@ -37,24 +37,24 @@
 <body class="page-index">
     {{-- <div id="app"> --}}
     <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center " style="margin-bottom:3%">
+    <header id="header" class="header fixed-top d-flex align-items-center" style="margin-bottom:3%; padding:10px">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-                <span class="d-none d-lg-block ">
-                    <img src="assets/img/icon.png" alt="portal logo" width="200" height="1500">
-                    {{-- {{ config('app.name', 'GoDeliveries') }} --}}
-                </span>
+            <a href="{{ route('home') }}" class="d-flex align-items-center"
+                style="width: 280px; height:100px; font-size:24px; text-decoration:none; color: #000; font-weight:900;margin-left:10px;">
+                <img src="assets/img/icon.png" alt="portal logo" width="50px" height="50px"
+                    style="border-radius: 100%;margin-right:10px;">
+                Go-Deliveries
             </a>
-            <i class="bi bi-list toggle-sidebar-btn"></i>
-        </div><!-- End Logo -->
+            <div class="span-2">
+                <i class="bi bi-list toggle-sidebar-btn"></i>
+            </div>
+        </div>
+        <!-- End Logo -->
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
-
-
-                <li class="nav-item dropdown pe-3">
+                <li class="nav-item dropdown pe-3" style="">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
@@ -235,14 +235,11 @@
 
     </aside><!-- End Sidebar-->
 
-    <div class="" style="padding-top: 0%">
+    <div class="" style="padding-top: 0%;">
         <main class="py-4">
             @include('inc.messages')
             @yield('content')
         </main>
-    </div>
-    </div>
-    </div>
     </div>
 
     <div class="footer-legal text-center position-relative">
