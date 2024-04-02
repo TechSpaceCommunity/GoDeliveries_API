@@ -52,10 +52,9 @@
         </div>
         <!-- End Logo -->
 
-        <nav class="header-nav ms-auto">
+        <nav class="header-nav ms-auto" style="">
             <ul class="d-flex align-items-center">
-                <li class="nav-item dropdown pe-3" style="">
-
+                <li class="nav-item dropdown pe-3" style="background">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
                         <img src="assets/img/profile-img.jpg" alt="" class="rounded-circle">

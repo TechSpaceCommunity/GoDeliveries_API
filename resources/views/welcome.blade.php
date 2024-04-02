@@ -51,7 +51,7 @@
                             <div class="row mb-0 mt-5" align="start">
                                 <div class="col-md-12 d-block">
                                     <button type="submit" class="btn fw-bolder p-3 text-center w-100"
-                                        style="background-color:#eb8334">
+                                        style="background-color:#e06f18">
                                         {{ __('Login') }}
                                     </button><br>
                                 </div>

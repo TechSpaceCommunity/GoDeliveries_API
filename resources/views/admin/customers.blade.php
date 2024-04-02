@@ -115,53 +115,61 @@
                     </div>
                     </div>x">
                             <div class="card-header bg-white fw-bolder">
-                                {{ __('App Customers') }}</div>
-                            <div class="card-body" style="margin: -1.3%">
+                                {{ __('App Customers') }}
+                            </div>
+                            <div class="card-body" style="">
 
                                 @if (count($users) >= 1)
-                                    <table class="table table-hover">
-                                        {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
-                                        <thead class="bg-warning  fw-bolder">
-                                            <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Phone Number</th>
-                                                <th scope="col">Joining Date</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($users as $user)
+                                    <div class="table-responsive">
+                                        <table id="customers" class="table table-striped table-bordered" style="width:100%">
+                                            {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
+                                            <thead class="fw-bolder">
                                                 <tr>
-                                                    <td><a href="#"
-                                                            class="text-primary fw-bold">{{ $user->name }}</a></td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>
-                                                        @if ($user->number == '')
-                                                            Null
-                                                        @else
-                                                            {{ $user->number }}
-                                                        @endif
-                                                    </td>
-                                                    <td>{{ $user->created_at }}</td>
-                                                    @if (Auth::user()->role == 'admin')
-                                                        <td>
-                                                            <form action="{{ route('destroycustomer', $user->id) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="btn btn-danger fw-bolder">Delete</button>
-                                                            </form>
-                                                        </td>
-                                                    @endif
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Phone Number</th>
+                                                    <th scope="col">Joining Date</th>
+                                                    <th scope="col">Actions</th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($users as $user)
+                                                    <tr>
+                                                        <td><a href="#"
+                                                                class="text-primary fw-bold">{{ $user->name }}</a></td>
+                                                        <td>{{ $user->email }}</td>
+                                                        <td>
+                                                            @if ($user->number == '')
+                                                                Null
+                                                            @else
+                                                                {{ $user->number }}
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $user->created_at }}</td>
+                                                        @if (Auth::user()->role == 'admin')
+                                                            <td>
+                                                                <form action="{{ route('destroycustomer', $user->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger fw-bolder">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endif
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 @else
                                     <div>
-                                        <div class="alert alert-danger text-white fw-bolder bg-danger">No Customer Found!
+                                        <div class="fw-bolder d-flex justify-content-center align-items-center flex-column"
+                                            style="min-height: 40vh;">/
+                                            <p>No Customer Found</p>
+                                            <button
+                                                style="border: none; background-color:#eb8334; color:#fff; padding: 12px; width:auto; border-radius:5px">Add
+                                                Customer</button>
                                         </div>
                                     </div>
                                 @endif
@@ -172,4 +180,11 @@
             </div>
         </section>
     </main>
+    {{-- <script src="{{ asset('js/index.js') }}"></script> --}}
+    {{-- datables --}}
+    {{-- <script src='https://code.jquery.com/jquery-3.7.0.js'></script> --}}
+    <!-- Data Table JS -->
+    {{-- <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script> --}}
+    {{-- <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script> --}}
+    {{-- <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script> --}}
 @endsection
