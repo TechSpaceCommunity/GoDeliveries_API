@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Vendor;
 use App\Models\Zone;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -129,6 +130,8 @@ class AdminController extends Controller
             $fileNameToStore='noImage.png';
         }
 
+         // Hash the password
+        $hashedPassword = Hash::make($request->input('password'));
          $user= new Restaurant();
          $user->name=$request->input('name');
          $user->username=$request->input('username');
@@ -137,7 +140,7 @@ class AdminController extends Controller
          $user->minimum_order=$request->input('minimum_order');
          $user->sales_tax=$request->input('sales_tax');
          $user->cover_image=$fileNameToStore;
-         $user->password=$request->input('password');
+         $user->password=$hashedPassword;
          $user->save();
          
          return redirect('restaurants')->with('success', 'Restaurant Added Successfully!!');
