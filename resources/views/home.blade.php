@@ -1,4 +1,6 @@
 @extends('layouts.admindashboard')
+@vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 
 @section('content')
     <main id="main" class="main">
@@ -18,60 +20,60 @@
             <div class="container">
                 <div class="row d-flex">
                     <div class="col-xxl-3 col-xl-3 ">
-                        <div class="card " style="background-color:  rgb(207, 231, 240)">
+                        <div class="card " style="background-color:  #5c6bf3;  border:none">
                             <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
-                                <h5 class="card-title"><span class="fw-bolder text-dark">Total Customers</h5>
-
-                                <div class="row d-flex justify-content-space-between">
+                                <h5 class="card-title"><span class="fw-bolder text-dark fs-5">Total Customers</h5>
+                                <div class="row d-flex justify-content-space-between align-items-center">
                                     <div class="col mx-1 ">
-                                        <h6 class="fw-bolder fs-5">{{ $totalcustomers }}</h6>
+                                        <h6 class="fw-bolder fs-2">{{ $totalcustomers }}</h6>
                                     </div>
-                                    <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
+                                    <div class="col mx-1"><i class="bi bi-people-fill fs-2"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-xxl-3 col-xl-3 ">
-                        <div class="card " style="background-color: rgb(169, 240, 169)">
+                        <div class="card " style="background-color: #2eca6a;  border:none">
                             <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
-                                <h5 class="card-title"><span class="fw-bolder text-dark">Total Restaurants</h5>
+                                <h5 class="card-title"><span class="fw-bolder text-dark fs-5">Total Restaurants</h5>
 
-                                <div class="row d-flex justify-content-space-between">
+                                <div class="row d-flex justify-content-space-between align-items-center">
                                     <div class="col mx-1 ">
-                                        <h6 class="fw-bolder fs-5">{{ $totalrestaurants }}</h6>
+                                        <h6 class="fw-bolder fs-2">{{ $totalrestaurants }}</h6>
                                     </div>
-                                    <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
+                                    <div class="col mx-1 "><i class="fa-solid fa-hotel fs-2"></i></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-xxl-3 col-xl-3 ">
-                        <div class="card " style="background-color:rgb(207, 231, 240)">
+                        <div class="card " style="background-color:rgb(207, 231, 240);  border:none">
                             <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
-                                <h5 class="card-title"><span class="fw-bolder text-dark">Total Users</h5>
+                                <h5 class="card-title"><span class="fw-bolder text-dark fs-5">Total Users</h5>
 
-                                <div class="row d-flex justify-content-space-between">
+                                <div class="row d-flex justify-content-space-between align-items-center">
                                     <div class="col mx-1 ">
-                                        <h6 class="fw-bolder fs-5">{{ $totalusers }}</h6>
+                                        <h6 class="fw-bolder fs-2">{{ $totalusers }}</h6>
                                     </div>
-                                    <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
+                                    <div class="col mx-1 "><i class="bi bi-person-add fs-2"></i></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-xxl-3 col-xl-3 ">
-                        <div class="card " style="background-color: rgb(247, 196, 101)">
+                        <div class="card " style="background-color: #ff771d; border:none">
                             <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
-                                <h5 class="card-title"><span class="fw-bolder text-dark">Total Riders</h5>
+                                <h5 class="card-title"><span class="fw-bolder text-dark fs-5">Total Riders</h5>
 
-                                <div class="row d-flex justify-content-space-between">
+                                <div class="row d-flex justify-content-space-between align-items-center">
                                     <div class="col mx-1 ">
-                                        <h6 class="fw-bolder fs-5">{{ $totalriders }}</h6>
+                                        <h6 class="fw-bolder fs-2">{{ $totalriders }}</h6>
                                     </div>
-                                    <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
+                                    <div class="col mx-1"><i class="bi bi-bicycle fs-2"></i></div>
                                 </div>
                             </div>
                         </div>

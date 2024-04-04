@@ -33,6 +33,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQMAYTywUqaahxnQUe-Y-C5GVMVb-Bwc8&libraries=drawing">
     </script>
 </head>
+
 <body class="page-index" style="background-image: url('assets/img/loginBg.png')">
     {{-- <div id="app"> --}}
     <!-- ======= Header ======= -->
@@ -52,7 +53,7 @@
         <!-- End Logo -->
 
         <nav class="header-nav ms-auto" style="">
-            <ul class="d-flex align-items-center">
+            <ul class="d-flex align-items-center" style="background-color: #e2dede; padding: 5px; border-radius: 25px;">
                 <li class="nav-item dropdown pe-3" style="background">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
@@ -262,26 +263,26 @@
     </div>
 
     <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main1.js"></script>
- <!-- Scripts -->
- <script src="{{ asset('js/main1.js') }}" ></script>
- <script src="{{ asset('js/main.js') }}" ></script>
- <script src="{{ asset('vendor/apexcharts/apexcharts.min.js') }}" ></script>
- <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" ></script>
- <script src="{{ asset('vendor/aos/aos.js') }}" ></script>
- <script src="{{ asset('vendor/glightbox/js/glightbox.min.js') }}" ></script>
- <script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}" ></script>
- <script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.j') }}" ></script>
- <script src="{{ asset('vendor/php-email-form/validate.js') }}" ></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main1.js"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/main1.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.j') }}"></script>
+    <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
 </body>
 
 </html>
