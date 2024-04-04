@@ -31,9 +31,9 @@
                                 <div class="row mb-3 d-flex">
                                     <div class="col-6">
                                         <div class="col-md-12">
-                                            <input id="username" type="text" class="form-control rounded-pill @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Restaurant's Username">
+                                            <input id="email" type="email" class="form-control rounded-pill @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Restaurant's email">
             
-                                            @error('username')
+                                            @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -164,7 +164,7 @@
                                     <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Username</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">Delivery Time</th>
                                     <th scope="col">Minimum Order</th>
@@ -178,7 +178,7 @@
                                         <td><i class="bi bi-stop fw-bolder fs-5"></i></td>
                                         <th scope="row"  style="width: 5%"><img src="./storage/restaurant_cover_images/{{$user->cover_image}}" alt="" class="img-fluid rounded-pill" ></th>
                                         <td>{{$user->name}}</td>
-                                        <td>{{$user->username}}</td>
+                                        <td>{{$user->email}}</td>
                                         <td>{{$user->address}}</td>
                                         <td>{{$user->delivery_time}}</td>
                                         <td>{{$user->minimum_order}}</td>

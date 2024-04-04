@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignUpController;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
@@ -48,6 +50,25 @@ Route::get('/zones', [AdminController::class, 'zones'])->name('zones');
 Route::post('/zones', [AdminController::class, 'createzone'])->name('createzone');
 Route::delete('/zones/{id}', [AdminController::class, 'destroyzone'])->name('destroyzone');
 });
+
+//Restaurant Routes
+//Route::group(['middleware' => ['auth']], function(){
+Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants');
+Route::get('/restaurantslogin', [RestaurantController::class, 'restaurantsloginform'])->name('restaurantsloginform');
+Route::post('/restaurantslogin', [RestaurantController::class, 'authenticaterestaurantslogin'])->name('restaurantslogin');
+//restaurant dashboard pages
+Route::get('/restaurantprofile', [RestaurantController::class, 'restaurantprofile'])->name('restaurantprofile');
+Route::get('/food', [RestaurantController::class, 'food'])->name('food');
+Route::get('/category', [RestaurantController::class, 'category'])->name('category');
+Route::get('/orders', [RestaurantController::class, 'orders'])->name('orders');
+Route::get('/option', [RestaurantController::class, 'option'])->name('option');
+Route::get('/ratings', [RestaurantController::class, 'ratings'])->name('ratings');
+Route::get('/addons', [RestaurantController::class, 'addons'])->name('addons');
+Route::get('/timings', [RestaurantController::class, 'timings'])->name('timings');
+Route::get('/paymnent', [RestaurantController::class, 'paymnent'])->name('paymnent');
+Route::get('/location', [RestaurantController::class, 'location'])->name('location');
+Route::get('/dispatch', [RestaurantController::class, 'dispatch'])->name('dispatch');
+//});
 
 Route::post('/auth/signup', [SignUpController::class, 'signUp']);
 Route::post('/auth/signin', [LoginController::class, 'login']);
