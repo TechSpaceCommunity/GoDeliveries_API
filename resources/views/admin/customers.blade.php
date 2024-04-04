@@ -139,23 +139,25 @@
                             <div class="card-body" style="">
 
                                 @if (count($users) >= 1)
-                                    <div class="table-responsive">
-                                        <table id="customers" class="table table-striped table-bordered" style="width:100%">
-                                            {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
+                                    <div class="table-responsive container" style="margin-top:10px;"">
+                                        <input type="text" id="search" class="form-control mb-3" style="padding: 10px"
+                                            placeholder="Search">
+                                        <table id="customers" class="table" style="width:100%">
                                             <thead class="fw-bolder">
                                                 <tr>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Phone Number</th>
-                                                    <th scope="col">Joining Date</th>
-                                                    <th scope="col">Actions</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Joining Date</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($users as $user)
-                                                    <tr>
+                                                    <tr style="padding-top: 15px">
                                                         <td><a href="#"
-                                                                class="text-primary fw-bold">{{ $user->name }}</a></td>
+                                                                class="text-decoration-none text-black">{{ $user->name }}</a>
+                                                        </td>
                                                         <td>{{ $user->email }}</td>
                                                         <td>
                                                             @if ($user->number == '')
@@ -199,11 +201,33 @@
             </div>
         </section>
     </main>
-    {{-- <script src="{{ asset('js/index.js') }}"></script> --}}
-    {{-- datables --}}
-    {{-- <script src='https://code.jquery.com/jquery-3.7.0.js'></script> --}}
-    <!-- Data Table JS -->
-    {{-- <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script> --}}
-    {{-- <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script> --}}
-    {{-- <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script> --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Select the search input
+            const searchInput = document.getElementById('search');
+
+            // Select the table rows
+            const rows = document.querySelectorAll('#customers tbody tr');
+
+            // Add event listener for the search input
+            searchInput.addEventListener('keyup', function(event) {
+                const searchText = event.target.value.toLowerCase();
+
+                // Iterate through all the table rows
+                rows.forEach(row => {
+                    // Get the text content of each row
+                    const textContent = row.textContent.toLowerCase();
+
+                    // Check if the text content includes the search text
+                    if (textContent.includes(searchText)) {
+                        // If it includes, display the row
+                        row.style.display = 'table-row';
+                    } else {
+                        // If not, hide the row
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
