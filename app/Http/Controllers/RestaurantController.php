@@ -55,7 +55,7 @@ class RestaurantController extends Controller
         return view('restaurant.restaurantprofile', compact('restaurant'));
     }
     public function food()  {
-        $restaurant = Auth::guard('restaurant')->user()->id;
+        $restaurant = Auth::guard('restaurant')->user();
         return view('restaurant.food', compact('restaurant'));
     }
     public function category()  {
@@ -107,6 +107,16 @@ class RestaurantController extends Controller
             'status'=>'required|in:active,inactive',
         ]);
 
+        
+
+        $data= $request->all();
+        $slug=Str::slug($request->title);
+        $count=Category::where('slug',$slug)->count();
+        if($count>0){
+            $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
+        }
+        $data['slug']=$slug;
+
         if ($request->hasFile('photo')) {
             # get file name with extension
             $filenameWithExt=$request->file('photo')->getClientOriginalName();
@@ -122,14 +132,7 @@ class RestaurantController extends Controller
         else{
             $fileNameToStore='noImage.png';
         }
-
-        $data= $request->all();
-        $slug=Str::slug($request->title);
-        $count=Category::where('slug',$slug)->count();
-        if($count>0){
-            $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
-        }
-        $data['slug']=$slug;
+        $data['photo']=$fileNameToStore;
         //dd($data);
         $status=Category::create($data);
         if($status){

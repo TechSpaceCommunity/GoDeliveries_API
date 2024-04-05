@@ -151,7 +151,7 @@
                             <td>{{$category->id}}</td>
                             <td>
                               @if($category->photo)
-                                  <img src="{{$category->photo}}" class="img-fluid" style="max-width:80px" alt="{{$category->photo}}">
+                                  <img src="./storage/category_photo/{{$category->photo}}" class="img-fluid" style="max-width:80px" alt="{{$category->photo}}">
                               @else
                                   <img src="{{asset('./storage/category_photo/noImage.png')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
                               @endif
@@ -161,9 +161,9 @@
                             <td>{{$category->summary}}</td>
                             <td>
                                 @if($category->status=='active')
-                                    <span class="badge badge-success">{{$category->status}}</span>
+                                    <span class="fw-bold text-success">{{$category->status}}</span>
                                 @else
-                                    <span class="badge badge-warning">{{$category->status}}</span>
+                                    <span class="fw-bold text-warning">{{$category->status}}</span>
                                 @endif
                             </td>
                             <td>
