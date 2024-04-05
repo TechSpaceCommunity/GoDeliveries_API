@@ -37,9 +37,9 @@ Route::post('/users', [AdminController::class, 'createuser'])->name('createuser'
 Route::delete('/users/{id}', [AdminController::class, 'destroyuser'])->name('destroyuser');
 Route::put('/users/{id}', [AdminController::class, 'activateuser'])->name('activateuser');
 
-Route::get('/restaurants', [AdminController::class, 'restaurants'])->name('restaurants');
-Route::post('/restaurants', [AdminController::class, 'createrestaurant'])->name('createrestaurant');
-Route::delete('/restaurants/{id}', [AdminController::class, 'destroyrestaurant'])->name('destroyrestaurant');
+Route::get('/adminrestaurants', [AdminController::class, 'restaurants'])->name('adminrestaurants');
+Route::post('/adminrestaurants', [AdminController::class, 'createrestaurant'])->name('createrestaurant');
+Route::delete('/adminrestaurants/{id}', [AdminController::class, 'destroyrestaurant'])->name('destroyrestaurant');
 Route::get('/restaurantsection', [AdminController::class, 'restaurantsection'])->name('restaurantsection');
 Route::post('/restaurantsection', [AdminController::class, 'createrestaurantsection'])->name('createrestaurantsection');
 Route::get('/configuration', [AdminController::class, 'configuration'])->name('configuration');
@@ -60,6 +60,8 @@ Route::post('/restaurantslogin', [RestaurantController::class, 'authenticaterest
 Route::get('/restaurantprofile', [RestaurantController::class, 'restaurantprofile'])->name('restaurantprofile');
 Route::get('/food', [RestaurantController::class, 'food'])->name('food');
 Route::get('/category', [RestaurantController::class, 'category'])->name('category');
+Route::post('/category', [RestaurantController::class, 'createcategory'])->name('createcategory');
+Route::delete('/category/{id}', [RestaurantController::class, 'destroycategory'])->name('category.destroy');
 Route::get('/orders', [RestaurantController::class, 'orders'])->name('orders');
 Route::get('/option', [RestaurantController::class, 'option'])->name('option');
 Route::get('/ratings', [RestaurantController::class, 'ratings'])->name('ratings');

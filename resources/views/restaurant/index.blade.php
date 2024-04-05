@@ -3,13 +3,13 @@
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Profile</h1>
+      <h1>Dasboard</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="{{route('restaurants')}}">Home</a>
           </li>
-          <li class="breadcrumb-item active">Profile</li>
+          <li class="breadcrumb-item active">Restaurant</li>
         </ol>
       </nav>
     </div>
@@ -23,7 +23,7 @@
               class="card-body profile-card pt-4 d-flex flex-column align-items-center"
             >
               <img
-                src="assets/img/profile-img.jpg"
+                src="./storage/restaurant_cover_images/{{$restaurant->cover_image}}"
                 alt="Profile"
                 class="rounded-circle"
               />
@@ -52,30 +52,20 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
                 <li class="nav-item mx-1">
                   <button
-                    class="nav-link active bg-primary text-white fw-bold"
+                    class="nav-link active bg-warning text-dark fw-bold "
                     data-bs-toggle="tab"
                     data-bs-target="#profile-overview"
+                    style="border-bottom-right-radius: 30px;border-top-right-radius: 30px"
                   >
-                    Overview
+                  Restaurant Details
                   </button>
                 </li>
-                <li class="nav-item mx-1">
-                  <a href=""
-                    class="nav-link bg-success text-white fw-bold btn "
-                  >
-                    Update Details
-                  </a>
-                </li>
-
               </ul>
               <div class="tab-content pt-2">
                 <div
                   class="tab-pane fade show active profile-overview"
                   id="profile-overview"
                 >
-
-                  <h5 class="card-title">Profile Details</h5>
-
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Full Name</div>
                     <div class="col-lg-9 col-md-8">{{ $restaurant->name  }}</div>
@@ -86,6 +76,26 @@
                     <div class="col-lg-9 col-md-8">
                         {{ $restaurant->email }}
                     </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Address</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->address  }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Delivery Time</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->delivery_time  }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Minimum Order</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->minimum_order  }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Delivery Time</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->delivery_time  }}</div>
                   </div>
                   </div>
                 </div>

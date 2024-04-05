@@ -118,7 +118,7 @@
       </li><!-- End Nav item -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('restaurants') }}">
+        <a class="nav-link collapsed" href="{{ route('adminrestaurants') }}">
           <i class="ri ri-government-line"></i>
           <span>Restaurants</span>
         </a>

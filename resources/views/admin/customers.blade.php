@@ -24,7 +24,7 @@
                             {{ __('Add Customer') }}</div>
         
                         <div class="card-body">
-                            <form method="POST" action="{{ route('createcustomer') }}">
+                            <form method="POST" action="{{ route('createcategory') }}">
                                 @csrf
         
                                 <div class="row mb-3 d-flex">
@@ -105,7 +105,7 @@
         </div>
     </section>
 
-    @endif
+    @endif 
     
     <section class="section">
         <div class="container">
