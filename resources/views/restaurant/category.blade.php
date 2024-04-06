@@ -171,7 +171,7 @@
                             <form method="POST" action="{{route('category.destroy',[$category->id])}}">
                               @csrf
                               @method('delete')
-                                  <button class="btn btn-danger btn-sm dltBtn" data-id={{$category->id}} style="height:30px; width:100px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete">Delete<i class="bi bi-exit"></i></button>
+                                  <button class="btn btn-danger btn-sm dltBtn" data-id={{$category->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                 </form>
                             </td>
                         </tr>
