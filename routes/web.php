@@ -59,6 +59,8 @@ Route::post('/restaurantslogin', [RestaurantController::class, 'authenticaterest
 //restaurant dashboard pages
 Route::get('/restaurantprofile', [RestaurantController::class, 'restaurantprofile'])->name('restaurantprofile');
 Route::get('/food', [RestaurantController::class, 'food'])->name('food');
+Route::post('/food', [RestaurantController::class, 'createfood'])->name('createfood');
+Route::delete('/food/{id}', [RestaurantController::class, 'destroyfood'])->name('food.destroy');
 Route::get('/category', [RestaurantController::class, 'category'])->name('category');
 Route::post('/category', [RestaurantController::class, 'createcategory'])->name('createcategory');
 Route::delete('/category/{id}', [RestaurantController::class, 'destroycategory'])->name('category.destroy');

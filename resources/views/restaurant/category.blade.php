@@ -119,8 +119,8 @@
             <div class="card-body">
               <div class="table-responsive">
                 @if(count($categories)>0)
-                <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
-                  <thead>
+                <table class="table table-hover" id="banner-dataTable" width="100%" cellspacing="0">
+                  <thead class="bg-dark text-white">
                     <tr>
                       <th>S.N.</th>
                       <th>Photo</th>
@@ -131,7 +131,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tfoot>
+                  <tfoot class="bg-dark text-white">
                     <tr>
                       <th>S.N.</th>
                       <th>Photo</th>

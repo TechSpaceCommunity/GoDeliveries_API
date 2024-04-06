@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Food;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,9 @@ class RestaurantController extends Controller
     }
     public function food()  {
         $restaurant = Auth::guard('restaurant')->user();
-        return view('restaurant.food', compact('restaurant'));
+        $categories=Category::where('restaurant_id', $restaurant->id)->get();
+        $products=Food::where('restaurant_id', $restaurant->id)->get();
+        return view('restaurant.food', compact('restaurant','categories', 'products'));
     }
     public function category()  {
         $restaurant = Auth::guard('restaurant')->user();
@@ -142,7 +145,69 @@ class RestaurantController extends Controller
             request()->session()->flash('error','Error occurred, Please try again!');
         }
         return redirect()->route('category');
+    }
 
+    public function createfood(Request $request)
+    {
+        // return $request->all();
+        $this->validate($request,[
+            'title'=>'string|required',
+            'summary'=>'string|required',
+            'photo'=>'image|required',
+            'stock'=>"required|numeric",
+            'cat_id'=>'required|exists:categories,id',
+            'status'=>'required|in:active,inactive',
+            'price'=>'required|numeric',
+            'discount'=>'nullable|numeric'
+        ]);
 
+        $data=$request->all();
+        $slug=Str::slug($request->title);
+        $count=Food::where('slug',$slug)->count();
+        if($count>0){
+            $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
+        }
+        $data['slug']=$slug;
+        
+        if ($request->hasFile('photo')) {
+            # get file name with extension
+            $filenameWithExt=$request->file('photo')->getClientOriginalName();
+            //get file name
+            $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get ext
+            $extension=$request->file('photo')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore=$filename.'_'.time().'.'.$extension;
+            //upload the photo
+            $path=$request->file('photo')->storeAs('public/food_photo/', $fileNameToStore);
+        }
+        else{
+            $fileNameToStore='noImage.png';
+        }
+        $data['photo']=$fileNameToStore;
+        // return $data;
+        $status=Food::create($data);
+        if($status){
+            request()->session()->flash('success','Food Successfully added');
+        }
+        else{
+            request()->session()->flash('error','Please try again!!');
+        }
+        return redirect()->route('food');
+
+    }
+    /* delete operations */
+    public function destroycategory($id)
+    {
+        $user=category::find($id);
+        $user->delete();
+        return redirect('category')->with('success', 'Category Deleted Successfully!!');
+    }
+
+    public function destroyfood($id)
+    {
+        $user=Food::find($id);
+        $user->delete();
+        return redirect('food')->with('success', 'Food Deleted Successfully!!');
     }
 }
