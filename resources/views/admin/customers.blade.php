@@ -15,7 +15,7 @@
       </div>
       <!-- End Page Title -->
       @if(Auth::user()->role=='admin')
-    <section class="section">
+    {{-- <section class="section">
         <div class="container">
             <div class="row ">
                 <div class="col-md-6">
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     @endif 
     

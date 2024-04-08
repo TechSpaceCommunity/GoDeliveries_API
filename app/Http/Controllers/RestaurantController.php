@@ -7,7 +7,6 @@ use App\Models\Food;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -17,7 +16,9 @@ class RestaurantController extends Controller
     //
     public function index()  {
         $restaurant = Auth::guard('restaurant')->user();
-        return view('restaurant.index', compact('restaurant'));
+        $totalcategories=Category::where('restaurant_id', $restaurant->id)->count();
+        $totalfood=Food::where('restaurant_id', $restaurant->id)->count();
+        return view('restaurant.index', compact('restaurant', 'totalcategories', 'totalfood'));
     }
 
     public function restaurantsloginform()  {

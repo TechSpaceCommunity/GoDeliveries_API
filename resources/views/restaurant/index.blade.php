@@ -3,8 +3,8 @@
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Dasboard</h1>
-      <nav>
+      <h1>Restaurant Dasboard</h1>
+      <nav> 
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="{{route('restaurants')}}">Home</a>
@@ -15,99 +15,130 @@
     </div>
     <!-- End Page Title -->
 
-    <section class="section profile">
-      <div class="row">
-        <div class="col-xl-4">
-          <div class="card">
-            <div
-              class="card-body profile-card pt-4 d-flex flex-column align-items-center"
-            >
-              <img
-                src="./storage/restaurant_cover_images/{{$restaurant->cover_image}}"
-                alt="Profile"
-                class="rounded-circle"
-              />
-              <h2>{{ $restaurant->name }}</h2>
-              <h3>{{ $restaurant->email  }}</h3>
-              <div class="social-links mt-2">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"
-                  ><i class="bi bi-facebook"></i
-                ></a>
-                <a href="#" class="instagram"
-                  ><i class="bi bi-instagram"></i
-                ></a>
-                <a href="#" class="linkedin"
-                  ><i class="bi bi-linkedin"></i
-                ></a>
-              </div>
-            </div>
+    <section class="section">
+      <div class="container">
+          <div class="row d-flex">
+                  <div class="col-xxl-3 col-xl-3 " >
+                      <div class="card " style="background-color:  rgb(207, 231, 240)" >  
+                          <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
+                              <h5 class="card-title"><span class="fw-bolder text-dark">Total Categories</h5>
+          
+                              <div class="row d-flex justify-content-space-between" >
+                                  <div class="col mx-1 "><h6 class="fw-bolder fs-5">{{$totalcategories}}</h6></div>
+                                  <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+      
+                  <div class="col-xxl-3 col-xl-3 ">
+                      <div class="card " style="background-color: rgb(169, 240, 169)" >  
+                          <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
+                              <h5 class="card-title"><span class="fw-bolder text-dark">Total Food</h5>
+          
+                              <div class="row d-flex justify-content-space-between" >
+                                  <div class="col mx-1 "><h6 class="fw-bolder fs-5">{{$totalfood}}</h6></div>
+                                  <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+      
+                  <div class="col-xxl-3 col-xl-3 ">
+                      <div class="card " style="background-color:rgb(207, 231, 240)" >  
+                          <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
+                              <h5 class="card-title"><span class="fw-bolder text-dark">Total Orders</h5>
+          
+                              <div class="row d-flex justify-content-space-between" >
+                                  <div class="col mx-1 "><h6 class="fw-bolder fs-5">2</h6></div>
+                                  <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-xxl-3 col-xl-3 ">
+                      <div class="card " style="background-color: rgb(247, 196, 101)" >  
+                          <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
+                              <h5 class="card-title"><span class="fw-bolder text-dark" >Total Revenue</h5>
+          
+                              <div class="row d-flex justify-content-space-between" >
+                                  <div class="col mx-1 "><h6 class="fw-bolder fs-5">$ 100</h6></div>
+                                  <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              
           </div>
-        </div>
+          <div class="row ">
+              
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-body">
+                          <!-- Line Chart -->
+                      <div id="reportsChart"></div>
 
-        <div class="col-xl-8">
-          <div class="card">
-            <div class="card-body pt-3">
-              <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
-                <li class="nav-item mx-1">
-                  <button
-                    class="nav-link active bg-warning text-dark fw-bold "
-                    data-bs-toggle="tab"
-                    data-bs-target="#profile-overview"
-                    style="border-bottom-right-radius: 30px;border-top-right-radius: 30px"
-                  >
-                  Restaurant Details
-                  </button>
-                </li>
-              </ul>
-              <div class="tab-content pt-2">
-                <div
-                  class="tab-pane fade show active profile-overview"
-                  id="profile-overview"
-                >
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Full Name</div>
-                    <div class="col-lg-9 col-md-8">{{ $restaurant->name  }}</div>
-                  </div>
+                      <script>
+                          document.addEventListener("DOMContentLoaded", () => {
+                              new ApexCharts(document.querySelector("#reportsChart"), {
+                              series: [
+                                  {
+                                      name: 'Categories',
+                                      data: [2,1,4,1,3,4]
+                                  },
+                                  {
+                                      name: 'Food',
+                                      data: [3,1,2,4,2,5]
+                                  },
+                                  {
+                                      name: 'Orders',
+                                      data: [3,2,1,4,1,3]
+                                  }
+                              ],
+                              chart: {
+                                  height: 350,
+                                  type: 'area',
+                                  toolbar: {
+                                      show: false
+                                  },
+                              },
+                              markers: {
+                                  size: 4
+                              },
+                              colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                              fill: {
+                                  type: "gradient",
+                                  gradient: {
+                                      shadeIntensity: 1,
+                                      opacityFrom: 0.3,
+                                      opacityTo: 0.4,
+                                      stops: [0, 90, 100]
+                                  }
+                              },
+                              dataLabels: {
+                                  enabled: false
+                              },
+                              stroke: {
+                                  curve: 'smooth',
+                                  width: 2
+                              },
+                              xaxis: {
+                                  type: 'category',
+                                  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+                              },
+                          }).render();
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">
-                        {{ $restaurant->email }}
-                    </div>
+                          });
+                      </script>
+                      
+                      <!-- End Line Chart -->
+                      </div>
                   </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Address</div>
-                    <div class="col-lg-9 col-md-8">{{ $restaurant->address  }}</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Delivery Time</div>
-                    <div class="col-lg-9 col-md-8">{{ $restaurant->delivery_time  }}</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Minimum Order</div>
-                    <div class="col-lg-9 col-md-8">{{ $restaurant->minimum_order  }}</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Delivery Time</div>
-                    <div class="col-lg-9 col-md-8">{{ $restaurant->delivery_time  }}</div>
-                  </div>
-                  </div>
-                </div>
-
-                
               </div>
-              <!-- End Bordered Tabs -->
-            </div>
           </div>
-        </div>
       </div>
-    </section>
+  </section>
   </main>
   <!-- End #main -->
 
