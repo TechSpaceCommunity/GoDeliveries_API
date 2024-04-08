@@ -142,7 +142,7 @@
                                     <div class="table-responsive container" style="margin-top:10px;"">
                                         <input type="text" id="search" class="form-control mb-3" style="padding: 10px"
                                             placeholder="Search">
-                                        <table id="customers" class="table" style="width:100%">
+                                        <table id="customers" class="table">
                                             <thead class="fw-bolder">
                                                 <tr>
                                                     <th>Name</th>
@@ -201,33 +201,48 @@
             </div>
         </section>
     </main>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Select the search input
-            const searchInput = document.getElementById('search');
+@endsection
 
-            // Select the table rows
-            const rows = document.querySelectorAll('#customers tbody tr');
+<!-- jQuery -->
+<script src='https://code.jquery.com/jquery-3.7.0.js'></script>
+<!-- Data Table JS -->
+<script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
+<script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
+<script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select the search input
+        const searchInput = document.getElementById('search');
 
-            // Add event listener for the search input
-            searchInput.addEventListener('keyup', function(event) {
-                const searchText = event.target.value.toLowerCase();
+        // Select the table rows
+        const rows = document.querySelectorAll('#customers tbody tr');
 
-                // Iterate through all the table rows
-                rows.forEach(row => {
-                    // Get the text content of each row
-                    const textContent = row.textContent.toLowerCase();
+        // Add event listener for the search input
+        searchInput.addEventListener('keyup', function(event) {
+            const searchText = event.target.value.toLowerCase();
 
-                    // Check if the text content includes the search text
-                    if (textContent.includes(searchText)) {
-                        // If it includes, display the row
-                        row.style.display = 'table-row';
-                    } else {
-                        // If not, hide the row
-                        row.style.display = 'none';
-                    }
-                });
+            // Iterate through all the table rows
+            rows.forEach(row => {
+                // Get the text content of each row
+                const textContent = row.textContent.toLowerCase();
+
+                // Check if the text content includes the search text
+                if (textContent.includes(searchText)) {
+                    // If it includes, display the row
+                    row.style.display = 'table-row';
+                } else {
+                    // If not, hide the row
+                    row.style.display = 'none';
+                }
             });
         });
+    });
+</script>
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#customers-table').DataTable();
+        });
     </script>
-@endsection
+@endpush
