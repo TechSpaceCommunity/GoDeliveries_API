@@ -23,7 +23,7 @@
               class="card-body profile-card pt-4 d-flex flex-column align-items-center"
             >
               <img
-                src="assets/img/profile-img.jpg"
+                src="./storage/restaurant_cover_images/{{$restaurant->cover_image}}"
                 alt="Profile"
                 class="rounded-circle"
               />
@@ -52,16 +52,18 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
                 <li class="nav-item mx-1">
                   <button
-                    class="nav-link active bg-primary text-white fw-bold"
+                    class="nav-link active bg-warning text-dark fw-bold "
                     data-bs-toggle="tab"
                     data-bs-target="#profile-overview"
+                    style="border-bottom-right-radius: 30px;border-top-right-radius: 30px"
                   >
-                    Overview
+                  Restaurant Details
                   </button>
                 </li>
                 <li class="nav-item mx-1">
-                  <a href=""
+                  <a href="#"
                     class="nav-link bg-success text-white fw-bold btn "
+                    style="border-bottom-right-radius: 30px;border-top-right-radius: 30px"
                   >
                     Update Details
                   </a>
@@ -86,6 +88,26 @@
                     <div class="col-lg-9 col-md-8">
                         {{ $restaurant->email }}
                     </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Address</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->address  }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Delivery Time</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->delivery_time  }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Minimum Order</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->minimum_order  }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Delivery Time</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->delivery_time  }}</div>
                   </div>
                   </div>
                 </div>

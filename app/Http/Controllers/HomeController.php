@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
         $totalcustomers=Customer::all()->count();
         $totalrestaurants=Restaurant::all()->count();
-        $totalusers=User::all()->count();
+        $totalusers=User::all()->count(); 
         $totalriders=Rider::all()->count();
 
         // Fetch count of customers, restaurants, and riders for each month

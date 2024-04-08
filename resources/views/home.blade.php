@@ -5,7 +5,7 @@
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle" style="margin-top: -4%">
-            <h1>Dashboard</h1>
+            <h1>Admin Dashboard</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -19,6 +19,21 @@
         <section class="section">
             <div class="container">
                 <div class="row d-flex">
+                    <div class="col-xxl-3 col-xl-3 ">
+                        <div class="card " style="background-color:  rgb(207, 231, 240)">
+                            <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
+                                <h5 class="card-title"><span class="fw-bolder text-dark">Total Customers</h5>
+
+                                <div class="row d-flex justify-content-space-between">
+                                    <div class="col mx-1 ">
+                                        <h6 class="fw-bolder fs-5">{{ $totalcustomers }}</h6>
+                                    </div>
+                                    <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-xxl-3 col-xl-3 ">
                         <div class="card " style="background-color:  #5c6bf3;  border:none">
                             <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
