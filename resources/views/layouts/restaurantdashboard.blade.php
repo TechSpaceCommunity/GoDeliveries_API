@@ -9,7 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    
+    <!--favicon--> 
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.png">
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
@@ -37,12 +40,10 @@
   <header id="header" class="header fixed-top d-flex align-items-center " style="margin-bottom:3%">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="{{ route('restaurants') }}" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block ">
-          <img src="assets/img/icon.png" alt="" width="200" height="1000">
-          {{-- {{ config('app.name', 'GoDeliveries') }} --}}
-        </span>
-      </a>
+            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <img src="assets/img/icon.png" alt="Logo" width="50" height="auto" style="margin-right: 10px; border-radius: 50%;">
+                <span class="fw-bold">{{ config('app.name', 'GoDeliveries') }}</span>
+            </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 

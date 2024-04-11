@@ -2,7 +2,7 @@
 
 @section('content')
 <main id="main" class="main" >
-    <div class="pagetitle" style="margin-top: -4%">
+    <div class="pagetitle">
         <h1>Admin Dashboard</h1>
         <nav>
           <ol class="breadcrumb">

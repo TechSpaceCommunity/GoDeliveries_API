@@ -10,6 +10,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!--favicon--> 
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.png">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
@@ -37,12 +40,10 @@
   <header id="header" class="header fixed-top d-flex align-items-center " style="margin-bottom:3%">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block ">
-          <img src="assets/img/icon.png" alt="" width="200" height="1000">
-          {{-- {{ config('app.name', 'GoDeliveries') }} --}}
-        </span>
-      </a>
+            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <img src="assets/img/icon.png" alt="Logo" width="50" height="auto" style="margin-right: 10px; border-radius: 50%;">
+                <span class="fw-bold">{{ config('app.name', 'GoDeliveries') }}</span>
+            </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
@@ -239,19 +240,17 @@
         </div>
       </div>
     </div>
-  
-    <div class="footer-legal text-center position-relative">
-      <div class="container">
-        <div class="copyright">
-          &copy; Copyright <strong><span>{{ config('app.name', 'Max Tech Agencies') }}</span></strong>. All Rights Reserved
+
+    <footer class="footer-legal text-center" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>{{ config('app.name', 'Max Tech Agencies') }}</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                Designed by <a href="https://tech-space.co.ke/" target="_blank" class="fw-bold text-decoration-none" style="color: rgb(255, 165, 0)">Tech Space Community</a>
+            </div>
         </div>
-        <div class="credits">
-          Designed by <a href="#">{{ config('app.name', 'Max Tech Agencies') }}</a>
-        </div>
-      </div>
-    </div>
-  
-  </footer>
+    </footer>
   <!-- End Footer -->
   
   <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 "  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short bg-warning p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>

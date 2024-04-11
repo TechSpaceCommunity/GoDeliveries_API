@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -22,13 +21,14 @@ return new class extends Migration
             $table->integer('stock')->default(1);
             $table->enum('status',['active','inactive'])->default('inactive');
             $table->float('price');
-            $table->float('discount')->nullabale();
-            $table->unsignedBigInteger('cat_id');
+            $table->float('discount')->nullable();
+            $table->unsignedBigInteger('cat_id')->nullable();
             $table->unsignedBigInteger('child_cat_id')->nullable();
             $table->unsignedBigInteger('restaurant_id');
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->timestamps();
         });
+        
     }
 
     /**
