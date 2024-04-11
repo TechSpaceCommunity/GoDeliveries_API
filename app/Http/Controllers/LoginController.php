@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 
@@ -35,23 +34,20 @@ class LoginController extends Controller
         $socialiteUser = Socialite::driver('google')->stateless()->user();
     
         // Check if the user exists in the database
-        $user = User::where('email', $socialiteUser->getEmail())->first();
+        $user = Customer::where('email', $socialiteUser->getEmail())->first();
     
         if (!$user) {
             // User does not exist, create a new user
-            $user = new User();
+            $user = new Customer();
             $user->name = $socialiteUser->getName();
             $user->email = $socialiteUser->getEmail();
-            // Set password to the user's name
             $user->password = bcrypt($socialiteUser->getName()); 
             $user->save();
         }
     
-        // Log in the user
-        Auth::login($user);
-    
-        // Return user details
-        return response()->json(['user' => $user]);
+         return view('login_success')->with([
+            'user' => $user,
+        ]);
     }
     
 
@@ -75,21 +71,20 @@ class LoginController extends Controller
         $socialiteUser = Socialite::driver('facebook')->stateless()->user();
 
         // Check if the user exists in the database
-        $user = User::where('email', $socialiteUser->getEmail())->first();
+        $user = Customer::where('email', $socialiteUser->getEmail())->first();
 
         if (!$user) {
-            // User does not exist, create a new user
-            $user = new User();
-            $user->name = $socialiteUser->getName();
+            // User does not exist, create a new user with Facebook email
+            $user = new Customer();
+            $user->name = $socialiteUser->getName() ?? 'Facebook User';
             $user->email = $socialiteUser->getEmail();
             $user->save();
         }
 
-        // Log in the user
-        Auth::login($user);
-
         // Return user details
-        return response()->json(['user' => $user]);
+        return view('login_success')->with([
+            'user' => $user,
+        ]);
     }
 
     public function login(Request $request)
