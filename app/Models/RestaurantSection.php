@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rider extends Model
+class RestaurantSection extends Model
 {
-    protected $fillable = [
-        'email',
-        'name',
-        'number',
-        'zone',
-        'status',
-        'password',
-        'rider_image',
-        'bike_image'
-    ];
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'status',
+        'restaurants'
+    ];
 }

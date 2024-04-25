@@ -20,7 +20,7 @@
             <div class="row ">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header w-50 bg-warning fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
+                        <div class="card-header w-50  fw-bolder" style="background-color:#ff8542;border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
                             {{ __('Zone') }}</div>
         
                         <div class="card-body">
@@ -65,7 +65,7 @@
                 
                                 <div class="row mb-0" align="start">
                                     <div class="col-md-8 offset-md-4 d-block">
-                                        <button type="submit" class="btn btn-warning fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                        <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                             {{ __('SAVE') }}
                                         </button><br>
                                     </div>
@@ -89,7 +89,7 @@
                         
                         @if (count($users)>=1)
                         <table  class="table table-hover">
-                            <thead class="bg-warning  fw-bolder">
+                            <thead class="primary_background_color fw-bolder">
                               <tr>
                                 <th scope="col">Title</th>
                                 <th scope="col w-50">Description</th>
@@ -105,16 +105,30 @@
                                     <td class="w-25">{{$user->description}}</td>
                                     <td class="overflow-auto" style="max-width: 50px; max-height:50px">{{$user->cordinates}}</td>
                                     <td>{{$user->created_at}}</td>
-                                        @if(Auth::user()->role=='admin')
-                                        
-                                        <td>
-                                          <form action="{{route('destroyzone', $user->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger fw-bolder">Delete</button>
-                                          </form>                                          
-                                        </td>
-                                        @endif
+                                    {{-- @if(Auth::user()->role=='admin') --}}
+                                    
+                                    <td>
+                                        <a class="dropdown text-decoration-none"  data-bs-toggle="dropdown"><i class="ri ri-more-2-fill fw-bolder cursor-pointer"></i>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-align-center align-items-center">
+                                                <li class="w-100 d-flex">
+                                                  <span class="mx-1 details rounded border shadow-lg ">
+                                                    <a class="btn btn-success fw-bolder " href="./editzone/{{$user->id}}">
+                                                        <i class="bi bi-pen fw-bolder text-white" ></i>
+                                                      </a>
+                                                  </span>
+                                                  <span class="mx-1 rounded border shadow-lg  ">
+                                                    <form action="{{route('destroyzone', $user->id) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger fw-bolder"><i class="b bi-trash"></i></button>
+                                                      </form>  
+                                                  </span>
+                                                  
+                                                </li>
+                                                </ul>
+                                        </a>                                         
+                                    </td>
+                                    {{-- @endif --}}
                                   </tr>
                                 @endforeach
                             </tbody>

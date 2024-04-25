@@ -30,6 +30,9 @@ Route::post('/editprofileadmin/{id}', [AdminController::class, 'updateprofile'])
 /* users */
 Route::get('/riders', [AdminController::class, 'riders'])->name('riders');
 Route::post('/riders', [AdminController::class, 'createrider'])->name('createrider');
+Route::get('/editrider/{id}', [AdminController::class, 'editrider'])->name('editrider');
+Route::post('/editrider/{id}', [AdminController::class, 'updaterider'])->name('editrider');
+Route::delete('/rider/{id}', [AdminController::class, 'destroyrider'])->name('destroyrider');
 Route::get('/customers', [AdminController::class, 'customers'])->name('customers');
 Route::post('/customers', [AdminController::class, 'createcustomer'])->name('createcustomer');
 Route::delete('/customers/{id}', [AdminController::class, 'destroycustomer'])->name('destroycustomer');
@@ -40,15 +43,22 @@ Route::put('/users/{id}', [AdminController::class, 'activateuser'])->name('activ
 
 Route::get('/adminrestaurants', [AdminController::class, 'restaurants'])->name('adminrestaurants');
 Route::post('/adminrestaurants', [AdminController::class, 'createrestaurant'])->name('createrestaurant');
+Route::get('/editadminrestaurants/{id}', [AdminController::class, 'editrestaurant'])->name('editadminrestaurants');
+Route::post('/editadminrestaurants/{id}', [AdminController::class, 'updaterestaurant'])->name('editrestaurant');
 Route::delete('/adminrestaurants/{id}', [AdminController::class, 'destroyrestaurant'])->name('destroyrestaurant');
 Route::get('/restaurantsection', [AdminController::class, 'restaurantsection'])->name('restaurantsection');
 Route::post('/restaurantsection', [AdminController::class, 'createrestaurantsection'])->name('createrestaurantsection');
+Route::get('/editadminrestaurantsection/{id}', [AdminController::class, 'editrestaurantsection'])->name('editadminrestaurantsection');
+Route::post('/editadminrestaurantsection/{id}', [AdminController::class, 'updaterestaurantsection'])->name('editrestaurantsection');
+Route::delete('/adminrestaurantsection/{id}', [AdminController::class, 'destroyrestaurantsection'])->name('destroyrestaurantsection');
 Route::get('/configuration', [AdminController::class, 'configuration'])->name('configuration');
 Route::get('/notifications', [AdminController::class, 'notifications'])->name('notifications');
 Route::post('/notifications', [AdminController::class, 'createnotification'])->name('createnotification');
 Route::delete('/notifications/{id}', [AdminController::class, 'destroynotification'])->name('destroynotification');
 Route::get('/zones', [AdminController::class, 'zones'])->name('zones');
 Route::post('/zones', [AdminController::class, 'createzone'])->name('createzone');
+Route::get('/editzone/{id}', [AdminController::class, 'editzone'])->name('editzone');
+Route::post('/editzone/{id}', [AdminController::class, 'updatezone'])->name('updatezone');
 Route::delete('/zones/{id}', [AdminController::class, 'destroyzone'])->name('destroyzone');
 });
 

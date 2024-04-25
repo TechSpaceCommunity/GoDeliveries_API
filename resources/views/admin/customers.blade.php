@@ -119,7 +119,7 @@
                         @if (count($users)>=1)
                         <table  class="table table-hover">
                            {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
-                            <thead class="bg-warning  fw-bolder">
+                            <thead class="primary_background_color  fw-bolder">
                               <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
@@ -145,7 +145,7 @@
                                           <form action="{{route('destroycustomer', $user->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger fw-bolder">Delete</button>
+                                            <button type="submit" class="btn btn-danger fw-bolder"><i class="b bi-trash"></i></button>
                                           </form>                                          
                                         </td>
                                         @endif

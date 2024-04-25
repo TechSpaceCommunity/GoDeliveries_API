@@ -31,7 +31,7 @@
           <div class="row ">
               <div class="col-md-6">
                   <div class="card">
-                      <div class="card-header w-50 bg-warning fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
+                      <div class="card-header w-50 fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px;background-color:#ff8542;" >
                           {{ __('Add User') }}</div>
       
                       <div class="card-body">
@@ -121,7 +121,7 @@
                               </div>
                               <div class="row mb-0" align="start">
                                   <div class="col-md-8 offset-md-4 d-block">
-                                      <button type="submit" class="btn btn-warning fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                      <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                           {{ __('SAVE') }}
                                       </button><br>
                                   </div>
@@ -146,7 +146,7 @@
                     @if (count($users)>=1)
                     <table  class="table table-hover">
                        {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
-                        <thead class="bg-warning  fw-bolder">
+                        <thead class="primary_background_color  fw-bolder">
                           <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>

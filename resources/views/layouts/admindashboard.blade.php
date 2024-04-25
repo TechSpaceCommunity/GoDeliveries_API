@@ -241,19 +241,19 @@
       </div>
     </div>
 
-    <footer class="footer-legal text-center" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);">
+    <footer class="footer-legal text-center" style="">
         <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong><span>{{ config('app.name', 'Max Tech Agencies') }}</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-                Designed by <a href="https://tech-space.co.ke/" target="_blank" class="fw-bold text-decoration-none" style="color: rgb(255, 165, 0)">Tech Space Community</a>
+                Designed by <a href="https://tech-space.co.ke/" target="_blank" class="fw-bold text-decoration-none primary_color">Tech Space Community</a>
             </div>
         </div>
     </footer>
   <!-- End Footer -->
   
-  <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 "  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short bg-warning p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 "  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short primary_background_color p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>
     </div>
 
     <!-- Vendor JS Files -->

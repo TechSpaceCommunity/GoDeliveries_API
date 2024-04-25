@@ -21,7 +21,7 @@
             <div class="row ">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header w-50 bg-warning fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
+                        <div class="card-header w-50 primary_background_color fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px; background-color:#ff8542;" >
                             {{ __('Add Restaurant') }}</div>
         
                         <div class="card-body">
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="row mb-0" align="start">
                                     <div class="col-md-8 offset-md-4 d-flex">
-                                        <button type="submit" class="btn btn-warning fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                        <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                             {{ __('SAVE') }}
                                         </button><br>
                                     </div>
@@ -159,7 +159,7 @@
                         <div class="card-body overflow-auto" style="margin: -1.3%">                            
                             @if (count($users)>=1)
                             <table  class="table table-hover">
-                                <thead class="bg-warning  fw-bolder">
+                                <thead class="primary_background_color  fw-bolder">
                                   <tr>
                                     <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
                                     <th scope="col">Image</th>
@@ -184,7 +184,25 @@
                                         <td>{{$user->minimum_order}}</td>
                                         <td>{{$user->sales_tax}}</td>
                                          <td>
-                                            <i class="ri ri-more-2-fill fw-bolder"></i>
+                                            <a class="dropdown text-decoration-none"  data-bs-toggle="dropdown"><i class="ri ri-more-2-fill fw-bolder cursor-pointer"></i>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-align-center align-items-center">
+                                                    <li class="w-100 d-flex">
+                                                      <span class="mx-1 details rounded border shadow-lg ">
+                                                        <a class="btn btn-success fw-bolder " href="./editadminrestaurants/{{$user->id}}">
+                                                            <i class="bi bi-pen fw-bolder text-white" ></i>
+                                                          </a>
+                                                      </span>
+                                                      <span class="mx-1 rounded border shadow-lg  ">
+                                                        <form action="{{route('destroyrestaurant', $user->id) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger fw-bolder"><i class="b bi-trash"></i></button>
+                                                          </form>  
+                                                      </span>
+                                                      
+                                                    </li>
+                                                    </ul>
+                                            </a>
                                         </td>
                                       </tr>
                                     @endforeach

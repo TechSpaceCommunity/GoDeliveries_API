@@ -20,13 +20,22 @@
             <div class="row ">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header w-50 bg-warning fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
-                            {{ __('Add Rider') }}</div>
-        
+                        <form method="POST" action="{{ route('createrider') }}" enctype="multipart/form-data">
+                            @csrf
+                        <div class="d-flex">
+                            <div class="card-header w-50  fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px;background-color:#ff8542;" >
+                                {{ __('Add Rider') }}
+                            </div>
+                            <div class="card-header w-50  fw-bolder d-flex" style="border: none">
+                                <label for="enable">Available</label>
+                                <div class="form-check form-switch mx-2"> 
+                                    <input type="hidden" name="status" value="0">                                      
+                                    <input type="checkbox" name="status" id="status" class="form-check-input" value="1" checked>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('createrider') }}" enctype="multipart/form-data">
-                                @csrf
-        
+                                   
                                 <div class="row mb-3 d-flex">
                                     <div class="col-6">
                                       {{-- <label for="name" class="col-md-4 col-form-label fw-bolder">{{ __('Name') }}</label> --}}
@@ -46,9 +55,9 @@
                                       {{-- <label for="username" class="col-md-4 col-form-label fw-bolder">{{ __('UserName') }}</label> --}}
         
                                       <div class="col-md-12">
-                                          <input id="username" type="text" class="form-control rounded-pill bg-light @error('username') is-invalid @enderror"  name="username" value="{{ old('username') }}" required autocomplete="username"  placeholder="Username" autofocus>
+                                          <input id="email" type="email" class="form-control rounded-pill bg-light @error('email') is-invalid @enderror"  name="email" value="{{ old('email') }}" required autocomplete="email"  placeholder="email" autofocus>
           
-                                          @error('username')
+                                          @error('email')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
                                               </span>
@@ -89,8 +98,13 @@
         
                                 <div class="row my-2">
                                   <div class="col-md-12">
-                                      <input id="zone" type="text" style="text-align: center" class="form-control rounded-pill bg-light  @error('zone') is-invalid @enderror"  name="zone" value="{{ old('zone') }}" required autocomplete="zone" placeholder="Zone" autofocus>
-      
+                                    <select name="zone" id="zone" class="form-control rounded-pill bg-light  @error('zone') is-invalid @enderror" required autocomplete="zone" autofocus>
+                                        <option value="">---Select Zone---</option>
+                                        @foreach ($zones as $zone)
+                                        <option value="{{$zone->title}}">{{$zone->title}}</option>
+                                        @endforeach    
+                                    </select>
+                                      
                                       @error('zone')
                                           <span class="invalid-feedback" role="alert">
                                               <strong>{{ $message }}</strong>
@@ -132,13 +146,13 @@
                                 </div>
                                 <div class="row mb-0" align="start">
                                     <div class="col-md-8 offset-md-4 d-block">
-                                        <button type="submit" class="btn btn-warning fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                        <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                             {{ __('SAVE') }}
                                         </button><br>
                                     </div>
                                 </div>
-                            </form>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -157,13 +171,13 @@
                             @if (count($users)>=1)
                             <table  class="table table-hover">
                                {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
-                                <thead class="bg-warning  fw-bolder">
+                                <thead class="primary_background_color fw-bolder">
                                   <tr>
                                     <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
                                     <th scope="col">Rider Image</th>
                                     <th scope="col">Bike Image</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">UserName</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Password</th>
                                     <th scope="col">Phone</th>
                                     <th scope="col">Zone</th>
@@ -178,20 +192,43 @@
                                         <th scope="row"  style="width: 5%"><img src="./storage/rider_images/{{$user->rider_image}}" alt="" class="img-fluid rounded-pill" ></th>
                                         <th scope="row"  style="width: 5%"><img src="./storage/bike_images/{{$user->bike_image}}" alt="" class="img-fluid rounded-pill" ></th>
                                         <td>{{$user->name}}</td>
-                                        <td>{{$user->username}}</td>
+                                        <td>{{$user->email}}</td>
                                         <td>{{$user->password}}</td>
                                         <td>{{$user->number}}</td>
                                         <td>{{$user->zone}}</td>
                                         <td>
                                             <form action="">
-                                                <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" >
-                                                </div>
+                                                @if ($user->status == 1)
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="status" checked disabled>
+                                                    </div>
+                                                @else
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="status" disabled>
+                                                    </div>
+                                                @endif
                                             </form>
                                         </td>
                                          <td>
-                                            
-                                            <i class="ri ri-more-2-fill fw-bolder"></i>
+                                            <a class="dropdown text-decoration-none"  data-bs-toggle="dropdown"><i class="ri ri-more-2-fill fw-bolder cursor-pointer"></i>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-align-center align-items-center">
+                                                    <li class="w-100 d-flex">
+                                                      <span class="mx-1 details rounded border shadow-lg ">
+                                                        <a class="btn btn-success fw-bolder " href="./editrider/{{$user->id}}">
+                                                            <i class="bi bi-pen fw-bolder text-white" ></i>
+                                                          </a>
+                                                      </span>
+                                                      <span class="mx-1 rounded border shadow-lg  ">
+                                                        <form action="{{route('destroyrider', $user->id) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger fw-bolder"><i class="b bi-trash"></i></button>
+                                                          </form>  
+                                                      </span>
+                                                      
+                                                    </li>
+                                                    </ul>
+                                            </a>
                                         </td>
                                       </tr>
                                     @endforeach
