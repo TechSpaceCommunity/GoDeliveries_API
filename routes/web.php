@@ -30,7 +30,7 @@ Route::post('/editprofileadmin/{id}', [AdminController::class, 'updateprofile'])
 /* users */
 Route::get('/riders', [AdminController::class, 'riders'])->name('riders');
 Route::post('/riders', [AdminController::class, 'createrider'])->name('createrider');
-Route::get('/editrider/{id}', [AdminController::class, 'editrider'])->name('editrider');
+Route::get('/editrider/{id}', [AdminController::class, 'editrider'])->name('editriders');
 Route::post('/editrider/{id}', [AdminController::class, 'updaterider'])->name('editrider');
 Route::delete('/rider/{id}', [AdminController::class, 'destroyrider'])->name('destroyrider');
 Route::get('/customers', [AdminController::class, 'customers'])->name('customers');
