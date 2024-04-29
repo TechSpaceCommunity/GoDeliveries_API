@@ -17,8 +17,8 @@ Route::get('/csrf-token', function (Request $request) {
     return response()->json(['csrfToken' => csrf_token()]);
 }); 
 
-Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('/login', 'Auth\LoginController@login');
+/* Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login'); */
 
 Auth::routes();
 
