@@ -51,7 +51,11 @@ Route::post('/restaurantsection', [AdminController::class, 'createrestaurantsect
 Route::get('/editadminrestaurantsection/{id}', [AdminController::class, 'editrestaurantsection'])->name('editadminrestaurantsection');
 Route::post('/editadminrestaurantsection/{id}', [AdminController::class, 'updaterestaurantsection'])->name('editrestaurantsection');
 Route::delete('/adminrestaurantsection/{id}', [AdminController::class, 'destroyrestaurantsection'])->name('destroyrestaurantsection');
-Route::get('/configuration', [AdminController::class, 'configuration'])->name('configuration');
+Route::get('/majorcategories', [AdminController::class, 'majorcategories'])->name('majorcategories');
+Route::post('/majorcategory', [AdminController::class, 'createmajorcategory'])->name('createmajorcategory');
+Route::get('/editmajorcategory/{id}', [AdminController::class, 'editmajorcategory'])->name('editadminmajorcategory');
+Route::post('/editmajorcategory/{id}', [AdminController::class, 'updatemajorcategory'])->name('updatemajorcategory');
+Route::delete('/majorcategories/{id}', [AdminController::class, 'destroymajorcategory'])->name('destroymajorcategory');
 Route::get('/notifications', [AdminController::class, 'notifications'])->name('notifications');
 Route::post('/notifications', [AdminController::class, 'createnotification'])->name('createnotification');
 Route::delete('/notifications/{id}', [AdminController::class, 'destroynotification'])->name('destroynotification');

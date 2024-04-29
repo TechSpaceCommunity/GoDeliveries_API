@@ -60,17 +60,19 @@
                               <div class="row mb-3 d-flex">
 
                                 <div class="col-6">
-                                  <label for="cat_id" class="col-md-6 col-form-label fw-bolder">Category <span class="text-danger">*</span></label>
+                                  <label for="child_cat_id" class="col-md-12 col-form-label fw-bolder">Child Food Category <span class="text-danger">*</span></label>
     
                                   <div class="col-md-12">
-                                    <select name="cat_id" id="cat_id" class="form-control">
+                                    <select name="child_cat_id" id="child_cat_id" class="form-control rounded-pill">
                                       <option value="">--Select any category--</option>
-                                      @foreach($categories as $key=>$cat_data)
-                                          <option value='{{$cat_data->id}}'>{{$cat_data->title}}</option>
+                                      @foreach($categories as $cat_data)
+                                          <option value='{{$cat_data->id}}'>{{$cat_data->title}}
+                                          
+                                          </option>
                                       @endforeach
                                   </select>
 
-                                    @error('cat_id')
+                                    @error('child_cat_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -188,7 +190,8 @@
                       <th>S.N.</th>
                       <th>Photo</th>
                       <th>Title</th>
-                      <th>Category</th>
+                      <th>Child Category</th>
+                      <th>Major Category</th>
                       <th>Price</th>
                       <th>Discount</th>
                       <th>Stock</th>
@@ -201,7 +204,8 @@
                       <th>S.N.</th>
                       <th>Photo</th>
                       <th>Title</th>
-                      <th>Category</th>
+                      <th>Child Category</th>
+                      <th>Major Category</th>
                       <th>Price</th>
                       <th>Discount</th>
                       <th>Stock</th>
@@ -220,7 +224,9 @@
                             <img src="./storage/food_photo/{{$product->photo}}" class="img-fluid" style="max-width:80px" alt="{{$product->photo}}">
                           </td>
                           <td>{{$product->title}}</td>
-                          <td>{{$product->cat_info['title']}}
+                          <td>{{$product->child_cat_info['title']}}
+                          </td>
+                          <td>{{$product->parent_cat_info['title']}}
                           </td>
                           <td>$. {{$product->price}} /-</td>
                           <td>  {{$product->discount}}% OFF</td>

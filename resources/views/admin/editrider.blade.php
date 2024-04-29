@@ -119,6 +119,36 @@
 
                                 <div class="row mb-3 d-flex">
                                     <div class="col-6">
+                                        <label for="id_number" class="col-md-12 col-form-label fw-bolder" style="font-size: 0.8em">{{ __('National ID_Number') }}</label>
+          
+                                        <div class="col-md-12">
+                                            <input type="number" id="id_number"  class="form-control rounded-pill bg-light @error('id_number') is-invalid @enderror"  name="id_number" value="{{ $rider->id_number }}" required autocomplete="id_number" placeholder="ID Number" autofocus>
+            
+                                            @error('id_number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                      </div>
+
+                                    <div class="col-6">
+                                        <div class="col-12">
+                                            <div class="col-md-12">
+                                                <label for="id_image" class="col-md-12 col-form-label fw-bolder"  style="font-size: 0.8em">{{ __('National ID Image') }}</label>
+                                                <input id="id_image" type="file" class="form-control rounded-pill @error('id_image') is-invalid @enderror"  name="id_image" value="{{ old('id_image') }}" required autocomplete="id_image" autofocus >
+                
+                                                @error('id_image')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 d-flex">
+                                    <div class="col-6">
                                         <div class="col-12">
                                             <div class="col-md-12">
                                                 <label for="rider_image" class="col-md-12 col-form-label fw-bolder" style="font-size: 0.8em">{{ __('Rider image') }}</label>

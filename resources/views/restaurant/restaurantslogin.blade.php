@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-6 py-4" >
             <div class="card border-0 bg-white rounded" style="margin: 8% 1%; border-radius:10px" >
-                <div class="card-header w-50 bg-warning fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px">{{ __('Login to Restaurants Dashboard') }}</div>
+                <div class="card-header w-50  fw-bolder" style="background-color:#ff8542;border-bottom-right-radius: 30px;border-top-right-radius: 30px">{{ __('Login to Restaurants Dashboard') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('restaurantslogin') }}">
@@ -44,7 +44,7 @@
 
                         <div class="row mb-0" align="start">
                             <div class="col-md-8 offset-md-4 d-block">
-                                <button type="submit" class="btn btn-warning fw-bolder text-center w-50" style="box-shadow: 2px 2px 4px black">
+                                <button type="submit" class="primary_background_color rounded-pill fw-bolder text-center w-50" style="box-shadow: 2px 2px 4px black; background-color:#ff8542;">
                                     {{ __('Login') }}
                                 </button><br>
                             </div>

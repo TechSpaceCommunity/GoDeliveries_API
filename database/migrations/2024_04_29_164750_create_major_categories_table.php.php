@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('major_categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('summary')->nullable();
             $table->string('photo')->nullable();
-            $table->unsignedBigInteger('restaurant_id')->nullable();
             $table->enum('status',['active','inactive'])->default('inactive');
-            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('major_categories');
     }
 };

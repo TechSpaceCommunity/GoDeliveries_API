@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Food;
-use App\Models\Restaurant;
+use App\Models\MajorCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -64,9 +64,9 @@ class RestaurantController extends Controller
     }
     public function category()  {
         $restaurant = Auth::guard('restaurant')->user();
+        $majorcategories=MajorCategory::all();
         $categories=Category::where('restaurant_id', $restaurant->id)->get();
-        //$categories=Category::all();
-        return view('restaurant.category', compact('restaurant', 'categories'));
+        return view('restaurant.category', compact('restaurant', 'categories', 'majorcategories'));
     }
     public function orders()  {
         $restaurant = Auth::guard('restaurant')->user();
@@ -121,6 +121,7 @@ class RestaurantController extends Controller
         }
         $data['slug']=$slug;
 
+        
         if ($request->hasFile('photo')) {
             # get file name with extension
             $filenameWithExt=$request->file('photo')->getClientOriginalName();
@@ -156,7 +157,7 @@ class RestaurantController extends Controller
             'summary'=>'string|required',
             'photo'=>'image|required',
             'stock'=>"required|numeric",
-            'cat_id'=>'required|exists:categories,id',
+            'child_cat_id'=>'required|exists:categories,id',
             'status'=>'required|in:active,inactive',
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric'
@@ -170,6 +171,10 @@ class RestaurantController extends Controller
         }
         $data['slug']=$slug;
         
+        $child_cat_id=$request->child_cat_id;
+        $parent_cat_id=Category::find($child_cat_id);
+        $data['parent_cat_id']=$parent_cat_id->parent_cat_id;
+
         if ($request->hasFile('photo')) {
             # get file name with extension
             $filenameWithExt=$request->file('photo')->getClientOriginalName();

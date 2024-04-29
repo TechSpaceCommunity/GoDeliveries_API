@@ -149,63 +149,52 @@
       <li class="nav-heading">MANAGEMENT</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('configuration') }}">
-          <i class="bi bi-gear-fill"></i>
-          <span>Configuration</span>
+        <a class="nav-link collapsed" href="{{ route('majorcategories') }}">
+          <i class="bi bi-credit-card-2-front-fill"></i>
+          <span>Major Food Categories</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
           <i class="bi bi-credit-card-2-back-fill"></i>
           <span>Coupons</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-credit-card-2-front-fill"></i>
-          <span>Cousines</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-cash-coin"></i>
-          <span>Tipping</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('zones') }}">
           <i class="bi bi-upc-scan"></i>
           <span>Zone</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
           <i class="bi bi-truck"></i>
           <span>Dispatch</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('notifications') }}">
           <i class="bi bi-bell-fill"></i>
           <span>Notifications</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
           <i class="bi bi-bootstrap-reboot"></i>
           <span>Commission Rates</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
           <i class="bi bi-slack"></i>
           <span>Withdraw Requests</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profileadmin') }}">

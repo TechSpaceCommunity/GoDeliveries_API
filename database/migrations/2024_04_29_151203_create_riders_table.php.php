@@ -16,11 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('number');
+            $table->string('id_number');
             $table->string('zone');
             $table->string('password');
             $table->enum('status', [0, 1])->default(0);
             $table->string('rider_image')->nullable();
             $table->string('bike_image')->nullable();
+            $table->string('id_image')->nullable();
             $table->timestamps();
         });
     }

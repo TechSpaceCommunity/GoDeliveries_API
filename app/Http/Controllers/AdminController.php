@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\MajorCategory;
 use Illuminate\Http\Request;
 use App\Models\Notification;
 use App\Models\Restaurant;
 use App\Models\RestaurantSection;
 use App\Models\Rider;
 use App\Models\User;
-use App\Models\Vendor;
 use App\Models\Zone;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -96,6 +97,17 @@ class AdminController extends Controller
         return view('admin.editrider', compact('rider', 'zones'));
     }
 
+    public function majorcategories()
+    {
+        $categories=MajorCategory::all();
+        return view('admin.majorcategories')->with('categories', $categories);
+    }
+    public function editmajorcategory($id)
+    {
+        $category=majorcategory::find($id);
+        return view('admin.editmajorcategory', compact('category'));
+    }
+
     public function notifications()
     {
         $users=Notification::all();
@@ -145,10 +157,11 @@ class AdminController extends Controller
             'delivery_time' => ['required', 'string', 'max:255'],
             'minimum_order' => ['required'],
             'sales_tax' => ['required'],
-            'cover_image' => 'image|max:3000|nullable',
+            'cover_image' => 'image|max:3072|nullable',
             'password' => ['required', 'string', 'max:255'],
          ]);
          
+         //cover image
          if ($request->hasFile('cover_image')) {
             # get file name with extension
             $filenameWithExt=$request->file('cover_image')->getClientOriginalName();
@@ -225,14 +238,17 @@ class AdminController extends Controller
          $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:riders'],
-            'number' => ['required', 'max:255'],
+            'number' => ['required', 'max:15'],
+            'id_number' => ['required','min:8', 'max:8'],
             'password' => ['required', 'string', 'max:255'],
             'status' => ['required', 'in:0,1'],
             'zone' => ['required', 'max:255'],
-            'rider_image' => 'image|max:3000|nullable',
-            'bike_image' => 'image|max:3000|nullable',
+            'rider_image' => 'image|max:3072|nullable',
+            'bike_image' => 'image|max:3072|nullable',
+            'id_image' => 'image|max:3072|nullable',
          ]);
          
+         //rider profile image
          if ($request->hasFile('rider_image')) {
             # get file name with extension
             $filenameWithExt=$request->file('rider_image')->getClientOriginalName();
@@ -249,6 +265,7 @@ class AdminController extends Controller
             $fileNameToStore='noImage.png';
         }
 
+        //rider's bike image
         if ($request->hasFile('bike_image')) {
             # get file name with extension
             $filenameWithExt=$request->file('bike_image')->getClientOriginalName();
@@ -265,15 +282,34 @@ class AdminController extends Controller
             $fileNameToStoreBike='noImage.png';
         }
 
+        //rider's nation ID image
+        if ($request->hasFile('id_image')) {
+            # get file name with extension
+            $filenameWithExt=$request->file('id_image')->getClientOriginalName();
+            //get file name
+            $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get ext
+            $extension=$request->file('id_image')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStoreID=$filename.'_'.time().'.'.$extension;
+            //upload the id_image
+            $path=$request->file('id_image')->storeAs('public/id_images/', $fileNameToStoreID);
+        }
+        else{
+            $fileNameToStoreID='noImage.png';
+        }
+
          $user= new Rider();
          $user->name=$request->input('name');
          $user->email=$request->input('email');
          $user->number=$request->input('number');
+         $user->id_number=$request->input('id_number');
          $user->password=$request->input('password');
          $user->zone=$request->input('zone');
          $user->status =$request->input('status');
          $user->rider_image=$fileNameToStore;
          $user->bike_image=$fileNameToStoreBike;
+         $user->id_image=$fileNameToStoreID;
          $user->save();
          
          return redirect('riders')->with('success', 'Rider Added Successfully!!');
@@ -301,6 +337,53 @@ class AdminController extends Controller
          
          return redirect('users')->with('success', 'User Added Successfully!!');
      }
+
+     // major food categories
+
+     public function createmajorcategory(Request $request)
+        {
+            // return $request->all();
+            $this->validate($request,[
+                'title'=>'string|required',
+                'summary'=>'string|nullable',
+                'photo'=>'image|nullable|max:3072',
+                'status'=>'required|in:active,inactive',
+            ]);
+
+            $data= $request->all();
+            $slug=Str::slug($request->title);
+            $count=MajorCategory::where('slug',$slug)->count();
+            if($count>0){
+                $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
+            }
+            $data['slug']=$slug;
+
+            if ($request->hasFile('photo')) {
+                # get file name with extension
+                $filenameWithExt=$request->file('photo')->getClientOriginalName();
+                //get file name
+                $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                //get ext
+                $extension=$request->file('photo')->getClientOriginalExtension();
+                //filename to store
+                $fileNameToStore=$filename.'_'.time().'.'.$extension;
+                //upload the photo
+                $path=$request->file('photo')->storeAs('public/majorcategory_photo/', $fileNameToStore);
+            }
+            else{
+                $fileNameToStore='noImage.png';
+            }
+            $data['photo']=$fileNameToStore;
+            //dd($data);
+            $status=MajorCategory::create($data);
+            if($status){
+                request()->session()->flash('success','Major Food Category successfully added');
+            }
+            else{
+                request()->session()->flash('error','Error occurred, Please try again!');
+            }
+            return redirect()->route('majorcategories');
+        }
 
      /* notifications */
      public function createnotification(Request $request)
@@ -461,14 +544,17 @@ class AdminController extends Controller
          $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             /* 'email' => ['required', 'email', 'unique:riders'], */
-            'number' => ['required', 'max:255'],
+            'number' => ['required', 'max:15'],
+            'id_number' => ['required', 'max:8', 'min:8'],
             'password' => ['required', 'string', 'max:255'],
             'status' => ['required', 'in:0,1'],
             'zone' => ['required', 'max:255'],
-            'rider_image' => 'image|max:3000|nullable',
-            'bike_image' => 'image|max:3000|nullable',
+            'rider_image' => 'image|max:3072|nullable',
+            'bike_image' => 'image|max:3072|nullable',
+            'id_image' => 'image|max:3072|nullable'
          ]);
          
+         //rider profile image
          if ($request->hasFile('rider_image')) {
             # get file name with extension
             $filenameWithExt=$request->file('rider_image')->getClientOriginalName();
@@ -485,6 +571,7 @@ class AdminController extends Controller
             $fileNameToStore='noImage.png';
         } */
 
+        // ride number plate image
         if ($request->hasFile('bike_image')) {
             # get file name with extension
             $filenameWithExt=$request->file('bike_image')->getClientOriginalName();
@@ -501,10 +588,28 @@ class AdminController extends Controller
             $fileNameToStoreBike='noImage.png';
         } */
 
+        // ride national id image
+        if ($request->hasFile('id_image')) {
+            # get file name with extension
+            $filenameWithExt=$request->file('id_image')->getClientOriginalName();
+            //get file name
+            $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get ext
+            $extension=$request->file('id_image')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStoreID=$filename.'_'.time().'.'.$extension;
+            //upload the id_image
+            $path=$request->file('id_image')->storeAs('public/id_images/', $fileNameToStoreID);
+        }
+        /* else{
+            $fileNameToStoreID='noImage.png';
+        } */
+
          $user= Rider::find($id);
          $user->name=$request->input('name');
          $user->email=$request->input('email');
          $user->number=$request->input('number');
+         $user->id_number=$request->input('id_number');
          $user->password=$request->input('password');
          $user->zone=$request->input('zone');
          $user->status =$request->input('status');
@@ -514,11 +619,60 @@ class AdminController extends Controller
         if ($request->hasFile('bike_image')) {
             $user->bike_image= $fileNameToStoreBike;
         }
-         
+        if ($request->hasFile('id_image')) {
+            $user->id_image= $fileNameToStoreID;
+        }
          $user->save();
          
          return redirect('riders')->with('success', 'Rider Updated Successfully!!');
      }
+
+     public function updatemajorcategory(Request $request, $id)
+        {
+            // return $request->all();
+            $this->validate($request,[
+                'title'=>'string|required',
+                'summary'=>'string|nullable',
+                'photo'=>'image|nullable|max:3072',
+                'status'=>'required|in:active,inactive',
+            ]);
+
+            
+
+            $data= $request->all();
+            $slug=Str::slug($request->title);
+            $count=MajorCategory::where('slug',$slug)->count();
+            if($count>0){
+                $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
+            }
+            $data['slug']=$slug;
+
+            if ($request->hasFile('photo')) {
+                # get file name with extension
+                $filenameWithExt=$request->file('photo')->getClientOriginalName();
+                //get file name
+                $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                //get ext
+                $extension=$request->file('photo')->getClientOriginalExtension();
+                //filename to store
+                $fileNameToStore=$filename.'_'.time().'.'.$extension;
+                //upload the photo
+                $path=$request->file('photo')->storeAs('public/majorcategory_photo/', $fileNameToStore);
+            }
+            else{
+                $fileNameToStore='noImage.png';
+            }
+            $data['photo']=$fileNameToStore;
+            //dd($data);
+            $status=MajorCategory::find($id)->update($data);
+            if($status){
+                request()->session()->flash('success','Major Food Category successfully updated');
+            }
+            else{
+                request()->session()->flash('error','Error occurred, Please try again!');
+            }
+            return redirect()->route('majorcategories');
+        }
 
      public function updatezone(Request $request, $id)
      {
@@ -579,6 +733,13 @@ class AdminController extends Controller
         $user=restaurantsection::find($id);
         $user->delete();
         return redirect('restaurantsection')->with('success', 'Restaurant Section Deleted Successfully!!');
+    }
+
+    public function destroymajorcategory($id)
+    {
+        $user=majorcategory::find($id);
+        $user->delete();
+        return redirect('majorcategories')->with('success', 'Major food category Deleted Successfully!!');
     }
     
     public function destroynotification($id)

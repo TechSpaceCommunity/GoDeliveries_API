@@ -115,6 +115,37 @@
 
                                 <div class="row mb-3 d-flex">
                                     <div class="col-6">
+                                        <label for="id_number" class="col-md-12 col-form-label fw-bolder" style="font-size: 0.8em">{{ __('National ID_Number') }}</label>
+          
+                                        <div class="col-md-12">
+                                            <input type="number" id="id_number"  class="form-control rounded-pill bg-light @error('id_number') is-invalid @enderror"  name="id_number" value="{{ old('id_number') }}" required autocomplete="id_number" placeholder="ID Number" autofocus>
+            
+                                            @error('id_number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                      </div>
+
+                                    <div class="col-6">
+                                        <div class="col-12">
+                                            <div class="col-md-12">
+                                                <label for="id_image" class="col-md-12 col-form-label fw-bolder"  style="font-size: 0.8em">{{ __('National ID Image') }}</label>
+                                                <input id="id_image" type="file" class="form-control rounded-pill @error('id_image') is-invalid @enderror"  name="id_image" value="{{ old('id_image') }}" required autocomplete="id_image" autofocus >
+                
+                                                @error('id_image')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3 d-flex">
+                                    <div class="col-6">
                                         <div class="col-12">
                                             <div class="col-md-12">
                                                 <label for="rider_image" class="col-md-12 col-form-label fw-bolder" style="font-size: 0.8em">{{ __('Rider image') }}</label>
@@ -176,10 +207,12 @@
                                     <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
                                     <th scope="col">Rider Image</th>
                                     <th scope="col">Bike Image</th>
+                                    <th scope="col">ID Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Password</th>
-                                    <th scope="col">Phone</th>
+                                    <th scope="col">Phone No.</th>
+                                    <th scope="col">ID No.</th>
                                     <th scope="col">Zone</th>
                                     <th scope="col">Available</th>
                                     <th scope="col">Action</th>
@@ -191,10 +224,12 @@
                                         <td><i class="bi bi-stop fw-bolder fs-5"></i></td>
                                         <th scope="row"  style="width: 5%"><img src="./storage/rider_images/{{$user->rider_image}}" alt="" class="img-fluid rounded-pill" ></th>
                                         <th scope="row"  style="width: 5%"><img src="./storage/bike_images/{{$user->bike_image}}" alt="" class="img-fluid rounded-pill" ></th>
+                                        <th scope="row"  style="width: 5%"><img src="./storage/id_images/{{$user->id_image}}" alt="" class="img-fluid rounded-pill" ></th>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->password}}</td>
                                         <td>{{$user->number}}</td>
+                                        <td>{{$user->id_number}}</td>
                                         <td>{{$user->zone}}</td>
                                         <td>
                                             <form action="">
