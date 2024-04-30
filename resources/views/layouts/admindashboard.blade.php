@@ -33,6 +33,11 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQMAYTywUqaahxnQUe-Y-C5GVMVb-Bwc8&libraries=drawing"></script>
+  <style>
+    a{
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body class="page-index" style="background-image: url('assets/img/loginBg.png')">
     {{-- <div id="app"> --}}
@@ -156,7 +161,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('coupons') }}">
           <i class="bi bi-credit-card-2-back-fill"></i>
           <span>Coupons</span>
         </a>

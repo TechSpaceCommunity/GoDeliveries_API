@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="row mb-0" align="start">
                                     <div class="col-md-8 offset-md-4 d-flex">
-                                        <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                        <button type="submit" class="primary_background_color fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                             {{ __('SAVE') }}
                                         </button><br>
                                     </div>
@@ -153,13 +153,15 @@
         <div class="container">
             <div class="row ">
                 <div class="col-md-12 ">
-                    <div class="card " style="border-radius: 10px">
-                        <div class="card-header bg-white fw-bolder" >
-                            {{ __('Restaurants') }}</div>
-                        <div class="card-body overflow-auto" style="margin: -1.3%">                            
+                    <div class="card" >
+                        <div class="card-header py-3 text-dark fw-bolder" style="background-color:#ff8542;">
+                          <h6 class="m-0 fw-bolder text-dark float-left">Restaurants</h6>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">                          
                             @if (count($users)>=1)
-                            <table  class="table table-hover">
-                                <thead class="primary_background_color  fw-bolder">
+                            <table  class="table table-hover w-100">
+                                <thead class="bg-dark text-white ">
                                   <tr>
                                     <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
                                     <th scope="col">Image</th>
@@ -172,11 +174,24 @@
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
+                                <tfoot class="bg-dark text-white ">
+                                    <tr>
+                                      <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                                      <th scope="col">Image</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Email</th>
+                                      <th scope="col">Address</th>
+                                      <th scope="col">Delivery Time</th>
+                                      <th scope="col">Minimum Order</th>
+                                      <th scope="col">Sales Tax</th>
+                                      <th scope="col">Action</th>
+                                  </tr>
+                                  </tfoot>
                                 <tbody>
                                     @foreach ($users as $user)
                                     <tr>{{-- <a href="#"><img src="./storage/restaurant_cover_images/{{$user->cover_image}}" alt="" width="15%"></a> --}}
                                         <td><i class="bi bi-stop fw-bolder fs-5"></i></td>
-                                        <th scope="row"  style="width: 5%"><img src="./storage/restaurant_cover_images/{{$user->cover_image}}" alt="" class="img-fluid rounded-pill" ></th>
+                                        <td scope="row"  ><img src="./storage/restaurant_cover_images/{{$user->cover_image}}" alt="" class="img-fluid rounded" style="max-width:80px"></td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->address}}</td>
@@ -213,6 +228,7 @@
                                     <div class="alert alert-danger text-white fw-bolder bg-danger">No Restaurant Found!</div>
                                 </div>
                             @endif
+                        </div>
                         </div>
                     </div>
                 </div>

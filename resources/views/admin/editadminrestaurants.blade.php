@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="row mb-0" align="start">
                                     <div class="col-md-8 offset-md-4 d-flex">
-                                        <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                        <button type="submit" class="primary_background_color fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                             {{ __('SAVE') }}
                                         </button><br>
                                     </div>

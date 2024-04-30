@@ -83,7 +83,7 @@
             
                                     <div class="row mb-0" align="start">
                                         <div class="col-md-8 offset-md-4 d-block">
-                                            <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                            <button type="submit" class="primary_background_color fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                                 {{ __('SAVE') }}
                                             </button><br>
                                         </div>
@@ -101,22 +101,32 @@
         <div class="container">
             <div class="row ">
                 <div class="col-md-12">
-                    <div class="card " style="border-radius: 10px">
-                        <div class="card-header bg-white fw-bolder" >
-                            {{ __('Restaurant Sections') }}</div>
-                        <div class="card-body" style="margin: -1.3%">                            
+                    <div class="card" >
+                        <div class="card-header py-3 text-dark fw-bolder" style="background-color:#ff8542;">
+                          <h6 class="m-0 fw-bolder text-dark float-left">Restaurant Sections</h6>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">                       
                             @if (count($restaurantsections)>=1)
-                            <table  class="table table-hover">
-                               {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
-                                <thead class="primary_background_color   fw-bolder">
-                                  <tr>
-                                    <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Restaurants</th>
-                                    <th scope="col">Action</th>
-                                </tr>
+                            <table  class="table table-hover w-100">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Restaurants</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
                                 </thead>
+                                <tfoot class="bg-dark text-white">
+                                    <tr>
+                                        <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Restaurants</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </tfoot>
                                 <tbody>
                                     @foreach ($restaurantsections as $restaurantsection)
                                     <tr>

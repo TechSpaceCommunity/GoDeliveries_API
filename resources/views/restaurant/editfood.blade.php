@@ -21,10 +21,10 @@
               <div class="col-md-6">
                   <div class="card">
                       <div class="card-header w-50 fw-bolder" style="background-color:#ff8542;border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
-                          {{ __('Add Food') }}</div>
+                          {{ __('Edit Food') }}</div>
       
                       <div class="card-body">
-                          <form method="POST" action="{{ route('createfood') }}" enctype="multipart/form-data">
+                          <form method="POST" action="{{ route('updatefood', $food->id) }}" enctype="multipart/form-data">
                               @csrf
                               <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                               <div class="row mb-3 d-flex">
@@ -32,7 +32,7 @@
                                     <label for="title" class="col-md-6 col-form-label fw-bolder">{{ __('Title') }}</label>
       
                                     <div class="col-md-12">
-                                        <input id="title" type="text" class="form-control rounded-pill bg-light @error('title') is-invalid @enderror"  name="title" value="{{ old('title') }}" required autocomplete="title"  placeholder="" autofocus>
+                                        <input id="title" type="text" class="form-control rounded-pill bg-light @error('title') is-invalid @enderror"  name="title" value="{{ $food->title }}" required autocomplete="title"  placeholder="" autofocus>
         
                                         @error('title')
                                             <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                                     <label for="summary" class="col-md-6 col-form-label fw-bolder">{{ __('Description') }}</label>
       
                                     <div class="col-md-12">
-                                        <textarea id="summary"  class="form-control rounded-pill bg-light @error('summary') is-invalid @enderror"  name="summary" value="{{ old('summary') }}" required autocomplete="summary"  placeholder="" autofocus></textarea>
+                                        <input type="text" id="summary"  class="form-control rounded-pill bg-light @error('summary') is-invalid @enderror"  name="summary" value="{{$food->summary}}" required autocomplete="summary"  placeholder="" autofocus>
         
                                         @error('summary')
                                             <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
     
                                   <div class="col-md-12">
                                     <select name="child_cat_id" id="child_cat_id" class="form-control rounded-pill">
-                                      <option value="">--Select any category--</option>
+                                    <option value="{{$food->child_cat_id}}">{{$food->child_cat_id}}</option>
                                       @foreach($categories as $cat_data)
                                           <option value='{{$cat_data->id}}'>{{$cat_data->title}}
                                           
@@ -84,7 +84,7 @@
                                     <label for="price" class="col-md-6 col-form-label fw-bolder">Price($) <span class="text-danger">*</span></label>
       
                                     <div class="col-md-12">
-                                      <input id="price" type="number" class="form-control rounded-pill bg-light @error('price') is-invalid @enderror"  name="price" value="{{ old('price') }}" required autocomplete="price"  placeholder="" autofocus>
+                                      <input id="price" type="number" class="form-control rounded-pill bg-light @error('price') is-invalid @enderror"  name="price" value="{{ $food->price }}" required autocomplete="price"  placeholder="" autofocus>
         
                                         @error('price')
                                             <span class="invalid-feedback" role="alert">
@@ -100,7 +100,7 @@
                                   <label for="discount" class="col-md-6 col-form-label fw-bolder">Discount(%) </label>
     
                                   <div class="col-md-12">
-                                    <input id="discount" type="number" class="form-control rounded-pill bg-light @error('discount') is-invalid @enderror"  name="discount" value="{{ old('discount') }}" required autocomplete="discount"  placeholder="" autofocus>
+                                    <input id="discount" type="number" class="form-control rounded-pill bg-light @error('discount') is-invalid @enderror"  name="discount" value="{{ $food->discount }}" required autocomplete="discount"  placeholder="" autofocus>
       
                                       @error('discount')
                                           <span class="invalid-feedback" role="alert">
@@ -114,7 +114,7 @@
                                   <label for="stock" class="col-md-6 col-form-label fw-bolder">Quantity <span class="text-danger">*</span></label>
     
                                   <div class="col-md-12">
-                                    <input id="stock" type="number" class="form-control rounded-pill bg-light @error('stock') is-invalid @enderror"  name="stock" value="{{ old('stock') }}" required autocomplete="stock"  placeholder="" autofocus>
+                                    <input id="stock" type="number" class="form-control rounded-pill bg-light @error('stock') is-invalid @enderror"  name="stock" value="{{ $food->stock }}" required autocomplete="stock"  placeholder="" autofocus>
       
                                       @error('stock')
                                           <span class="invalid-feedback" role="alert">
@@ -130,7 +130,7 @@
                                   <label for="Photo" class="col-md-6 col-form-label fw-bolder">{{ __('Photo') }}</label>
     
                                   <div class="col-md-12">
-                                    <input id="photo" type="file" class="form-control rounded-pill @error('photo') is-invalid @enderror"  name="photo" value="{{ old('photo') }}" required autocomplete="photo" autofocus >
+                                    <input id="photo" type="file" class="form-control rounded-pill @error('photo') is-invalid @enderror"  name="photo" value="{{ old('photo') }}" autocomplete="photo" autofocus >
             
                                     @error('photo')
                                         <span class="invalid-feedback" role="alert">
@@ -145,7 +145,7 @@
       
                                     <div class="col-md-12">
                                       <select name="status" class="form-control  rounded-pill @error('status') is-invalid @enderror" autofocus>
-                                        <option value="">--Select Status--</option>
+                                      <option value="{{$food->status}}">{{$food->status}}</option>
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
                                     </select>
@@ -171,115 +171,6 @@
                   </div>
               </div>
           </div>
-      </div>
-    </section>
-
-    <section class="section profile">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card " style="border-radius: 10px; ">
-            <div class="card-header  fw-bolder" style="background-color:#ff8542;">
-                {{ __('Food Lists') }}
-            </div>
-            <div class="card-body">  
-              <div class="table-responsive">
-                @if(count($products)>0)
-                <table class="table table-hover" id="banner-dataTable" width="100%" cellspacing="0">
-                  <thead class="bg-dark text-white">
-                    <tr>
-                      <th><i class="bi bi-stop fw-bolder fs-5"></th>
-                      <th>Photo</th>
-                      <th>Title</th>
-                      <th>Child Category</th>
-                      <th>Major Category</th>
-                      <th>Price</th>
-                      <th>Discount</th>
-                      <th>Stock</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tfoot class="bg-dark text-white">
-                    <tr>
-                      <th><i class="bi bi-stop fw-bolder fs-5"></th>
-                      <th>Photo</th>
-                      <th>Title</th>
-                      <th>Child Category</th>
-                      <th>Major Category</th>
-                      <th>Price</th>
-                      <th>Discount</th>
-                      <th>Stock</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-        
-                    @foreach($products as $product)
-                      @php
-                      @endphp
-                        <tr>
-                          <td><i class="bi bi-stop fw-bolder fs-5"></td>
-                          <td>
-                            <img src="./storage/food_photo/{{$product->photo}}" class="img-fluid" style="max-width:80px" alt="{{$product->photo}}">
-                          </td>
-                          <td>{{$product->title}}</td>
-                          <td>{{$product->child_cat_info['title']}}
-                          </td>
-                          <td>{{$product->parent_cat_info['title']}}
-                          </td>
-                          <td>$. {{$product->price}} /-</td>
-                          <td>  {{$product->discount}}% OFF</td>
-                          <td>
-                            @if($product->stock>0)
-                            <span class="text-primary">{{$product->stock}}</span>
-                            @else
-                            <span class="text-danger">{{$product->stock}}</span>
-                            @endif
-                          </td>
-                          
-                          <td>
-                              @if($product->status=='active')
-                                  <span class="fw-bold text-success">{{$product->status}}</span>
-                              @else
-                                  <span class="fw-bold text-warning">{{$product->status}}</span>
-                              @endif
-                          </td>
-                          <td>
-                            <a class="dropdown text-decoration-none"  data-bs-toggle="dropdown"><i class="ri ri-more-2-fill fw-bolder cursor-pointer"></i>
-                              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-align-center align-items-center">
-                                  <li class="w-100 d-flex">
-                                    <span class="mx-1 details rounded border shadow-lg ">
-                                      <a class="btn btn-success fw-bolder " href="./editfood/{{$product->id}}">
-                                          <i class="bi bi-pen fw-bolder text-white" ></i>
-                                        </a>
-                                    </span>
-                                    <span class="mx-1 rounded border shadow-lg  ">
-                                      <form action="{{route('food.destroy', $product->id) }}" method="post">
-                                          @csrf
-                                          @method('DELETE')
-                                          <button type="submit" class="btn btn-danger fw-bolder"><i class="b bi-trash"></i></button>
-                                        </form>  
-                                    </span>
-                                    
-                                  </li>
-                              </ul>
-                          </a>
-                          </td>
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-                {{-- <span style="float:right">{{$categories->links()}}</span> --}}
-                @else
-                  <h6 class="text-center text-danger fw-bolder">No Food found!!! Please create Category Food</h6>
-                @endif
-              </div>
-            </div>
-            </div>
-          </div>
-        </div>
-        </div>
       </div>
     </section>
   </main>

@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="row mb-0" align="start">
                                     <div class="col-md-8 offset-md-4 d-block">
-                                        <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                        <button type="submit" class="primary_background_color fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                             {{ __('SAVE') }}
                                         </button><br>
                                     </div>
@@ -195,36 +195,53 @@
         <div class="container">
             <div class="row ">
                 <div class="col-md-12 ">
-                    <div class="card " style="border-radius: 10px">
-                        <div class="card-header bg-white fw-bolder" >
-                            {{ __('Riders') }}</div>
-                        <div class="card-body overflow-auto" style="margin: -1.3%">                            
+                    <div class="card" >
+                        <div class="card-header py-3 text-dark fw-bolder" style="background-color:#ff8542;">
+                          <h6 class="m-0 fw-bolder text-dark float-left">Riders</h6>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">                           
                             @if (count($users)>=1)
-                            <table  class="table table-hover">
-                               {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
-                                <thead class="primary_background_color fw-bolder">
-                                  <tr>
-                                    <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
-                                    <th scope="col">Rider Image</th>
-                                    <th scope="col">Bike Image</th>
-                                    <th scope="col">ID Image</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Password</th>
-                                    <th scope="col">Phone No.</th>
-                                    <th scope="col">ID No.</th>
-                                    <th scope="col">Zone</th>
-                                    <th scope="col">Available</th>
-                                    <th scope="col">Action</th>
-                                </tr>
+                            <table  class="table table-hover w-100">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                                        <th scope="col">Rider Image</th>
+                                        <th scope="col">Bike Image</th>
+                                        <th scope="col">ID Image</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Password</th>
+                                        <th scope="col">Phone No.</th>
+                                        <th scope="col">ID No.</th>
+                                        <th scope="col">Zone</th>
+                                        <th scope="col">Available</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
                                 </thead>
+                                <tfoot class="bg-dark text-white">
+                                    <tr>
+                                        <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                                        <th scope="col">Rider Image</th>
+                                        <th scope="col">Bike Image</th>
+                                        <th scope="col">ID Image</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Password</th>
+                                        <th scope="col">Phone No.</th>
+                                        <th scope="col">ID No.</th>
+                                        <th scope="col">Zone</th>
+                                        <th scope="col">Available</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </tfoot>
                                 <tbody>
                                     @foreach ($users as $user)
                                     <tr>
                                         <td><i class="bi bi-stop fw-bolder fs-5"></i></td>
-                                        <th scope="row"  style="width: 5%"><img src="./storage/rider_images/{{$user->rider_image}}" alt="" class="img-fluid rounded-pill" ></th>
-                                        <th scope="row"  style="width: 5%"><img src="./storage/bike_images/{{$user->bike_image}}" alt="" class="img-fluid rounded-pill" ></th>
-                                        <th scope="row"  style="width: 5%"><img src="./storage/id_images/{{$user->id_image}}" alt="" class="img-fluid rounded-pill" ></th>
+                                        <td><img src="./storage/rider_images/{{$user->rider_image}}" alt="" class="img-fluid rounded-pill"  style="max-width:65px"></th>
+                                        <td><img src="./storage/bike_images/{{$user->bike_image}}" alt="" class="img-fluid rounded" style="max-width:65px"></th>
+                                        <td><img src="./storage/id_images/{{$user->id_image}}" alt="" class="img-fluid rounded" style="max-width:65px"></th>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->password}}</td>
@@ -262,7 +279,7 @@
                                                       </span>
                                                       
                                                     </li>
-                                                    </ul>
+                                                </ul>
                                             </a>
                                         </td>
                                       </tr>
@@ -275,6 +292,7 @@
                                 </div>
                             @endif
                         </div>
+                          </div>
                     </div>
                 </div>
             </div>

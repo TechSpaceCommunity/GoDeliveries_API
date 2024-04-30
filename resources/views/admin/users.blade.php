@@ -121,7 +121,7 @@
                               </div>
                               <div class="row mb-0" align="start">
                                   <div class="col-md-8 offset-md-4 d-block">
-                                      <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                      <button type="submit" class="primary_background_color fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                           {{ __('SAVE') }}
                                       </button><br>
                                   </div>
@@ -138,16 +138,17 @@
     <div class="container">
         <div class="row ">
             <div class="col-md-12">
-                <div class="card " style="border-radius: 10px">
-                    <div class="card-header bg-white fw-bolder" >
-                        {{ __('System Users') }}</div>
-                    <div class="card-body" style="margin: -1.3%">  
-                    
+                <div class="card " style="border-radius: 10px; ">
+                    <div class="card-header  fw-bolder" style="background-color:#ff8542;">
+                        {{ __('System Users') }}
+                    </div>
+                    <div class="card-body">  
+                      <div class="table-responsive">
                     @if (count($users)>=1)
                     <table  class="table table-hover">
-                       {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
-                        <thead class="primary_background_color  fw-bolder">
-                          <tr>
+                       <thead class="bg-dark text-white ">
+                        <tr>
+                          <th><i class="bi bi-stop fw-bolder fs-5"></i></th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone Number</th>
@@ -157,10 +158,23 @@
                             <th scope="col">Actions</th>
                         </tr>
                         </thead>
+                        <tfoot class="bg-dark text-white">
+                          <tr>
+                            <th><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Joining Date</th>
+                            <th scope="col" colspan="1" align="center">Status</th>
+                            <th scope="col">Actions</th>
+                          </tr>
+                        </tfoot>
                         <tbody>
                             @foreach ($users as $user)
                             <tr>
-                                <td><a href="#" class="text-primary fw-bold">{{$user->name}}</a></td>
+                              <td><i class="bi bi-stop fw-bolder fs-5"></i></td>
+                                <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>@if ($user->number == '')
                                     Null
@@ -175,24 +189,36 @@
                                 class="btn btn-danger fw-bolder"
                                 @endif >{{$user->status}}</span>
                                 </td>
-                                    @if(Auth::user()->role=='admin')
-                                    
+                                    @if(Auth::user()->role=='admin') 
+
                                     <td>
-                                      @if ($user->status == 'active')
-                                      <form action="{{route('destroyuser', $user->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger fw-bolder">Delete</button>
-                                      </form>
-                                      @else
-                                      <form action="{{route('activateuser', $user->id) }}" method="post">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-success fw-bolder">Activate</button>
-                                      </form>
-                                      @endif
-                                      
-                                    </td>
+                                      <a class="dropdown text-decoration-none"  data-bs-toggle="dropdown"><i class="ri ri-more-2-fill fw-bolder cursor-pointer"></i>
+                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-align-center align-items-center">
+                                            <li class="w-100 d-flex">
+                                              <span class="mx-1 details rounded border shadow-lg ">
+                                                <a class="btn btn-success fw-bolder " href="./edituser/{{$user->id}}">
+                                                    <i class="bi bi-pen fw-bolder text-white" ></i>
+                                                  </a>
+                                              </span>
+                                              <span class="mx-1 rounded border shadow-lg  ">
+                                                @if ($user->status == 'active')
+                                                  <form action="{{route('destroyuser', $user->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger fw-bolder">Delete</button>
+                                                  </form>
+                                                  @else
+                                                  <form action="{{route('activateuser', $user->id) }}" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-warning fw-bolder">Activate</button>
+                                                  </form>
+                                                  @endif 
+                                              </span>
+                                            </li>
+                                          </ul>
+                                    </a>
+                                  </td>
                                     @endif
                               </tr>
                             @endforeach
@@ -203,6 +229,7 @@
                       <div class="alert alert-danger text-white fw-bolder bg-danger">No Users Found!</div>
                     </div>
                     @endif
+                      </div>
                   </div>
                 </div>
               </div>

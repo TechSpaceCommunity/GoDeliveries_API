@@ -61,7 +61,7 @@
                 
                                 <div class="row mb-0" align="start">
                                     <div class="col-md-8 offset-md-4 d-block">
-                                        <button type="submit" class="primary_background_color fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                        <button type="submit" class="primary_background_color fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                             {{ __('SAVE') }}
                                         </button><br>
                                     </div>
@@ -78,46 +78,61 @@
         <div class="container">
             <div class="row ">
                 <div class="col-md-12">
-                    <div class="card " style="border-radius: 10px">
-                        <div class="card-header bg-white fw-bolder" >
-                            {{ __('Notification History') }}</div>
-                        <div class="card-body" style="margin: -1.3%">  
-                        
-                        @if (count($users)>=1)
-                        <table  class="table table-hover">
-                            <thead class="primary_background_color fw-bolder">
-                              <tr>
-                                <th scope="col">Title</th>
-                                <th scope="col">Body</th>
-                                <th scope="col">Sent Date</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                <tr>
-                                    <td><a href="#" class="text-primary fw-bold">{{$user->title}}</a></td>
-                                    <td>{{$user->body}}</td>
-                                    <td>{{$user->created_at}}</td>
-                                        @if(Auth::user()->role=='admin')
-                                        
-                                        <td>
-                                          <form action="{{route('destroynotification', $user->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger fw-bolder"><i class="bi bi-trash text-white fw-bolder"></i></button>
-                                          </form>                                          
-                                        </td>
-                                        @endif
-                                  </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        @else
-                        <div>
-                          <div class="alert alert-danger text-white fw-bolder bg-danger">No Notification Record Found!</div>
+                    <div class="card" >
+                        <div class="card-header py-3 text-dark fw-bolder" style="background-color:#ff8542;">
+                          <h6 class="m-0 fw-bolder text-dark float-left">Notifications</h6>
                         </div>
-                        @endif
+                        <div class="card-body">
+                          <div class="table-responsive">  
+                            @if (count($users)>=1)
+                            <table  class="table table-hover w-100">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Body</th>
+                                        <th scope="col">Sent Date</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tfoot class="bg-dark text-white">
+                                    <tr>
+                                        <th scope="col"><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Body</th>
+                                        <th scope="col">Sent Date</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach ($users as $user)
+                                    <tr>
+                                        <td>
+                                            <i class="bi bi-stop fw-bolder fs-5">
+                                        </td>
+                                        <td>{{$user->title}}</td>
+                                        <td>{{$user->body}}</td>
+                                        <td>{{$user->created_at}}</td>
+                                            @if(Auth::user()->role=='admin')
+                                            
+                                            <td>
+                                            <form action="{{route('destroynotification', $user->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger fw-bolder"><i class="bi bi-trash text-white fw-bolder"></i></button>
+                                            </form>                                          
+                                            </td>
+                                            @endif
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @else
+                            <div>
+                            <div class="alert alert-danger text-white fw-bolder bg-danger">No Notification Record Found!</div>
+                            </div>
+                            @endif
+                          </div>
                       </div>
                     </div>
                   </div>

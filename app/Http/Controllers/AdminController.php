@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coupon;
 use App\Models\Customer;
 use App\Models\MajorCategory;
 use Illuminate\Http\Request;
@@ -42,6 +43,11 @@ class AdminController extends Controller
     {
         $users=User::all();
         return view('admin.users')->with('users', $users);
+    }
+    public function edituser($id)
+    {
+        $user=User::find($id);
+        return view('admin.edituser', compact('user'));
     }
 
     public function customers()
@@ -106,6 +112,17 @@ class AdminController extends Controller
     {
         $category=majorcategory::find($id);
         return view('admin.editmajorcategory', compact('category'));
+    }
+
+    public function coupons()
+    {
+        $coupons=Coupon::all();
+        return view('admin.coupons')->with('coupons', $coupons);
+    }
+    public function editcoupon($id)
+    {
+        $coupon=coupon::find($id);
+        return view('admin.editcoupon', compact('coupon'));
     }
 
     public function notifications()
@@ -385,6 +402,28 @@ class AdminController extends Controller
             return redirect()->route('majorcategories');
         }
 
+        /* coupons */
+     public function createcoupon(Request $request)
+     {
+         //validation for the required fields
+         $this->validate($request, [
+            'code' => ['required', 'string', 'max:255' ,'unique:coupons'],
+            'value' => ['required'],
+            'status'=>'required|in:0,1',
+            'type'=>'required|in:fixed,percent',
+         ]);
+         
+         
+         $user= new coupon();
+         $user->code=$request->input('code');
+         $user->type=$request->input('type');
+         $user->value=$request->input('value');
+         $user->status=$request->input('status');
+         $user->save();
+         
+         return redirect('coupons')->with('success', 'Coupon Added Successfully!!');
+     }
+
      /* notifications */
      public function createnotification(Request $request)
      {
@@ -538,6 +577,27 @@ class AdminController extends Controller
          
          return redirect('restaurantsection')->with('success', 'Restaurant Section Updated Successfully!!');
      }
+
+     /* update user */
+     public function updateuser(Request $request, $id)
+     {
+         //validation for the required fields
+         $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'number' => ['required', 'max:255'],
+            'role' => ['required', 'in:admin,rider_manager,vendor_manager,restaurant_manager,customer_manager'],
+         ]);
+         
+         
+         $user= User::find($id);
+         $user->name=$request->input('name');
+         $user->email=$request->input('email');
+         $user->number=$request->input('number');
+         $user->role=$request->input('role');
+         $user->save();
+         
+         return redirect('users')->with('success', 'User Updated Successfully!!');
+     }
      public function updaterider(Request $request, $id)
      {
          //validation for the required fields
@@ -673,6 +733,27 @@ class AdminController extends Controller
             }
             return redirect()->route('majorcategories');
         }
+
+        /* update coupons */
+     public function updatecoupon(Request $request, $id)
+     {
+         //validation for the required fields
+         $this->validate($request, [
+            'value' => ['required'],
+            'status'=>'required|in:0,1',
+            'type'=>'required|in:fixed,percent',
+         ]);
+         
+         
+         $user=coupon::find($id);
+         $user->code=$request->input('code');
+         $user->type=$request->input('type');
+         $user->value=$request->input('value');
+         $user->status=$request->input('status');
+         $user->save();
+         
+         return redirect('coupons')->with('success', 'Coupon Updated Successfully!!');
+     }
 
      public function updatezone(Request $request, $id)
      {

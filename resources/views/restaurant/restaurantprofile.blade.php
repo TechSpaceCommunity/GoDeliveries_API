@@ -52,10 +52,11 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
                 <li class="nav-item mx-1">
                   <button
-                    class="nav-link active bg-warning text-dark fw-bold "
+                    class="nav-link active primary_background_color text-dark fw-bold "
                     data-bs-toggle="tab"
                     data-bs-target="#profile-overview"
-                    style="border-bottom-right-radius: 30px;border-top-right-radius: 30px"
+                    style="border-bottom-right-radius: 30px;border-top-right-radius: 30px; background-color:#ff8542;"
+                    
                   >
                   Restaurant Details
                   </button>

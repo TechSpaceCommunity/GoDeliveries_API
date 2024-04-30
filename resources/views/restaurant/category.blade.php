@@ -20,7 +20,7 @@
           <div class="row ">
               <div class="col-md-6">
                   <div class="card">
-                      <div class="card-header w-50 bg-warning fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
+                      <div class="card-header w-50  fw-bolder" style="background-color:#ff8542;border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
                           {{ __('Add Category') }}</div>
       
                       <div class="card-body">
@@ -118,7 +118,7 @@
       
                               <div class="row mb-0" align="start">
                                   <div class="col-md-8 offset-md-4 d-block">
-                                      <button type="submit" class="btn btn-warning fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                      <button type="submit" class="primary_background_color fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                           {{ __('SAVE') }}
                                       </button><br>
                                   </div>
@@ -134,17 +134,17 @@
     <section class="section profile">
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary float-left">Category Lists</h6>
+          <div class="card " style="border-radius: 10px; ">
+            <div class="card-header  fw-bolder" style="background-color:#ff8542;">
+                {{ __('Child Category Lists') }}
             </div>
-            <div class="card-body">
+            <div class="card-body">  
               <div class="table-responsive">
                 @if(count($categories)>0)
                 <table class="table table-hover" id="banner-dataTable" width="100%" cellspacing="0">
                   <thead class="bg-dark text-white">
                     <tr>
-                      <th>S.N.</th>
+                      <th><i class="bi bi-stop fw-bolder fs-5"></th>
                       <th>Photo</th>
                       <th>Title</th>
                       <th>Slug</th>
@@ -155,7 +155,7 @@
                   </thead>
                   <tfoot class="bg-dark text-white">
                     <tr>
-                      <th>S.N.</th>
+                      <th><i class="bi bi-stop fw-bolder fs-5"></th>
                       <th>Photo</th>
                       <th>Title</th>
                       <th>Slug</th>
@@ -170,7 +170,7 @@
                       @php
                       @endphp
                         <tr>
-                            <td>{{$category->id}}</td>
+                            <td><i class="bi bi-stop fw-bolder fs-5"></td>
                             <td>
                               @if($category->photo)
                                   <img src="./storage/category_photo/{{$category->photo}}" class="img-fluid" style="max-width:80px" alt="{{$category->photo}}">

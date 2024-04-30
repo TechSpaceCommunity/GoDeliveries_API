@@ -3,13 +3,13 @@
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Food Categories</h1>
+      <h1>Coupons</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="{{route('home')}}">Home</a>
           </li>
-          <li class="breadcrumb-item active">Major Food Category</li>
+          <li class="breadcrumb-item active">Coupons</li>
         </ol>
       </nav>
     </div>
@@ -20,21 +20,21 @@
           <div class="row ">
               <div class="col-md-6">
                   <div class="card">
-                      <div class="card-header w-50 bg-warning fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
-                          {{ __('Edit Food Category') }}</div>
+                      <div class="card-header w-50  fw-bolder" style="background-color:#ff8542;border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
+                          {{ __('Edit Coupon') }}</div>
       
                       <div class="card-body">
-                          <form method="POST" action="{{ route('updatemajorcategory', $category->id) }}" enctype="multipart/form-data">
+                          <form method="POST" action="{{ route('updatecoupon', $coupon->id) }}" enctype="multipart/form-data">
                               @csrf
                               
                               <div class="row mb-3 d-flex">
                                   <div class="col-6">
-                                    <label for="title" class="col-md-4 col-form-label fw-bolder">{{ __('Title') }}</label>
+                                    <label for="code" class="col-md-4 col-form-label fw-bolder">{{ __('code') }}</label>
       
                                     <div class="col-md-12">
-                                        <input id="title" type="text" class="form-control rounded-pill bg-light @error('title') is-invalid @enderror"  name="title" value="{{ $category->title }}" required autocomplete="title"  placeholder="" autofocus>
+                                        <input id="code" type="text" class="form-control rounded-pill bg-light @error('code') is-invalid @enderror"  name="code" value="{{ $coupon->code }}" required autocomplete="code"  placeholder="" autofocus readonly>
         
-                                        @error('title')
+                                        @error('code')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -43,12 +43,16 @@
                                   </div>
 
                                   <div class="col-6">
-                                    <label for="summary" class="col-md-4 col-form-label fw-bolder">{{ __('Description') }}</label>
+                                    <label for="type" class="col-md-4 col-form-label fw-bolder">{{ __('Type') }}</label>
       
                                     <div class="col-md-12">
-                                        <input type="text" id="summary"  class="form-control rounded-pill bg-light @error('summary') is-invalid @enderror"  name="summary" value="{{ $category->summary }}" required autocomplete="summary"   autofocus>
+                                      <select name="type" class="form-control  rounded-pill @error('type') is-invalid @enderror" autofocus>
+                                        <option value="{{$coupon->type}}">{{$coupon->type}}</option>
+                                        <option value="fixed">Fixed</option>
+                                        <option value="percent">Percent</option>
+                                    </select>
         
-                                        @error('summary')
+                                        @error('type')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -60,16 +64,16 @@
                               <div class="row mb-3 d-flex">
 
                                 <div class="col-6">
-                                  <label for="Photo" class="col-md-4 col-form-label fw-bolder">{{ __('Photo') }}</label>
+                                  <label for="value" class="col-md-4 col-form-label fw-bolder">{{ __('value') }}</label>
     
                                   <div class="col-md-12">
-                                    <input id="photo" type="file" class="form-control rounded-pill @error('photo') is-invalid @enderror"  name="photo" value="{{ old('photo') }}" autocomplete="photo" autofocus >
-            
-                                    @error('photo')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                      <input id="value" type="number" step="0.01" class="form-control rounded-pill bg-light @error('value') is-invalid @enderror"  name="value" value="{{$coupon->value}}" required autocomplete="value"  placeholder="" autofocus>
+      
+                                      @error('value')
+                                          <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                                      @enderror
                                   </div>
                                 </div>
 
@@ -78,10 +82,15 @@
       
                                     <div class="col-md-12">
                                       <select name="status" class="form-control  rounded-pill @error('status') is-invalid @enderror" autofocus>
-                                        <option value="{{$category->status}}">{{$category->status}}</option>
-                                        <option value="">--Select Status--</option>
-                                        <option value="active">Active</option>
-                                        <option value="inactive">Inactive</option>
+                                        <option value="{{$coupon->status}}">
+                                          @if($coupon->status==1)
+                                              <span class="fw-bold text-success">Active</span>
+                                          @else
+                                              <span class="fw-bold text-danger">Inactive</span>
+                                          @endif
+                                        </option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
                                     </select>
         
                                         @error('status')
@@ -97,7 +106,7 @@
       
                               <div class="row mb-0" align="start">
                                   <div class="col-md-8 offset-md-4 d-block">
-                                      <button type="submit" class="btn btn-warning fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                      <button type="submit" class="primary_background_color fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                           {{ __('SAVE') }}
                                       </button><br>
                                   </div>
@@ -109,7 +118,6 @@
           </div>
       </div>
     </section>
-
   </main>
   <!-- End #main -->
 
