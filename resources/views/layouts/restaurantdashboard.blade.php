@@ -107,7 +107,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('food') }}">
           <i class="ri ri-government-line"></i>
-          <span>Food</span>
+          <span>Invetory</span>
         </a>
       </li><!-- End Nav item -->
       

@@ -87,7 +87,7 @@
                                   </div>
 
                                   <div class="col-6">
-                                    <label for="price" class="col-md-6 col-form-label fw-bolder">Price($) <span class="text-danger">*</span></label>
+                                    <label for="price" class="col-md-6 col-form-label fw-bolder">Price(Ksh.) <span class="text-danger">*</span></label>
       
                                     <div class="col-md-12">
                                       <input id="price" type="number" class="form-control rounded-pill bg-light @error('price') is-invalid @enderror"  name="price" value="{{ $food->price }}" required autocomplete="price"  placeholder="" autofocus>

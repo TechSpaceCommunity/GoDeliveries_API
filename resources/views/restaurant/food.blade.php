@@ -81,7 +81,7 @@
                                   </div>
 
                                   <div class="col-6">
-                                    <label for="price" class="col-md-6 col-form-label fw-bolder">Price($) <span class="text-danger">*</span></label>
+                                    <label for="price" class="col-md-6 col-form-label fw-bolder">Price(Ksh) <span class="text-danger">*</span></label>
       
                                     <div class="col-md-12">
                                       <input id="price" type="number" class="form-control rounded-pill bg-light @error('price') is-invalid @enderror"  name="price" value="{{ old('price') }}" required autocomplete="price"  placeholder="" autofocus>
@@ -228,7 +228,7 @@
                           </td>
                           <td>{{$product->parent_cat_info['title']}}
                           </td>
-                          <td>$. {{$product->price}} /-</td>
+                          <td>Ksh. {{$product->price}}</td>
                           <td>  {{$product->discount}}% OFF</td>
                           <td>
                             @if($product->stock>0)
