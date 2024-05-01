@@ -14,7 +14,9 @@ class AddStatusToRidersTable extends Migration
     public function up()
     {
         Schema::table('riders', function (Blueprint $table) {
-            $table->enum('status', [0, 1])->default(1)->after('id_image');
+            if (!Schema::hasColumn('riders', 'status')) {
+                $table->enum('status', [0, 1])->default(1)->after('id_image');
+            }
         });
     }
 
