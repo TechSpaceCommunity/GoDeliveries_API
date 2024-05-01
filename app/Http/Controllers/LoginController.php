@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 
 class LoginController extends Controller
@@ -20,7 +21,8 @@ class LoginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function redirectToGoogle()
-    {
+    {   
+        dd(Socialite::driver('google')->stateless()->redirect());
         return Socialite::driver('google')->stateless()->redirect();
     }
 
@@ -42,8 +44,12 @@ class LoginController extends Controller
             $user->name = $socialiteUser->getName();
             $user->email = $socialiteUser->getEmail();
             $user->password = bcrypt($socialiteUser->getName()); 
+            $user->api_token = Str::random(60);
+            $user->profile_pic = $socialiteUser->getAvatar();
             $user->save();
         }
+
+        Log::info('User logged in successfully: ' . $user);
     
          return view('login_success')->with([
             'user' => $user,
@@ -90,34 +96,26 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         // Validate user input
-        Log::info('Email: ' . $request->email);
-        Log::info('Password: ' . $request->password);
-        
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
         ]);
         
-        
-
-        
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 400);
         }
+
+        $user = Customer::where('email', $request->email)->first();
     
-        // Attempt to log in the user
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            // Authentication successful
-            $user = Auth::user();
-            // Generate a new API token for the user if one doesn't already exist
-            if (empty($user->api_token)) {
-                $user->api_token = Str::random(60);
-                $user->save();
-            }
+        if (!$user) {
+            return response()->json(['message' => 'Invalid credentials. Please try again.'], 401);
+        }
+    
+        if (Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'User logged in successfully', 'user' => $user]);
         } else {
-            // Authentication failed
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return response()->json(['message' => 'Invalid credentials. Please try again.'], 401);
         }
     }
+    
 }

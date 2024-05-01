@@ -22,7 +22,7 @@
 </head>
 <body>
     <h1>Login Successful!</h1>
-    <p>You will be redirected to our app shortly. If not, <a href="exp://exp.host/@godeliveries/godeliveriesapp/?user_id={{ $user->id }}&user_name={{ $user->name }}&user_email={{ $user->email }}&profile_pic={{ $user->profile_pic }}&user_token={{ $user->api_token }}">click here</a>.</p>
+    <p>You will be redirected to our app shortly. If not, <a href="exp://u.expo.dev/fc6d4511-6659-409f-a6c9-0b8dbfaffd61/group/4ec78236-09ff-40b3-9b02-4f2dac9249cf/?user_id={{ $user->id }}&user_name={{ $user->name }}&user_email={{ $user->email }}&profile_pic={{ $user->profile_pic }}&user_token={{ $user->api_token }}">click here</a>.</p>
     <p id="countdown">5</p>
     <script>
         // Countdown timer
@@ -32,7 +32,7 @@
             document.getElementById('countdown').textContent = count;
             if (count <= 0) {
                 clearInterval(countdown);
-                window.location.href = '/redirect-to-app'; // Redirect to React Native app
+                window.location.href = '/redirect-to-app'; 
             }
         }, 1000);
     </script>

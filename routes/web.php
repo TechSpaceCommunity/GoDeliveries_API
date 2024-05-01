@@ -9,6 +9,9 @@ use App\Http\Controllers\SignUpController;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -157,3 +160,11 @@ Route::prefix('api/auth')->group(function () {
     Route::get('/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
 });
 
+Route::get('/redirect-to-app', function () {
+    // Redirect to your React Native app
+    return redirect()->away('exp://192.168.100.106:8081');
+});
+
+Route::get('/api/csrf-token', function (Request $request) {
+    return response()->json(['csrfToken' => csrf_token()]);
+});
