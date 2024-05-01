@@ -11,20 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('order_id')->nullable();
-            $table->unsignedBigInteger('customer_id')->nullable();
-            $table->float('price');
-            $table->enum('status',['new','progress','delivered','cancel'])->default('new');
-            $table->integer('quantity');
-            $table->float('amount');
             $table->unsignedBigInteger('restaurant_id');
+            $table->float('rating');
+            $table->text('comment');
+            $table->string('name');
+            $table->timestamps();
+
+            // Define foreign key constraints
             $table->foreign('product_id')->references('id')->on('food')->onDelete('CASCADE');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('CASCADE');
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('SET NULL');
-            $table->timestamps();
+            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('CASCADE');
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('reviews');
     }
 };

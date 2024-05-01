@@ -102,6 +102,8 @@ Route::post('/restaurantslogin', [RestaurantController::class, 'authenticaterest
 //restaurant dashboard pages
 //restaurant profile page
 Route::get('/restaurantprofile', [RestaurantController::class, 'restaurantprofile'])->name('restaurantprofile');
+Route::get('/editrestaurantprofile/{id}', [RestaurantController::class, 'editrestaurantprofile'])->name('editrestaurantprofile');
+Route::post('/editrestaurantprofile/{id}', [RestaurantController::class, 'updaterestaurantprofile'])->name('updaterestaurantprofile');
 
 // foods 
 Route::get('/food', [RestaurantController::class, 'food'])->name('food');
@@ -113,16 +115,28 @@ Route::delete('/food/{id}', [RestaurantController::class, 'destroyfood'])->name(
 // child categories
 Route::get('/category', [RestaurantController::class, 'category'])->name('category');
 Route::post('/category', [RestaurantController::class, 'createcategory'])->name('createcategory');
+Route::get('/editcategory/{id}', [RestaurantController::class, 'editcategory'])->name('editcategory');
+Route::post('/editcategory/{id}', [RestaurantController::class, 'updatecategory'])->name('updatecategory');
 Route::delete('/category/{id}', [RestaurantController::class, 'destroycategory'])->name('category.destroy');
 
 //orders
 Route::get('/orders', [RestaurantController::class, 'orders'])->name('orders');
-Route::get('/option', [RestaurantController::class, 'option'])->name('option');
+Route::delete('/order/{id}', [RestaurantController::class, 'destroyorder'])->name('order.destroy');
+
+/* ratings */
 Route::get('/ratings', [RestaurantController::class, 'ratings'])->name('ratings');
+
+/* food addons */
 Route::get('/addons', [RestaurantController::class, 'addons'])->name('addons');
-Route::get('/timings', [RestaurantController::class, 'timings'])->name('timings');
-Route::get('/paymnent', [RestaurantController::class, 'paymnent'])->name('paymnent');
-Route::get('/location', [RestaurantController::class, 'location'])->name('location');
+Route::post('/addons', [RestaurantController::class, 'createaddon'])->name('createaddon');
+Route::get('/editaddon/{id}', [RestaurantController::class, 'editaddon'])->name('editaddon');
+Route::post('/editaddon/{id}', [RestaurantController::class, 'updateaddon'])->name('updateaddon');
+Route::delete('/addons/{id}', [RestaurantController::class, 'destroyaddon'])->name('addon.destroy');
+
+/* restaurant payments */
+Route::get('/payment', [RestaurantController::class, 'paymnent'])->name('payment');
+Route::delete('/payment/{id}', [RestaurantController::class, 'destroypayment'])->name('payment.destroy');
+
 Route::get('/dispatch', [RestaurantController::class, 'dispatch'])->name('dispatch');
 //});
 

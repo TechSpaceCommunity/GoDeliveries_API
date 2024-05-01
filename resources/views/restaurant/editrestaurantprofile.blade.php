@@ -1,4 +1,4 @@
-@extends('layouts.admindashboard')
+@extends('layouts.restaurantdashboard')
 
 @section('content')
 <main id="main" class="main">
@@ -7,25 +7,24 @@
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="{{route('home')}}">Home</a>
+              <a href="{{route('restaurants')}}">Home</a>
             </li>
-            <li class="breadcrumb-item active">Edit Restaurant</li>
+            <li class="breadcrumb-item active">Update Restaurant Profile</li>
           </ol>
         </nav>
       </div>
       <!-- End Page Title -->
 
-      @if(Auth::user()->role=='admin')
     <section class="section">
         <div class="container">
             <div class="row ">
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header w-50 primary_background_color fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px; background-color:#ff8542;" >
-                            {{ __('Edit Restaurant') }}</div>
+                            {{ __('Update Restaurant') }}</div>
         
                         <div class="card-body">
-                            <form method="POST" action="{{ route('editrestaurant', $restaurant->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('updaterestaurantprofile', $restaurant->id) }}" enctype="multipart/form-data">
                                 @csrf
         
                                 <div class="row mb-3 d-flex">
@@ -149,6 +148,5 @@
             </div>
         </div>
     </section>
-    @endif
 </main>
 @endsection

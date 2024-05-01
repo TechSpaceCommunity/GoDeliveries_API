@@ -21,10 +21,10 @@
               <div class="col-md-6">
                   <div class="card">
                       <div class="card-header w-50  fw-bolder" style="background-color:#ff8542;border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
-                          {{ __('Add Category') }}</div>
+                          {{ __('Update Category') }}</div>
       
                       <div class="card-body">
-                          <form method="POST" action="{{ route('createcategory') }}" enctype="multipart/form-data">
+                          <form method="POST" action="{{ route('updatecategory', $category->id) }}" enctype="multipart/form-data">
                               @csrf
                               <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                               <div class="row mb-3 d-flex">
@@ -32,7 +32,7 @@
                                     <label for="title" class="col-md-4 col-form-label fw-bolder">{{ __('Title') }}</label>
       
                                     <div class="col-md-12">
-                                        <input id="title" type="text" class="form-control rounded-pill bg-light @error('title') is-invalid @enderror"  name="title" value="{{ old('title') }}" required autocomplete="title"  placeholder="" autofocus>
+                                        <input id="title" type="text" class="form-control rounded-pill bg-light @error('title') is-invalid @enderror"  name="title" value="{{ $category->title }}" required autocomplete="title"  placeholder="Title" autofocus>
         
                                         @error('title')
                                             <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                                     <label for="summary" class="col-md-4 col-form-label fw-bolder">{{ __('Description') }}</label>
       
                                     <div class="col-md-12">
-                                        <textarea id="summary"  class="form-control rounded-pill bg-light @error('summary') is-invalid @enderror"  name="summary" value="{{ old('summary') }}" required autocomplete="summary"  placeholder="" autofocus></textarea>
+                                        <input type="text" id="summary"  class="form-control rounded-pill bg-light @error('summary') is-invalid @enderror"  name="summary" value="{{ $category->summary }}" required autocomplete="summary"  placeholder="Description" autofocus>
         
                                         @error('summary')
                                             <span class="invalid-feedback" role="alert">
@@ -64,7 +64,12 @@
     
                                   <div class="col-md-12">
                                     <select name="parent_cat_id" id="parent_cat_id" class="form-control rounded-pill">
-                                      <option value="">--Select any category--</option>
+                                      <option value="{{$category->parent_cat_id}}">
+                                        @foreach($majorcategories as $key=>$cat_data)
+                                        @if ($cat_data->id==$category->parent_cat_id)
+                                        {{$cat_data->title}}
+                                        @endif
+                                        @endforeach
                                       @foreach($majorcategories as $key=>$cat_data)
                                           <option value='{{$cat_data->id}}'>{{$cat_data->title}}</option>
                                       @endforeach
@@ -85,7 +90,7 @@
                                   <label for="Photo" class="col-md-4 col-form-label fw-bolder">{{ __('Photo') }}</label>
     
                                   <div class="col-md-12">
-                                    <input id="photo" type="file" class="form-control rounded-pill @error('photo') is-invalid @enderror"  name="photo" value="{{ old('photo') }}" required autocomplete="photo" autofocus >
+                                    <input id="photo" type="file" class="form-control rounded-pill @error('photo') is-invalid @enderror"  name="photo" value="{{ old('photo') }}" autocomplete="photo" autofocus >
             
                                     @error('photo')
                                         <span class="invalid-feedback" role="alert">
@@ -100,7 +105,7 @@
       
                                     <div class="col-md-12">
                                       <select name="status" class="form-control  rounded-pill @error('status') is-invalid @enderror" autofocus>
-                                        <option value="">--Select Status--</option>
+                                        <option value="{{$category->status}}">{{$category->status}}</option>
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
                                     </select>
@@ -128,100 +133,6 @@
                   </div>
               </div>
           </div>
-      </div>
-    </section>
-
-    <section class="section profile">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card " style="border-radius: 10px; ">
-            <div class="card-header  fw-bolder" style="background-color:#ff8542;">
-                {{ __('Child Category Lists') }}
-            </div>
-            <div class="card-body">  
-              <div class="table-responsive">
-                @if(count($categories)>0)
-                <table class="table table-hover" id="banner-dataTable" width="100%" cellspacing="0">
-                  <thead class="bg-dark text-white">
-                    <tr>
-                      <th><i class="bi bi-stop fw-bolder fs-5"></th>
-                      <th>Photo</th>
-                      <th>Title</th>
-                      <th>Slug</th>
-                      <th>Description</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tfoot class="bg-dark text-white">
-                    <tr>
-                      <th><i class="bi bi-stop fw-bolder fs-5"></th>
-                      <th>Photo</th>
-                      <th>Title</th>
-                      <th>Slug</th>
-                      <th>Description</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-        
-                    @foreach($categories as $category)
-                      @php
-                      @endphp
-                        <tr>
-                            <td><i class="bi bi-stop fw-bolder fs-5"></td>
-                            <td>
-                              @if($category->photo)
-                                  <img src="./storage/category_photo/{{$category->photo}}" class="img-fluid" style="max-width:80px" alt="{{$category->photo}}">
-                              @else
-                                  <img src="{{asset('./storage/category_photo/noImage.png')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
-                              @endif
-                          </td>
-                            <td>{{$category->title}}</td>
-                            <td>{{$category->slug}}</td>
-                            <td>{{$category->summary}}</td>
-                            <td>
-                                @if($category->status=='active')
-                                    <span class="fw-bold text-success">{{$category->status}}</span>
-                                @else
-                                    <span class="fw-bold text-warning">{{$category->status}}</span>
-                                @endif
-                            </td>
-                            <td>
-                              <a class="dropdown text-decoration-none"  data-bs-toggle="dropdown"><i class="ri ri-more-2-fill fw-bolder cursor-pointer"></i>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-align-center align-items-center">
-                                    <li class="w-100 d-flex">
-                                      <span class="mx-1 details rounded border shadow-lg ">
-                                        <a class="btn btn-success fw-bolder " href="./editcategory/{{$category->id}}">
-                                            <i class="bi bi-pen fw-bolder text-white" ></i>
-                                          </a>
-                                      </span>
-                                      <span class="mx-1 rounded border shadow-lg  ">
-                                        <form method="POST" action="{{route('category.destroy',[$category->id])}}">
-                                          @csrf
-                                          @method('delete')
-                                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$category->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></button>
-                                          </form>  
-                                      </span>
-                                      
-                                    </li>
-                                </ul>
-                            </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-                {{-- <span style="float:right">{{$categories->links()}}</span> --}}
-                @else
-                  <h6 class="text-center text-danger fw-bolder">No Categories found!!! Please create Category</h6>
-                @endif
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
       </div>
     </section>
   </main>

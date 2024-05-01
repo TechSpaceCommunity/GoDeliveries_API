@@ -63,7 +63,7 @@
 
                         <div class="row mb-0" align="center">
                             <div class="col-md-12 off12et-md-4">
-                                <button type="submit" class="btn btn-warning fw-bolder text-center w-50" style="box-shadow: 2px 2px 4px black">
+                                <button type="submit" class="primary_background_color fw-bolder text-center w-50" style="box-shadow: 2px 2px 4px black">
                                     {{ __('Register') }}
                                 </button>
                             </div>

@@ -62,7 +62,7 @@
                   </button>
                 </li>
                 <li class="nav-item mx-1">
-                  <a href="#"
+                  <a href="./editrestaurantprofile/{{$restaurant->id}}"
                     class="nav-link bg-success text-white fw-bold btn "
                     style="border-bottom-right-radius: 30px;border-top-right-radius: 30px"
                   >
@@ -97,18 +97,18 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Delivery Time</div>
-                    <div class="col-lg-9 col-md-8">{{ $restaurant->delivery_time  }}</div>
+                    <div class="col-lg-3 col-md-4 label">Opening Time</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->opening_time  }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Closing Time</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->closing_time  }}</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Minimum Order</div>
                     <div class="col-lg-9 col-md-8">{{ $restaurant->minimum_order  }}</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Delivery Time</div>
-                    <div class="col-lg-9 col-md-8">{{ $restaurant->delivery_time  }}</div>
                   </div>
                   </div>
                 </div>
