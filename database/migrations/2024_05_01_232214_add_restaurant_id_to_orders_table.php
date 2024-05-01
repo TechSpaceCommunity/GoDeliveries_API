@@ -14,8 +14,10 @@ class AddRestaurantIdToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedBigInteger('restaurant_id');
-            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+            if (!Schema::hasColumn('orders', 'restaurant_id')) {
+                $table->unsignedBigInteger('restaurant_id');
+                $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+            }
         });
     }
 

@@ -267,15 +267,13 @@ class AdminController extends Controller
          
          //rider profile image
          if ($request->hasFile('rider_image')) {
-            # get file name with extension
             $filenameWithExt=$request->file('rider_image')->getClientOriginalName();
-            //get file name
             $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            //get ext
+
             $extension=$request->file('rider_image')->getClientOriginalExtension();
-            //filename to store
+
             $fileNameToStore=$filename.'_'.time().'.'.$extension;
-            //upload the rider_image
+
             $path=$request->file('rider_image')->storeAs('public/rider_images/', $fileNameToStore);
         }
         else{
@@ -284,15 +282,15 @@ class AdminController extends Controller
 
         //rider's bike image
         if ($request->hasFile('bike_image')) {
-            # get file name with extension
+
             $filenameWithExt=$request->file('bike_image')->getClientOriginalName();
-            //get file name
+
             $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            //get ext
+
             $extension=$request->file('bike_image')->getClientOriginalExtension();
-            //filename to store
+
             $fileNameToStoreBike=$filename.'_'.time().'.'.$extension;
-            //upload the bike_image
+
             $path=$request->file('bike_image')->storeAs('public/bike_images/', $fileNameToStoreBike);
         }
         else{
@@ -301,15 +299,15 @@ class AdminController extends Controller
 
         //rider's nation ID image
         if ($request->hasFile('id_image')) {
-            # get file name with extension
+
             $filenameWithExt=$request->file('id_image')->getClientOriginalName();
-            //get file name
+
             $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            //get ext
+
             $extension=$request->file('id_image')->getClientOriginalExtension();
-            //filename to store
+
             $fileNameToStoreID=$filename.'_'.time().'.'.$extension;
-            //upload the id_image
+
             $path=$request->file('id_image')->storeAs('public/id_images/', $fileNameToStoreID);
         }
         else{
