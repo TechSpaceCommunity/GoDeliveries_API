@@ -69,8 +69,10 @@
 
                                     <div class="col-6">
                                         <div class="col-md-12">
-                                            <input id="address" type="text" class="form-control rounded-pill @error('address') is-invalid @enderror"  name="address" value="{{$restaurant->address}}" required autocomplete="address" autofocus placeholder="Restaurant's address">
-            
+                                            <div class="input-group">
+                                                <input id="address" type="text" class="form-control rounded-pill @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus placeholder="Restaurant's address">
+                                            </div>
+
                                             @error('address')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -78,6 +80,10 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                    <script>
+                                        var autocomplete = new google.maps.places.Autocomplete(document.getElementById('address'));
+                                    </script>
                                 </div>
 
                                 <div class="row mb-3 d-flex">

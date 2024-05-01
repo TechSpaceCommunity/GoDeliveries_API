@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('riders')) {
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->foreign('child_cat_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->timestamps();
         });
+    }
         
     }
 

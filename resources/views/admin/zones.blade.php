@@ -56,8 +56,7 @@
                                 </div>
   
                                 <div class="row mb-3 d-flex">
-                                    
-                                      {{-- geographical map that cordinates can be selected --}}
+                                      <input id="pac-input" class="controls form-control rounded-pill bg-light" type="text" placeholder="Search for a place">
                                       <div id="map" style="height: 400px;"></div>
 
                                       <input type="text" name="cordinates" id="cordinates" class="form-control">
@@ -154,18 +153,19 @@
                   </div>
                 </div>
               </div>
-          </section>
+    </section>
     @endif
 </main>
 
 <script>
     var map;
     var drawingManager;
+    var autocomplete;
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
+            center: { lat: 1.3107, lng: 36.8250 },
+            zoom: 10
         });
 
         drawingManager = new google.maps.drawing.DrawingManager({
@@ -178,18 +178,37 @@
         });
         drawingManager.setMap(map);
 
-        // Add event listener to capture coordinates when a polygon is drawn
-        google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
-        if (event.type === 'polygon') {
-            var coordinates = event.overlay.getPath().getArray();
-            var coordinateStrings = coordinates.map(coord => coord.lat() + ',' + coord.lng());
-            var coordinatesString = coordinateStrings.join(';');
-            document.getElementById('cordinates').value = coordinatesString;
-        }
-});
+        var input = document.getElementById('pac-input');
+        autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
 
+        autocomplete.addListener('place_changed', function () {
+            var place = autocomplete.getPlace();
+
+            if (!place.geometry) {
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
+
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17); 
+            }
+        });
+
+
+        google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+            if (event.type === 'polygon') {
+                var coordinates = event.overlay.getPath().getArray();
+                var coordinateStrings = coordinates.map(coord => coord.lat() + ',' + coord.lng());
+                var coordinatesString = coordinateStrings.join(';');
+                document.getElementById('cordinates').value = coordinatesString;
+            }
+        });
     }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQMAYTywUqaahxnQUe-Y-C5GVMVb-Bwc8&libraries=drawing&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzNP5qQql2a5y8lOoO-1yj1lj_tzjVImA&libraries=drawing,places&callback=initMap"></script>
 
 @endsection

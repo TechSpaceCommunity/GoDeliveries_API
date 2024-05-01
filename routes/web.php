@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
@@ -135,15 +136,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // API ENDPOINTS
-Route::prefix('api/auth')->group(function () {
-    Route::post('/signup', [SignUpController::class, 'signUp']);
-    Route::post('/signin', [LoginController::class, 'login']);
+Route::prefix('api')->group(function () {
+    Route::post('/auth/signup', [SignUpController::class, 'signUp']);
+    Route::post('/auth/signin', [LoginController::class, 'login']);
 
-    Route::get('/google', [LoginController::class, 'redirectToGoogle']);
-    Route::get('/facebook', [LoginController::class, 'redirectToFacebook']);
+    Route::get('/auth/google', [LoginController::class, 'redirectToGoogle']);
+    Route::get('/auth/facebook', [LoginController::class, 'redirectToFacebook']);
 
-    Route::get('/google/callback', [LoginController::class, 'handleGoogleCallback']);
-    Route::get('/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
+    Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+    Route::get('/auth/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
+
+    Route::post('/auth/rider/login', [LoginController::class, 'RiderLogin']);
+
+    Route::get('/getrestaurants', [ApiController::class, 'getRestaurants']);
 });
 
 Route::get('/redirect-to-app', function () {

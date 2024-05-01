@@ -32,7 +32,9 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQMAYTywUqaahxnQUe-Y-C5GVMVb-Bwc8&libraries=drawing"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzNP5qQql2a5y8lOoO-1yj1lj_tzjVImA&libraries=drawing"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzNP5qQql2a5y8lOoO-1yj1lj_tzjVImA&libraries=places"></script>
+
   <style>
     a{
       text-decoration: none;

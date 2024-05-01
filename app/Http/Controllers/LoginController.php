@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Customer;
+use App\Models\Rider;
 use Illuminate\Support\Facades\Auth;;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -22,7 +23,6 @@ class LoginController extends Controller
      */
     public function redirectToGoogle()
     {   
-        dd(Socialite::driver('google')->stateless()->redirect());
         return Socialite::driver('google')->stateless()->redirect();
     }
 
@@ -95,7 +95,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // Validate user input
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -116,6 +115,28 @@ class LoginController extends Controller
         } else {
             return response()->json(['message' => 'Invalid credentials. Please try again.'], 401);
         }
+    }
+
+    public function RiderLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $rider = Rider::where('email', $request->email)->first();
+
+        if ($rider && password_verify($request->password, $rider->password)) {
+            return response()->json([
+                'success' => true,
+                'rider' => $rider,
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Invalid email or password.',
+        ], 401);
     }
     
 }
