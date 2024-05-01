@@ -14,7 +14,9 @@ class AddEmailToRidersTable extends Migration
     public function up()
     {
         Schema::table('riders', function (Blueprint $table) {
-            $table->string('email')->unique()->after('name');
+            if (!Schema::hasColumn('riders', 'email')) {
+                $table->string('email')->unique()->after('name');
+            }
         });
     }
 
@@ -26,7 +28,10 @@ class AddEmailToRidersTable extends Migration
     public function down()
     {
         Schema::table('riders', function (Blueprint $table) {
-            $table->dropColumn('email');
+            if (Schema::hasColumn('riders', 'email')) {
+                $table->dropUnique('riders_email_unique');
+                $table->dropColumn('email');
+            }
         });
     }
 }
