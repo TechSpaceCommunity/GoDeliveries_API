@@ -12,7 +12,12 @@ body {
   background: #f6f9ff;
   color: #444444;
 }
-
+.primary_background_color{
+  background-color: #ff8542;
+}
+.primary_color{
+  color: #ff8542;
+}
 a {
   color: #4154f1;
   text-decoration: none;

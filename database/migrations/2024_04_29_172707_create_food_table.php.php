@@ -22,10 +22,11 @@ return new class extends Migration
             $table->enum('status',['active','inactive'])->default('inactive');
             $table->float('price');
             $table->float('discount')->nullable();
-            $table->unsignedBigInteger('cat_id')->nullable();
+            $table->unsignedBigInteger('parent_cat_id')->nullable();
             $table->unsignedBigInteger('child_cat_id')->nullable();
             $table->unsignedBigInteger('restaurant_id');
-            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('SET NULL');
+            $table->foreign('parent_cat_id')->references('id')->on('major_categories')->onDelete('SET NULL');
+            $table->foreign('child_cat_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->timestamps();
         });
         

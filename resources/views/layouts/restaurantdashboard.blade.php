@@ -206,7 +206,7 @@
   </footer>
   <!-- End Footer -->
   
-  <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 "  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short bg-warning p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 "  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short primary_background_color p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>
     </div>
 
     <!-- Vendor JS Files -->

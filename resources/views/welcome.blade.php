@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row d-flex justify-content-center">
-        <div class="col-md-6 py-4" style="margin-top: 8rem;">
+        <div class="col-md-6 py-4" style="margin-top: 2rem;">
             <div class="text-center">
                 <h2 class="fw-bolder">Welcome to GoDeliveries</h2>
                 <p>This is your one-stop solution for delivery services.</p>
@@ -12,7 +12,7 @@
                 <img src="assets/img/RiderLogin.gif" alt="Rider Login" width="400">
             </div>
         </div>
-        <div class="col-md-6 py-4" style="margin-top: 8rem;">
+        <div class="col-md-6 py-4" style="margin-top: 2rem;">
             <div class="card border-0 bg-white rounded" style="margin: 8% 1%; border-radius:10px">
                 <div class="card-header w-50 fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px; background-color: #ff8542;">{{ __('Login to GoDeliveries') }}</div>
 

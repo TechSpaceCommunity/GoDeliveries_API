@@ -7,19 +7,15 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations. 
+     * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('riders', function (Blueprint $table) {
+        Schema::create('restaurant_sections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('username')->unique();
-            $table->string('number');
-            $table->string('zone');
-            $table->string('password');
-            $table->string('rider_image')->nullable();
-            $table->string('bike_image')->nullable();
+            $table->enum('status', [0, 1])->default(0);
+            $table->text('restaurants');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('riders');
+        Schema::dropIfExists('restaurant_sections');
     }
 };

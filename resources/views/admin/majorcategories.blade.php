@@ -1,15 +1,15 @@
-@extends('layouts.restaurantdashboard')
+@extends('layouts.admindashboard')
 
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Categories</h1>
+      <h1>Food Categories</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="{{route('restaurants')}}">Home</a>
+            <a href="{{route('home')}}">Home</a>
           </li>
-          <li class="breadcrumb-item active">Category</li>
+          <li class="breadcrumb-item active">Major Food Category</li>
         </ol>
       </nav>
     </div>
@@ -21,12 +21,12 @@
               <div class="col-md-6">
                   <div class="card">
                       <div class="card-header w-50  fw-bolder" style="background-color:#ff8542;border-bottom-right-radius: 30px;border-top-right-radius: 30px" >
-                          {{ __('Add Category') }}</div>
+                          {{ __('Add Food Category') }}</div>
       
                       <div class="card-body">
-                          <form method="POST" action="{{ route('createcategory') }}" enctype="multipart/form-data">
+                          <form method="POST" action="{{ route('createmajorcategory') }}" enctype="multipart/form-data">
                               @csrf
-                              <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
+                              
                               <div class="row mb-3 d-flex">
                                   <div class="col-6">
                                     <label for="title" class="col-md-4 col-form-label fw-bolder">{{ __('Title') }}</label>
@@ -57,28 +57,6 @@
                                   </div>
                               </div>
       
-                              <div class="row mb-3 d-flex">
-
-                                <div class="col-12">
-                                  <label for="parent_cat_id" class="col-md-6 col-form-label fw-bolder">Major Food Category <span class="text-danger">*</span></label>
-    
-                                  <div class="col-md-12">
-                                    <select name="parent_cat_id" id="parent_cat_id" class="form-control rounded-pill">
-                                      <option value="">--Select any category--</option>
-                                      @foreach($majorcategories as $key=>$cat_data)
-                                          <option value='{{$cat_data->id}}'>{{$cat_data->title}}</option>
-                                      @endforeach
-                                  </select>
-
-                                    @error('parent_cat_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                  </div>
-                                </div>
-                              </div>
-
                               <div class="row mb-3 d-flex">
 
                                 <div class="col-6">
@@ -134,15 +112,15 @@
     <section class="section profile">
       <div class="row">
         <div class="col-md-12">
-          <div class="card " style="border-radius: 10px; ">
-            <div class="card-header  fw-bolder" style="background-color:#ff8542;">
-                {{ __('Child Category Lists') }}
+          <div class="card">
+            <div class="card-header py-3 text-dark fw-bolder" style="background-color:#ff8542;">
+              <h6 class="m-0 fw-bolder text-dark float-left">Category Lists</h6>
             </div>
-            <div class="card-body">  
+            <div class="card-body">
               <div class="table-responsive">
                 @if(count($categories)>0)
                 <table class="table table-hover" id="banner-dataTable" width="100%" cellspacing="0">
-                  <thead class="bg-dark text-white">
+                  <thead class="bg-dark text-white ">
                     <tr>
                       <th><i class="bi bi-stop fw-bolder fs-5"></th>
                       <th>Photo</th>
@@ -173,9 +151,9 @@
                             <td><i class="bi bi-stop fw-bolder fs-5"></td>
                             <td>
                               @if($category->photo)
-                                  <img src="./storage/category_photo/{{$category->photo}}" class="img-fluid" style="max-width:80px" alt="{{$category->photo}}">
+                                  <img src="./storage/majorcategory_photo/{{$category->photo}}" class="img-fluid" style="max-width:80px" alt="{{$category->photo}}">
                               @else
-                                  <img src="{{asset('./storage/category_photo/noImage.png')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
+                                  <img src="{{asset('./storage/majorcategory_photo/noImage.png')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
                               @endif
                           </td>
                             <td>{{$category->title}}</td>
@@ -185,16 +163,29 @@
                                 @if($category->status=='active')
                                     <span class="fw-bold text-success">{{$category->status}}</span>
                                 @else
-                                    <span class="fw-bold text-warning">{{$category->status}}</span>
+                                    <span class="fw-bold text-danger">{{$category->status}}</span>
                                 @endif
                             </td>
                             <td>
-                                {{-- <a href="{{route('category.edit',$category->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a> --}}
-                            <form method="POST" action="{{route('category.destroy',[$category->id])}}">
-                              @csrf
-                              @method('delete')
-                                  <button class="btn btn-danger btn-sm dltBtn" data-id={{$category->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></button>
-                                </form>
+                              <a class="dropdown text-decoration-none"  data-bs-toggle="dropdown"><i class="ri ri-more-2-fill fw-bolder cursor-pointer"></i>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-align-center align-items-center">
+                                    <li class="w-100 d-flex">
+                                      <span class="mx-1 details rounded border shadow-lg ">
+                                        <a class="btn btn-success fw-bolder " href="./editmajorcategory/{{$category->id}}">
+                                            <i class="bi bi-pen fw-bolder text-white" ></i>
+                                          </a>
+                                      </span>
+                                      <span class="mx-1 rounded border shadow-lg  ">
+                                        <form action="{{route('destroymajorcategory', $category->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger fw-bolder"><i class="b bi-trash"></i></button>
+                                          </form>  
+                                      </span>
+                                      
+                                    </li>
+                                    </ul>
+                            </a>
                             </td>
                         </tr>
                     @endforeach

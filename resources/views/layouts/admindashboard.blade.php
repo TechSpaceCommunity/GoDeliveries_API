@@ -33,6 +33,11 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQMAYTywUqaahxnQUe-Y-C5GVMVb-Bwc8&libraries=drawing"></script>
+  <style>
+    a{
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body class="page-index" style="background-image: url('assets/img/loginBg.png')">
     {{-- <div id="app"> --}}
@@ -149,63 +154,52 @@
       <li class="nav-heading">MANAGEMENT</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('configuration') }}">
-          <i class="bi bi-gear-fill"></i>
-          <span>Configuration</span>
+        <a class="nav-link collapsed" href="{{ route('majorcategories') }}">
+          <i class="bi bi-credit-card-2-front-fill"></i>
+          <span>Major Food Categories</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
+
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('coupons') }}">
           <i class="bi bi-credit-card-2-back-fill"></i>
           <span>Coupons</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-credit-card-2-front-fill"></i>
-          <span>Cousines</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
-          <i class="bi bi-cash-coin"></i>
-          <span>Tipping</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('zones') }}">
           <i class="bi bi-upc-scan"></i>
           <span>Zone</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
           <i class="bi bi-truck"></i>
           <span>Dispatch</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('notifications') }}">
           <i class="bi bi-bell-fill"></i>
           <span>Notifications</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
           <i class="bi bi-bootstrap-reboot"></i>
           <span>Commission Rates</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
           <i class="bi bi-slack"></i>
           <span>Withdraw Requests</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
@@ -241,19 +235,19 @@
       </div>
     </div>
 
-    <footer class="footer-legal text-center" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);">
+    <footer class="footer-legal text-center" style="">
         <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong><span>{{ config('app.name', 'Max Tech Agencies') }}</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-                Designed by <a href="https://tech-space.co.ke/" target="_blank" class="fw-bold text-decoration-none" style="color: rgb(255, 165, 0)">Tech Space Community</a>
+                Designed by <a href="https://tech-space.co.ke/" target="_blank" class="fw-bold text-decoration-none primary_color">Tech Space Community</a>
             </div>
         </div>
     </footer>
   <!-- End Footer -->
   
-  <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 "  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short bg-warning p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 "  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short primary_background_color p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>
     </div>
 
     <!-- Vendor JS Files -->

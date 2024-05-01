@@ -92,7 +92,7 @@
         
                                 <div class="row mb-0" align="start">
                                     <div class="col-md-8 offset-md-4 d-block">
-                                        <button type="submit" class="btn btn-warning fw-bolder text-center w-25 rounded-pill" style="box-shadow: 2px 2px 4px black">
+                                        <button type="submit" class="primary_background_color fw-bolder text-center w-50 rounded-pill" style="box-shadow: 2px 2px 4px black">
                                             {{ __('SAVE') }}
                                         </button><br>
                                     </div>
@@ -111,54 +111,68 @@
         <div class="container">
             <div class="row ">
                 <div class="col-md-12">
-                    <div class="card " style="border-radius: 10px">
-                        <div class="card-header bg-white fw-bolder" >
-                            {{ __('App Customers') }}</div>
-                        <div class="card-body" style="margin: -1.3%">  
-                        
-                        @if (count($users)>=1)
-                        <table  class="table table-hover">
-                           {{--  <h6 class="text-danger"><i><b>You can only perform Actions on post you have created</b></i></h6> --}}
-                            <thead class="bg-warning  fw-bolder">
-                              <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone Number</th>
-                                <th scope="col">Joining Date</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                <tr>
-                                    <td><a href="#" class="text-primary text-decoration-none text-dark">{{$user->name}}</a></td>
-                                    <td>{{$user->email}}</td>
-                                    <td>@if ($user->number == '')
-                                        Null
-                                    @else
-                                    {{$user->number}}
-                                    @endif</td>
-                                    <td>{{$user->created_at}}</td>
-                                        @if(Auth::user()->role=='admin')
-                                        
-                                        <td>
-                                          <form action="{{route('destroycustomer', $user->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger fw-bolder">Delete</button>
-                                          </form>                                          
-                                        </td>
-                                        @endif
-                                  </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        @else
-                        <div>
-                          <div class="alert alert-danger text-white fw-bolder bg-danger">No Customer Found!</div>
+                    <div class="card" >
+                        <div class="card-header py-3 text-dark fw-bolder" style="background-color:#ff8542;">
+                          <h6 class="m-0 fw-bolder text-dark float-left">App Customers</h6>
                         </div>
-                        @endif
-                      </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                        
+                            @if (count($users)>=1)
+                            <table  class="table table-hover w-100">
+                                <thead class="bg-dark text-white ">
+                                    <tr>
+                                        <th><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">Joining Date</th>
+                                        <th scope="col">Actions</th>
+                                </tr>
+                                </thead>
+                                <tfoot class="bg-dark text-white">
+                                    <tr>
+                                        <th><i class="bi bi-stop fw-bolder fs-5"></i></th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">Joining Date</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach ($users as $user)
+                                    <tr>
+                                        <td><i class="bi bi-stop fw-bolder fs-5"></i></td>
+                                        <td><a href="#" class="text-primary text-decoration-none text-dark">{{$user->name}}</a></td>
+                                        <td>{{$user->email}}</td>
+                                        <td>@if ($user->number == '')
+                                            Null
+                                        @else
+                                        {{$user->number}}
+                                        @endif</td>
+                                        <td>{{$user->created_at}}</td>
+                                            @if(Auth::user()->role=='admin')
+                                            
+                                            <td>
+                                            <form action="{{route('destroycustomer', $user->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger fw-bolder"><i class="b bi-trash"></i></button>
+                                            </form>                                          
+                                            </td>
+                                            @endif
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @else
+                            <div>
+                            <div class="alert alert-danger text-white fw-bolder bg-danger">No Customer Found!</div>
+                            </div>
+                            @endif
+                        </div>
+                        </div>
                     </div>
                   </div>
                 </div>
