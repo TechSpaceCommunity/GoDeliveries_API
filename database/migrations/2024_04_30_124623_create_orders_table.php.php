@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('payment_method',['cod','mpesa'])->default('cod');
             $table->enum('payment_status',['paid','unpaid'])->default('unpaid');
             $table->enum('status',['new','process','delivered','cancel'])->default('new');
+            $table->unsignedBigInteger('restaurant_id');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('SET NULL');
             $table->foreign('shipping_id')->references('id')->on('shippings')->onDelete('SET NULL');
             $table->string('name');
@@ -32,6 +33,7 @@ return new class extends Migration
             $table->string('post_code')->nullable();
             $table->text('address1');
             $table->text('address2')->nullable();
+            $table->text('payment_details');
             $table->timestamps();
         });
     }

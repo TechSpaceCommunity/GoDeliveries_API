@@ -98,16 +98,16 @@
       </li><!-- End Nav item -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('food') }}">
-          <i class="ri ri-government-line"></i>
-          <span>Food</span>
+        <a class="nav-link collapsed" href="{{ route('category') }}">
+          <i class="bi bi-tools"></i>
+          <span>Category</span>
         </a>
       </li><!-- End Nav item -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('category') }}">
-          <i class="bi bi-tools"></i>
-          <span>Category</span>
+        <a class="nav-link collapsed" href="{{ route('food') }}">
+          <i class="ri ri-government-line"></i>
+          <span>Food</span>
         </a>
       </li><!-- End Nav item -->
       
@@ -119,13 +119,7 @@
           <span>Orders</span>
         </a>
       </li><!-- End Orders Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('option') }}">
-          <i class="bi bi-credit-card-2-back-fill"></i>
-          <span>Option</span>
-        </a>
-      </li><!-- End Option Page Nav -->
-
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('ratings') }}">
           <i class="bi bi-star-fill"></i>
@@ -138,25 +132,13 @@
           <span>Addons</span>
         </a>
       </li><!-- End Addons Page Nav -->
+      
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('timings') }}">
-          <i class="bi bi-upc-scan"></i>
-          <span>Timings</span>
-        </a>
-      </li><!-- End Timings Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('paymnent') }}">
+        <a class="nav-link collapsed" href="{{ route('payment') }}">
           <i class="bi bi-cash-coin"></i>
-          <span>Payment</span>
+          <span>Payments</span>
         </a>
       </li><!-- End Payment Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('location') }}">
-          <i class="bi bi-geo-alt-fill"></i>
-          <span>Location</span>
-        </a>
-      </li><!-- End Location Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('dispatch') }}">
@@ -195,10 +177,10 @@
     <div class="footer-legal text-center position-relative">
       <div class="container">
         <div class="copyright">
-          &copy; Copyright <strong><span>{{ config('app.name', 'Max Tech Agencies') }}</span></strong>. All Rights Reserved
+          &copy; Copyright <strong><span>{{ config('app.name', 'GoDeliveries') }}</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-          Designed by <a href="#">{{ config('app.name', 'Max Tech Agencies') }}</a>
+          Designed by <a href="#" class="text-decoration-none">{{ config('app.name', 'GoDeliveries') }}</a>
         </div>
       </div>
     </div>
@@ -206,7 +188,7 @@
   </footer>
   <!-- End Footer -->
   
-  <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 "  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short primary_background_color p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 text-decoration-none "  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short primary_background_color p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>
     </div>
 
     <!-- Vendor JS Files -->

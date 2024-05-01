@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('address');
-            $table->time('delivery_time');
-            $table->integer('minimum_order')->default(1);
-            $table->float('sales_tax');
+            $table->time('opening_time');
+            $table->time('closing_time');
+            $table->integer('minimum_order')->default(1);            
             $table->string('password');
             $table->string('cover_image')->nullable();
             $table->timestamps();

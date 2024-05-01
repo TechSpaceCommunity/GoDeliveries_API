@@ -89,9 +89,10 @@
                                 <div class="row mb-3 d-flex">
                                     <div class="col-6">
                                         <div class="col-md-12">
-                                            <input id="delivery_time" type="text" class="form-control rounded-pill @error('delivery_time') is-invalid @enderror"  name="delivery_time" value="{{ old('delivery_time') }}" required autocomplete="delivery_time" autofocus placeholder="Delivery Time">
+                                            <label for="Opening_time" class="col-md-12 col-form-label fw-bolder">{{ __('Opening Time') }}</label>
+                                            <input id="opening_time" type="time" class="form-control rounded-pill @error('opening_time') is-invalid @enderror"  name="opening_time" value="{{ old('opening_time') }}" required autocomplete="opening_time" autofocus placeholder="opening Time">
             
-                                            @error('delivery_time')
+                                            @error('opening_time')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -99,7 +100,22 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                        <div class="col-6">
+                                            <div class="col-md-12">
+                                                <label for="Closing_time" class="col-md-12 col-form-label fw-bolder">{{ __('Closing Time') }}</label>
+                                                <input id="closing_time"  type="time" class="form-control rounded-pill @error('closing_time') is-invalid @enderror"  name="closing_time" value="{{ old('closing_time') }}" required autocomplete="closing_time" autofocus placeholder="closing Time" placeholder="Closing time">
+                
+                                                @error('closing_time')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                <div class="row mb-3 d-flex">
+                                    <div class="col-12">
                                         <div class="col-md-12">
                                             <input id="minimum_order" type="number" class="form-control rounded-pill @error('minimum_order') is-invalid @enderror"  name="minimum_order" value="{{ old('minimum_order') }}" required autocomplete="minimum_order" autofocus placeholder="Minimum Order">
             
@@ -111,24 +127,10 @@
                                         </div>
                                     </div>
                                 </div>
-        
                                 <div class="row mb-3 d-flex">
                                     <div class="col-12">
                                         <div class="col-md-12">
-                                            <input id="sales_tax" type="number" class="form-control rounded-pill @error('sales_tax') is-invalid @enderror"  name="sales_tax" value="{{ old('sales_tax') }}" required autocomplete="sales_tax" autofocus placeholder="Sales Tax">
-            
-                                            @error('sales_tax')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3 d-flex">
-                                    <div class="col-12">
-                                        <div class="col-md-12">
-                                            
+                                            <label for="cover_image" class="col-md-12 col-form-label fw-bolder">{{ __('Restaurant Cover Image') }}</label>
                                             <input id="cover_image" type="file" class="form-control rounded-pill @error('cover_image') is-invalid @enderror"  name="cover_image" value="{{ old('cover_image') }}" required autocomplete="cover_image" autofocus >
             
                                             @error('cover_image')
@@ -174,9 +176,9 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Address</th>
-                                    <th scope="col">Delivery Time</th>
+                                    <th scope="col">Opening Time</th>
+                                    <th scope="col">Closing Time</th>
                                     <th scope="col">Minimum Order</th>
-                                    <th scope="col">Sales Tax</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -187,9 +189,9 @@
                                       <th scope="col">Name</th>
                                       <th scope="col">Email</th>
                                       <th scope="col">Address</th>
-                                      <th scope="col">Delivery Time</th>
+                                      <th scope="col">Opening Time</th>
+                                      <th scope="col">Closing Time</th>
                                       <th scope="col">Minimum Order</th>
-                                      <th scope="col">Sales Tax</th>
                                       <th scope="col">Action</th>
                                   </tr>
                                   </tfoot>
@@ -201,9 +203,9 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->address}}</td>
-                                        <td>{{$user->delivery_time}}</td>
+                                        <td>{{$user->opening_time}}</td>
+                                        <td>{{$user->closing_time}}</td>
                                         <td>{{$user->minimum_order}}</td>
-                                        <td>{{$user->sales_tax}}</td>
                                          <td>
                                             <a class="dropdown text-decoration-none"  data-bs-toggle="dropdown"><i class="ri ri-more-2-fill fw-bolder cursor-pointer"></i>
                                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-align-center align-items-center">

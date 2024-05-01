@@ -171,9 +171,9 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:restaurants'],
             'address' => ['required', 'string', 'max:255'],
-            'delivery_time' => ['required', 'string', 'max:255'],
+            'opening_time' => ['required', 'string', 'max:255'],
             'minimum_order' => ['required'],
-            'sales_tax' => ['required'],
+            'closing_time' => ['required'],
             'cover_image' => 'image|max:3072|nullable',
             'password' => ['required', 'string', 'max:255'],
          ]);
@@ -201,9 +201,9 @@ class AdminController extends Controller
          $user->name=$request->input('name');
          $user->email=$request->input('email');
          $user->address=$request->input('address');
-         $user->delivery_time=$request->input('delivery_time');
+         $user->opening_time=$request->input('opening_time');
          $user->minimum_order=$request->input('minimum_order');
-         $user->sales_tax=$request->input('sales_tax');
+         $user->closing_time=$request->input('closing_time');
          $user->cover_image=$fileNameToStore;
          $user->password=$hashedPassword;
          $user->save();
@@ -500,9 +500,9 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:255'],
             /* 'email' => ['required', 'email', 'unique:restaurants'], */
             'address' => ['required', 'string', 'max:255'],
-            'delivery_time' => ['required', 'string', 'max:255'],
+            'opening_time' => ['required', 'string', 'max:255'],
             'minimum_order' => ['required'],
-            'sales_tax' => ['required'],
+            'closing_time' => ['required'],
             'cover_image' => 'image|max:3000|nullable',
             'password' => [ 'string', 'max:255', 'nullable'],
          ]);
@@ -529,9 +529,9 @@ class AdminController extends Controller
          $user->name=$request->input('name');
          $user->email=$request->input('email');
          $user->address=$request->input('address');
-         $user->delivery_time=$request->input('delivery_time');
+         $user->opening_time=$request->input('opening_time');
          $user->minimum_order=$request->input('minimum_order');
-         $user->sales_tax=$request->input('sales_tax');
+         $user->closing_time=$request->input('closing_time');
          if ($request->hasFile('cover_image')) {
             $user->cover_image= $fileNameToStore;
         }

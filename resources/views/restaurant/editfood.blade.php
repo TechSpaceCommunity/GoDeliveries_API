@@ -64,7 +64,13 @@
     
                                   <div class="col-md-12">
                                     <select name="child_cat_id" id="child_cat_id" class="form-control rounded-pill">
-                                    <option value="{{$food->child_cat_id}}">{{$food->child_cat_id}}</option>
+                                    <option value="{{$food->child_cat_id}}">
+                                      @foreach($categories as $cat_data)
+                                      @if ($cat_data->id == $food->child_cat_id)
+                                      {{$cat_data->title}}
+                                      @endif
+                                      @endforeach
+                                      </option>
                                       @foreach($categories as $cat_data)
                                           <option value='{{$cat_data->id}}'>{{$cat_data->title}}
                                           
