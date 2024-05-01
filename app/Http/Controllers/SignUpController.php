@@ -6,8 +6,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class SignUpController extends Controller
 {
@@ -25,10 +28,12 @@ class SignUpController extends Controller
         }
 
         // Create a new user
-        $user = new User();
+        $user = new Customer();
         $user->name = $request->input('fullName');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
+        $user->api_token = Str::random(60);
+
         $user->save();
 
         // Return success response
