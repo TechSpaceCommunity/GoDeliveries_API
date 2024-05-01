@@ -21,7 +21,8 @@ class LoginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function redirectToGoogle()
-    {
+    {   
+        dd(Socialite::driver('google')->stateless()->redirect());
         return Socialite::driver('google')->stateless()->redirect();
     }
 
