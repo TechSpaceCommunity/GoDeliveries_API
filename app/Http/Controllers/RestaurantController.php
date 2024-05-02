@@ -298,6 +298,7 @@ class RestaurantController extends Controller
             'name' => ['required', 'string', 'max:255'],
             /* 'email' => ['required', 'email', 'unique:restaurants'], */
             'address' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
             'opening_time' => ['required', 'string', 'max:255'],
             'minimum_order' => ['required'],
             'closing_time' => ['required'],
@@ -327,7 +328,7 @@ class RestaurantController extends Controller
          $user->name=$request->input('name');
          $user->email=$request->input('email');
          $user->address=$request->input('address');
-         $user->description=$request->input('AboutMe');
+         $user->description=$request->input('description');
          $user->opening_time=$request->input('opening_time');
          $user->minimum_order=$request->input('minimum_order');
          $user->closing_time=$request->input('closing_time');

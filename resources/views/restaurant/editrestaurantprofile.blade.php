@@ -120,13 +120,13 @@
                                         </div>
                                     </div>
                                 </div>
-
+ 
                                 <div class="row mb-3 d-flex">
                                     <div class="col-12">
                                         <div class="col-md-12">
-                                            <input id="AboutMe" type="text" class="form-control rounded-pill @error('AboutMe') is-invalid @enderror"  name="AboutMe" value="{{ $restaurant->description}}" required autocomplete="AboutMe" autofocus placeholder="About">
+                                            <input id="description" type="text" class="form-control rounded-pill @error('description') is-invalid @enderror"  name="description" value="{{ $restaurant->description}}" required autocomplete="description" autofocus placeholder="About">
             
-                                            @error('AboutMe')
+                                            @error('description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

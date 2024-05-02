@@ -21,7 +21,7 @@
                 <div class="col-md-6">
                     <div class="card">
                         <form method="POST" action="{{ route('editrestaurantsection', $restaurantsection->id) }}">
-                            @csrf
+                            @csrf 
                             <div class="d-flex">
                                 <div class="card-header w-50  fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px;background-color:#ff8542;" >
                                     {{ __('Edit Restaurant Section') }}

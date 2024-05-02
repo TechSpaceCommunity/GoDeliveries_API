@@ -21,12 +21,28 @@
             <div class="row ">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header w-50 primary_background_color fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px; background-color:#ff8542;" >
-                            {{ __('Edit Restaurant') }}</div>
+                        <form method="POST" action="{{ route('editrestaurant', $restaurant->id) }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="d-flex">
+                                <div class="card-header w-50  fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px;background-color:#ff8542;" >
+                                    {{ __('Edit Restaurant') }}
+                                </div>
+                                <div class="card-header w-50  fw-bolder d-flex" style="border: none">
+                                    <label for="enable">Enable</label>
+                                    <div class="form-check form-switch mx-2"> 
+                                        <input type="hidden" name="status" value="0">
+                                        @if ($restaurant->status == 1)
+                                        <input type="checkbox" name="status" id="status" class="form-check-input" value="1" checked>
+                                        @else
+                                        <input type="checkbox" name="status" id="status" class="form-check-input" value="1">
+                                        @endif                                      
+                                        
+                                    </div>
+                                </div>
+                            </div>
         
                         <div class="card-body">
-                            <form method="POST" action="{{ route('editrestaurant', $restaurant->id) }}" enctype="multipart/form-data">
-                                @csrf
+                            
         
                                 <div class="row mb-3 d-flex">
                                     <div class="col-6">
@@ -70,7 +86,7 @@
                                     <div class="col-6">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                <input id="address" type="text" class="form-control rounded-pill @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus placeholder="Restaurant's address">
+                                                <input id="address" type="text" class="form-control rounded-pill @error('address') is-invalid @enderror" name="address" value="{{ $restaurant->address }}" required autocomplete="address" autofocus placeholder="Restaurant's address">
                                             </div>
 
                                             @error('address')
@@ -120,6 +136,19 @@
                                             <input id="minimum_order" type="number" class="form-control rounded-pill @error('minimum_order') is-invalid @enderror"  name="minimum_order" value="{{ $restaurant->minimum_order}}" required autocomplete="minimum_order" autofocus placeholder="Minimum Order">
             
                                             @error('minimum_order')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 d-flex">
+                                    <div class="col-12">
+                                        <div class="col-md-12">
+                                            <input id="description" type="text" class="form-control rounded-pill @error('description') is-invalid @enderror"  name="description" value="{{ $restaurant->description}}" required autocomplete="description" autofocus placeholder="Restaurant About">
+            
+                                            @error('description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

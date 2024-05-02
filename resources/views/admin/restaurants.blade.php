@@ -21,13 +21,22 @@
             <div class="row ">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header w-50 primary_background_color fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px; background-color:#ff8542;" >
-                            {{ __('Add Restaurant') }}</div>
+                        <form method="POST" action="{{ route('createrestaurant') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="d-flex">
+                                <div class="card-header w-50  fw-bolder" style="border-bottom-right-radius: 30px;border-top-right-radius: 30px;background-color:#ff8542;" >
+                                    {{ __('Add Restaurant') }}
+                                </div>
+                                <div class="card-header w-50  fw-bolder d-flex" style="border: none">
+                                    <label for="enable">Enable</label>
+                                    <div class="form-check form-switch mx-2"> 
+                                        <input type="hidden" name="status" value="0">                                      
+                                        <input type="checkbox" name="status" id="status" class="form-check-input" value="1" checked>
+                                    </div>
+                                </div>
+                            </div>  
         
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('createrestaurant') }}" enctype="multipart/form-data">
-                                @csrf
-        
+                        <div class="card-body">        
                                 <div class="row mb-3 d-flex">
                                     <div class="col-6">
                                         <div class="col-md-12">
@@ -130,6 +139,19 @@
                                 <div class="row mb-3 d-flex">
                                     <div class="col-12">
                                         <div class="col-md-12">
+                                            <input id="description" type="text" class="form-control rounded-pill @error('description') is-invalid @enderror"  name="description" value="{{ old('description') }}" required autocomplete="description" autofocus placeholder="Restaurant About">
+            
+                                            @error('description')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 d-flex">
+                                    <div class="col-12">
+                                        <div class="col-md-12">
                                             <label for="cover_image" class="col-md-12 col-form-label fw-bolder">{{ __('Restaurant Cover Image') }}</label>
                                             <input id="cover_image" type="file" class="form-control rounded-pill @error('cover_image') is-invalid @enderror"  name="cover_image" value="{{ old('cover_image') }}" required autocomplete="cover_image" autofocus >
             
@@ -179,6 +201,7 @@
                                     <th scope="col">Opening Time</th>
                                     <th scope="col">Closing Time</th>
                                     <th scope="col">Minimum Order</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -192,6 +215,7 @@
                                       <th scope="col">Opening Time</th>
                                       <th scope="col">Closing Time</th>
                                       <th scope="col">Minimum Order</th>
+                                      <th scope="col">Status</th>
                                       <th scope="col">Action</th>
                                   </tr>
                                   </tfoot>
@@ -206,6 +230,19 @@
                                         <td>{{$user->opening_time}}</td>
                                         <td>{{$user->closing_time}}</td>
                                         <td>{{$user->minimum_order}}</td>
+                                        <td>
+                                            <form action="">
+                                                @if ($user->status == 1)
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="status" checked disabled>
+                                                    </div>
+                                                @else
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="status" disabled>
+                                                    </div>
+                                                @endif
+                                            </form>
+                                        </td>
                                          <td>
                                             <a class="dropdown text-decoration-none"  data-bs-toggle="dropdown"><i class="ri ri-more-2-fill fw-bolder cursor-pointer"></i>
                                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-align-center align-items-center">

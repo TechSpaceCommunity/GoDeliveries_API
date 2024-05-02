@@ -92,6 +92,12 @@ Route::get('/editzone/{id}', [AdminController::class, 'editzone'])->name('editzo
 Route::post('/editzone/{id}', [AdminController::class, 'updatezone'])->name('updatezone');
 Route::delete('/zones/{id}', [AdminController::class, 'destroyzone'])->name('destroyzone');
 
+/* dispatch */
+Route::get('/admindispatch', [AdminController::class, 'admindispatch'])->name('admindispatch');
+
+Route::get('/withdrawals', [AdminController::class, 'withdrawals'])->name('withdrawals');
+Route::get('/commissionrates', [AdminController::class, 'commissionrates'])->name('commissionrates');
+
 });
 
 //Restaurant Routes

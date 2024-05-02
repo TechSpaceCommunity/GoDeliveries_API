@@ -176,7 +176,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('admindispatch') }}">
           <i class="bi bi-truck"></i>
           <span>Dispatch</span>
         </a>
@@ -190,14 +190,14 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('commissionrates') }}">
           <i class="bi bi-bootstrap-reboot"></i>
           <span>Commission Rates</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profileadmin') }}">
+        <a class="nav-link collapsed" href="{{ route('withdrawals') }}">
           <i class="bi bi-slack"></i>
           <span>Withdraw Requests</span>
         </a>

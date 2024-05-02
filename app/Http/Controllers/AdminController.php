@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommissionRate;
 use App\Models\Coupon;
 use App\Models\Customer;
+use App\Models\Dispatch;
 use App\Models\MajorCategory;
 use Illuminate\Http\Request;
 use App\Models\Notification;
+use App\Models\Order;
 use App\Models\Restaurant;
 use App\Models\RestaurantSection;
 use App\Models\Rider;
 use App\Models\User;
+use App\Models\Withdrawal;
 use App\Models\Zone;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -142,6 +146,27 @@ class AdminController extends Controller
         return view('admin.editzone', compact('zone'));
     }
 
+    public function admindispatch()
+    {
+        $dispatches=Dispatch::all();
+        $orders=Order::all();
+        $riders=Rider::all();
+        return view('admin.admindispatch', compact('dispatches', 'orders', 'riders'));
+    }
+
+    public function withdrawals()
+    {
+        $withdrawals=Withdrawal::all();
+        $riders=Rider::all();
+        return view('admin.withdrawals', compact('withdrawals', 'riders'));
+    }
+
+    public function commissionrates()
+    {
+        $commissionrates=CommissionRate::all();
+        $riders=Rider::all();
+        return view('admin.commissionrates', compact('commissionrates', 'riders'));
+    }
     public function createcustomer(Request $request)
      {
          //validation for the required fields
@@ -171,7 +196,9 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:restaurants'],
             'address' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
             'opening_time' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'in:0,1'],
             'minimum_order' => ['required'],
             'closing_time' => ['required'],
             'cover_image' => 'image|max:3072|nullable',
@@ -201,6 +228,8 @@ class AdminController extends Controller
          $user->name=$request->input('name');
          $user->email=$request->input('email');
          $user->address=$request->input('address');
+         $user->description=$request->input('description');
+         $user->status=$request->input('status');
          $user->opening_time=$request->input('opening_time');
          $user->minimum_order=$request->input('minimum_order');
          $user->closing_time=$request->input('closing_time');
@@ -317,7 +346,6 @@ class AdminController extends Controller
 
          $user= new Rider();
          $user->name=$request->input('name');
-         $user->username=$request->input('name');
          $user->email=$request->input('email');
          $user->number=$request->input('number');
          $user->id_number=$request->input('id_number');
@@ -498,8 +526,10 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:255'],
             /* 'email' => ['required', 'email', 'unique:restaurants'], */
             'address' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
             'opening_time' => ['required', 'string', 'max:255'],
             'minimum_order' => ['required'],
+            'status' => ['required', 'in:0,1'],
             'closing_time' => ['required'],
             'cover_image' => 'image|max:3000|nullable',
             'password' => [ 'string', 'max:255', 'nullable'],
@@ -527,6 +557,8 @@ class AdminController extends Controller
          $user->name=$request->input('name');
          $user->email=$request->input('email');
          $user->address=$request->input('address');
+         $user->description=$request->input('description');
+         $user->status=$request->input('status');
          $user->opening_time=$request->input('opening_time');
          $user->minimum_order=$request->input('minimum_order');
          $user->closing_time=$request->input('closing_time');

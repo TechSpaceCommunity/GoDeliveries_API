@@ -110,21 +110,22 @@
                     <div class="col-lg-3 col-md-4 label">Minimum Order</div>
                     <div class="col-lg-9 col-md-8">{{ $restaurant->minimum_order  }}</div>
                   </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Status</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->status  }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Bio</div>
+                    <div class="col-lg-9 col-md-8">{{ $restaurant->description  }}</div>
+                  </div>
                   </div>
                 </div>
 
                 
               </div>
               <!-- End Bordered Tabs -->
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">About Me</h5>
-              <p>{{ $restaurant->description }}</p>
             </div>
           </div>
         </div>
