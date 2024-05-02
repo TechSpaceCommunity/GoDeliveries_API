@@ -119,6 +119,15 @@
             </div>
           </div>
         </div>
+
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">About Me</h5>
+              <p>{{ $restaurant->description }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>

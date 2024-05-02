@@ -327,6 +327,7 @@ class RestaurantController extends Controller
          $user->name=$request->input('name');
          $user->email=$request->input('email');
          $user->address=$request->input('address');
+         $user->description=$request->input('AboutMe');
          $user->opening_time=$request->input('opening_time');
          $user->minimum_order=$request->input('minimum_order');
          $user->closing_time=$request->input('closing_time');
