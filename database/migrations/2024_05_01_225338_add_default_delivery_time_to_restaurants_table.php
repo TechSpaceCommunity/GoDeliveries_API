@@ -14,7 +14,7 @@ class AddDefaultDeliveryTimeToRestaurantsTable extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->integer('delivery_time')->default(rand(15, 20))->change();
+            $table->integer('delivery_time')->default(rand(15, 20));
         });
     }
 

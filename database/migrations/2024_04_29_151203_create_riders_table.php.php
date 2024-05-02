@@ -20,7 +20,7 @@ return new class extends Migration
                 $table->string('id_number');
                 $table->string('zone');
                 $table->string('password');
-                $table->enum('status', [0, 1])->default(0);
+                $table->enum('status', [0, 1])->default(1);
                 $table->string('rider_image')->nullable();
                 $table->string('bike_image')->nullable();
                 $table->string('id_image')->nullable();
