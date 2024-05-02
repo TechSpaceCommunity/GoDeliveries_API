@@ -163,6 +163,8 @@ Route::prefix('api')->group(function () {
     Route::post('/auth/rider/login', [LoginController::class, 'RiderLogin']);
 
     Route::get('/getrestaurants', [ApiController::class, 'getRestaurants']);
+    Route::get('/getcategories', [ApiController::class, 'getAllCategories']);
+    Route::get('/getfoods', [ApiController::class, 'getAllFoods']);
 });
 
 Route::get('/redirect-to-app', function () {
