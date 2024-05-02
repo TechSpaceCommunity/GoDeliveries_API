@@ -175,7 +175,7 @@ Route::prefix('api')->group(function () {
 
 Route::get('/redirect-to-app', function () {
     // Redirect to your React Native app
-    return redirect()->away('exp://192.168.100.106:8081');
+    return redirect()->away('exp://192.168.100.159:8081');
 });
 
 Route::get('/api/csrf-token', function (Request $request) {

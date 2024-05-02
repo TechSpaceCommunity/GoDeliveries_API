@@ -7,34 +7,54 @@
     <title>Login Successful</title>
     <style>
         body {
-            background-color: #FE724C; /* Set background color */
-            font-family: Arial, sans-serif; /* Set font family */
-            text-align: center; /* Center align text */
-            color: white; /* Set text color to white */
+            background-color: #FE724C;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
         }
         h1 {
-            margin-top: 50px; /* Add some margin to the top of the h1 element */
+            margin-top: 50px;
         }
         p {
-            margin-top: 20px; /* Add some margin to the top of the p element */
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <h1>Login Successful!</h1>
-    <p>You will be redirected to our app shortly. If not, <a href="exp://u.expo.dev/fc6d4511-6659-409f-a6c9-0b8dbfaffd61/group/4ec78236-09ff-40b3-9b02-4f2dac9249cf/?user_id={{ $user->id }}&user_name={{ $user->name }}&user_email={{ $user->email }}&profile_pic={{ $user->profile_pic }}&user_token={{ $user->api_token }}">click here</a>.</p>
+    <p>You will be redirected to our app shortly. If not, <a id="appLink" href="#">click here</a>.</p>
     <p id="countdown">5</p>
     <script>
-        // Countdown timer
         var count = 5;
         var countdown = setInterval(function() {
             count--;
             document.getElementById('countdown').textContent = count;
             if (count <= 0) {
                 clearInterval(countdown);
-                window.location.href = '/redirect-to-app'; 
+                redirectToApp();
             }
         }, 1000);
+
+        // Redirect to the app
+        function redirectToApp() {
+            var userId = "{{ $user->id }}";
+            var userName = "{{ $user->name }}";
+            var userEmail = "{{ $user->email }}";
+            var profilePic = "{{ $user->profile_pic }}";
+            var userToken = "{{ $user->api_token }}";
+
+            // Construct the app URL with query parameters
+            var appURL = "exp://192.168.100.159:8081/?" +
+                         "user_id=" + userId +
+                         "&user_name=" + userName +
+                         "&user_email=" + userEmail +
+                         "&profile_pic=" + profilePic +
+                         "&user_token=" + userToken;
+
+            document.getElementById('appLink').setAttribute('href', appURL);
+
+            window.location.href = appURL;
+        }
     </script>
 </body>
 </html>
