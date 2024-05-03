@@ -19,6 +19,8 @@ use App\Models\Zone;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RiderAccountDetails;
 
 class AdminController extends Controller
 {
@@ -346,6 +348,7 @@ class AdminController extends Controller
 
          $user= new Rider();
          $user->name=$request->input('name');
+         $user->username=$request->input('name');
          $user->email=$request->input('email');
          $user->number=$request->input('number');
          $user->id_number=$request->input('id_number');
@@ -356,8 +359,19 @@ class AdminController extends Controller
          $user->bike_image=$fileNameToStoreBike;
          $user->id_image=$fileNameToStoreID;
          $user->save();
+
+         $details = [
+            'email' => $user->email,
+            'password' => $request->input('password'), 
+        ];
+    
+        try {
+            Mail::to($user->email)->send(new RiderAccountDetails($details));
+        } catch (\Exception $e) {
+            dd('Failed to send email: ' . $e->getMessage());
+        }
          
-         return redirect('riders')->with('success', 'Rider Added Successfully!!');
+        return redirect('riders')->with('success', 'Rider Added Successfully!!');
      }
 
      public function createuser(Request $request)

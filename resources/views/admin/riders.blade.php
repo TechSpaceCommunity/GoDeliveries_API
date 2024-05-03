@@ -68,17 +68,11 @@
         
                                 <div class="row mb-3 d-flex">
                                     <div class="col-6">
-                                      {{-- <label for="password" class="col-md-4 col-form-label fw-bolder">{{ __('Password') }}</label> --}}
-        
-                                      <div class="col-md-12">
-                                          <input id="password" type="password" class="form-control rounded-pill bg-light @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"  placeholder="Password">
-          
-                                          @error('password')
-                                              <span class="invalid-feedback" role="alert">
-                                                  <strong>{{ $message }}</strong>
-                                              </span>
-                                          @enderror
-                                      </div>
+                                        {{-- <label for="password" class="col-md-4 col-form-label fw-bolder">{{ __('Password') }}</label> --}}
+
+                                        <div class="col-md-12">
+                                            <input id="password" type="password" class="form-control rounded-pill bg-light" name="password" required autocomplete="current-password" placeholder="Password" readonly>
+                                        </div>
                                     </div>
 
                                     <div class="col-6">
