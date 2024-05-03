@@ -32,8 +32,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzNP5qQql2a5y8lOoO-1yj1lj_tzjVImA&libraries=drawing"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzNP5qQql2a5y8lOoO-1yj1lj_tzjVImA&libraries=places"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0X7ZtlzuNrfybfRykn_Pw1bxTqvCtdNQ&libraries=drawing"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0X7ZtlzuNrfybfRykn_Pw1bxTqvCtdNQ&libraries=places"></script>
 
   <style>
     a{
@@ -248,6 +248,29 @@
         </div>
     </footer>
   <!-- End Footer -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function generateRandomPassword(length) {
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+            return password;
+        }
+
+       
+        function setGeneratedPassword() {
+            const passwordInput = document.getElementById("password");
+            const generatedPassword = generateRandomPassword(10); 
+            console.log(generatedPassword);
+            passwordInput.value = generatedPassword;
+        }
+        setGeneratedPassword();
+    });
+  </script>
   
   <a href="#" class="scroll-top d-flex align-items-end justify-content-center shadow-lg m-3 text-decoration-none"  style="box-shadow: 2px 2px 4px black; float:right"><i class="bi bi-arrow-up-short primary_background_color p-1 rounded-pill text-white font-bold" style="font-size: 1.2em"></i></a>
     </div>

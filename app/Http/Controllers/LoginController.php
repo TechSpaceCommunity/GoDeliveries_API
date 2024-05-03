@@ -119,24 +119,62 @@ class LoginController extends Controller
 
     public function RiderLogin(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
-        $rider = Rider::where('email', $request->email)->first();
-
-        if ($rider && password_verify($request->password, $rider->password)) {
-            return response()->json([
-                'success' => true,
-                'rider' => $rider,
-            ]);
+        
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'Invalid email or password.',
-        ], 401);
+        $user = Rider::where('email', $request->email)->first();
+    
+        if (!$user) {
+            return response()->json(['message' => 'Invalid credentials. Please try again.'], 401);
+        }
+        // check if $request->password and  $user->password match
+        if ($user->password == $request->password) {
+            // generate api_token and add it to user
+
+            $user->api_token = Str::random(60);
+
+            $user->save();
+            return response()->json(['message' => 'User logged in successfully', 'user' => $user]);
+        } else {
+            return response()->json(['message' => 'Invalid credentials. Please try again.'], 401);
+        }
     }
+
+    public function RiderAvailability(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|exists:riders,id',
+            'is_available' => 'required|boolean',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+    
+        $user = Rider::find($request->user_id);
+    
+        if (!$user) {
+            return response()->json(['message' => 'Rider not found.'], 404);
+        }
+    
+        $status = $request->is_available ? 1 : 0;
+
+        Log::info('Rider availability status: ' . $status);
+    
+        $user->status = $status;
+        $user->save();
+    
+        return response()->json([
+            'message' => 'Rider availability updated successfully.',
+            'user' => $user 
+        ], 200);
+    }    
+
     
 }

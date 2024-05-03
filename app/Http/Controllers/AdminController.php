@@ -19,6 +19,9 @@ use App\Models\Zone;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RiderAccountDetails;
+use App\Mail\RestaurantAccountDetails;
 
 class AdminController extends Controller
 {
@@ -243,6 +246,17 @@ class AdminController extends Controller
          $user->cover_image=$fileNameToStore;
          $user->password=$hashedPassword;
          $user->save();
+
+         $details = [
+            'email' => $user->email,
+            'password' => $request->input('password'), 
+        ];
+    
+        try {
+            Mail::to($user->email)->send(new RestaurantAccountDetails($details));
+        } catch (\Exception $e) {
+            dd('Failed to send email: ' . $e->getMessage());
+        }
          
          return redirect('adminrestaurants')->with('success', 'Restaurant Added Successfully!!');
      }
@@ -363,8 +377,19 @@ class AdminController extends Controller
          $user->bike_image=$fileNameToStoreBike;
          $user->id_image=$fileNameToStoreID;
          $user->save();
+
+         $details = [
+            'email' => $user->email,
+            'password' => $request->input('password'), 
+        ];
+    
+        try {
+            Mail::to($user->email)->send(new RiderAccountDetails($details));
+        } catch (\Exception $e) {
+            dd('Failed to send email: ' . $e->getMessage());
+        }
          
-         return redirect('riders')->with('success', 'Rider Added Successfully!!');
+        return redirect('riders')->with('success', 'Rider Added Successfully!!');
      }
 
      public function createuser(Request $request)
