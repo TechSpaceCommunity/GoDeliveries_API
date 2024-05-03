@@ -34,6 +34,7 @@ return new class extends Migration
             $table->text('address1');
             $table->text('address2')->nullable();
             $table->text('payment_details');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

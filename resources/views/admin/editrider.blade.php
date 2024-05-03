@@ -89,7 +89,7 @@
                                       {{-- <label for="number" class="col-md-4 col-form-label fw-bolder">{{ __('Number') }}</label> --}}
         
                                       <div class="col-md-12">
-                                          <input id="number" type="number" class="form-control rounded-pill bg-light @error('number') is-invalid @enderror"  name="number" value="{{ $rider->number}}" required autocomplete="number"  autofocus>
+                                          <input id="number" type="number" class="form-control rounded-pill bg-light @error('number') is-invalid @enderror"  name="number" value="{{ $rider->number}}" required autocomplete="number" placeholder="254712345678"  autofocus>
           
                                           @error('number')
                                               <span class="invalid-feedback" role="alert">
@@ -103,7 +103,7 @@
                                 <div class="row my-2">
                                   <div class="col-md-12">
                                     <select name="zone" id="zone" class="form-control rounded-pill bg-light  @error('zone') is-invalid @enderror" autocomplete="zone" autofocus required>
-                                        <option value="">{{$rider->zone}}</option>
+                                        <option value="{{$rider->zone}}">{{$rider->zone}}</option>
                                         @foreach ($zones as $zone)
                                         <option value="{{$zone->title}}">{{$zone->title}}</option>
                                         @endforeach    

@@ -164,9 +164,16 @@ class AdminController extends Controller
     public function commissionrates()
     {
         $commissionrates=CommissionRate::all();
-        $riders=Rider::all();
-        return view('admin.commissionrates', compact('commissionrates', 'riders'));
+        $restaurants=restaurant::all();
+        return view('admin.commissionrates', compact('commissionrates', 'restaurants'));
     }
+    public function editcommissionrate($id)
+    {
+        $commissionrate=CommissionRate::find($id);
+        $restaurants=restaurant::all();
+        return view('admin.editcommissionrate', compact('commissionrate', 'restaurants'));
+    }
+
     public function createcustomer(Request $request)
      {
          //validation for the required fields
@@ -489,6 +496,26 @@ class AdminController extends Controller
          
          return redirect('zones')->with('success', 'Zone Added Successfully!!');
      }
+
+     /* commissionrates */
+     public function createcommissionrate(Request $request)
+     {
+         //validation for the required fields
+         $this->validate($request, [
+            'restaurant_id' => ['required' ,'unique:commission_rates'],
+            'rate' => ['required'],
+            'status'=>'required|in:active,inactive',
+         ]);
+         
+         
+         $user= new commissionrate();
+         $user->restaurant_id=$request->input('restaurant_id');
+         $user->rate=$request->input('rate');
+         $user->status=$request->input('status');
+         $user->save();
+         
+         return redirect('commissionrates')->with('success', 'Commissionrate Added Successfully!!');
+     }
     /**
      * Update the specified resource in storage.
      *
@@ -805,6 +832,25 @@ class AdminController extends Controller
          
          return redirect('zones')->with('success', 'Zone Updated Successfully!!');
      }
+
+     /* commissionrates */
+     public function updatecommissionrate(Request $request, $id)
+     {
+         //validation for the required fields
+         $this->validate($request, [
+            /* 'restaurant_id' => ['required' ,'unique:commission_rates'], */
+            'rate' => ['required'],
+            'status'=>'required|in:active,inactive',
+         ]);
+         
+         
+         $user= commissionrate::find($id);
+         $user->rate=$request->input('rate');
+         $user->status=$request->input('status');
+         $user->save();
+         
+         return redirect('commissionrates')->with('success', 'Commissionrate Updated Successfully!!');
+     }
      public function activateuser($id)
     {
         $user=User::find($id);
@@ -867,5 +913,12 @@ class AdminController extends Controller
         $user=zone::find($id);
         $user->delete();
         return redirect('zones')->with('success', 'Zone Deleted Successfully!!');
+    }
+
+    public function destroycommissionrate($id)
+    {
+        $user=commissionrate::find($id);
+        $user->delete();
+        return redirect('commissionrates')->with('success', 'Commissionrate Deleted Successfully!!');
     }
 }

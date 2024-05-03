@@ -57,7 +57,7 @@
                                     <label for="email" class="col-md-4 col-form-label fw-bolder">{{ __('email') }}</label>
       
                                     <div class="col-md-12">
-                                        <input id="email" type="email" class="form-control rounded-pill bg-light @error('email') is-invalid @enderror"  name="email" value="{{ old('email') }}" required autocomplete="email"  placeholder="Email" autofocus>
+                                        <input id="email" type="email" class="form-control rounded-pill bg-light @error('email') is-invalid @enderror"  name="email" value="{{ old('email') }}" required autocomplete="email"  placeholder="abc@example.com" autofocus>
         
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -74,7 +74,7 @@
                                   <label for="number" class="col-md-4 col-form-label fw-bolder">{{ __('Number') }}</label>
     
                                   <div class="col-md-12">
-                                      <input id="number" type="number" class="form-control rounded-pill bg-light @error('number') is-invalid @enderror"  name="number" value="{{ old('number') }}" required autocomplete="number" placeholder="Phone Number" autofocus>
+                                      <input id="number" type="number" class="form-control rounded-pill bg-light @error('number') is-invalid @enderror"  name="number" value="{{ old('number') }}" required autocomplete="number" placeholder="254712345678" autofocus>
       
                                       @error('number')
                                           <span class="invalid-feedback" role="alert">

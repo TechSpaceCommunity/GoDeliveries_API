@@ -180,7 +180,7 @@
           &copy; Copyright <strong><span>{{ config('app.name', 'GoDeliveries') }}</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-          Designed by <a href="#" class="text-decoration-none">{{ config('app.name', 'GoDeliveries') }}</a>
+          Designed by <a href="#" class="text-decoration-none primary_color fw-bolder">{{ config('app.name', 'GoDeliveries') }}</a>
         </div>
       </div>
     </div>

@@ -113,7 +113,13 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Status</div>
-                    <div class="col-lg-9 col-md-8">{{ $restaurant->status  }}</div>
+                    <div class="col-lg-9 col-md-8">
+                      @if ($restaurant->status == 1)
+                          <span class="fw-bolder text-success">Active</span>
+                      @else
+                      <span class="fw-bolder text-danger">Inactive</span>
+                      @endif
+                    </div>
                   </div>
 
                   <div class="row">

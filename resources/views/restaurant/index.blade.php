@@ -34,7 +34,7 @@
                   <div class="col-xxl-3 col-xl-3 ">
                       <div class="card " style="background-color: rgb(169, 240, 169)" >  
                           <div class="card-body align-items-center justify-content-center" style="margin-top: -8%">
-                              <h5 class="card-title"><span class="fw-bolder text-dark">Total Food</h5>
+                              <h5 class="card-title"><span class="fw-bolder text-dark">Total Inventory</h5>
           
                               <div class="row d-flex justify-content-space-between" >
                                   <div class="col mx-1 "><h6 class="fw-bolder fs-5">{{$totalfood}}</h6></div>
@@ -50,7 +50,7 @@
                               <h5 class="card-title"><span class="fw-bolder text-dark">Total Orders</h5>
           
                               <div class="row d-flex justify-content-space-between" >
-                                  <div class="col mx-1 "><h6 class="fw-bolder fs-5">2</h6></div>
+                                  <div class="col mx-1 "><h6 class="fw-bolder fs-5">{{$totalorders}}</h6></div>
                                   <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
                               </div>
                           </div>
@@ -63,7 +63,7 @@
                               <h5 class="card-title"><span class="fw-bolder text-dark" >Total Revenue</h5>
           
                               <div class="row d-flex justify-content-space-between" >
-                                  <div class="col mx-1 "><h6 class="fw-bolder fs-5">$ 100</h6></div>
+                                  <div class="col mx-1 "><h6 class="fw-bolder fs-5">Ksh. {{$totalrevenue}}</h6></div>
                                   <div class="col mx-1 "><i class="bi bi-bar-chart-line-fill"></i></div>
                               </div>
                           </div>
@@ -85,15 +85,15 @@
                               series: [
                                   {
                                       name: 'Categories',
-                                      data: [2,1,4,1,3,4]
+                                      data: {!! json_encode($categoryMonthlyData) !!}
                                   },
                                   {
-                                      name: 'Food',
-                                      data: [3,1,2,4,2,5]
+                                      name: 'Inventory',
+                                      data: {!! json_encode($foodMonthlyData) !!}
                                   },
                                   {
                                       name: 'Orders',
-                                      data: [3,2,1,4,1,3]
+                                      data: {!! json_encode($orderMonthlyData) !!}
                                   }
                               ],
                               chart: {
@@ -125,7 +125,7 @@
                               },
                               xaxis: {
                                   type: 'category',
-                                  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+                                  categories: {!! json_encode(range(1, 12)) !!}
                               },
                           }).render();
 

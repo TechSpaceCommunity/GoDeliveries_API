@@ -85,7 +85,7 @@
                                       {{-- <label for="number" class="col-md-4 col-form-label fw-bolder">{{ __('Number') }}</label> --}}
         
                                       <div class="col-md-12">
-                                          <input id="number" type="number" class="form-control rounded-pill bg-light @error('number') is-invalid @enderror"  name="number" value="{{ old('number') }}" required autocomplete="number" placeholder="Phone Number" autofocus>
+                                          <input id="number" type="number" class="form-control rounded-pill bg-light @error('number') is-invalid @enderror"  name="number" value="{{ old('number') }}" required autocomplete="number" placeholder="254712345678" autofocus>
           
                                           @error('number')
                                               <span class="invalid-feedback" role="alert">

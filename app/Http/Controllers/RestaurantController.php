@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Addon;
 use App\Models\Category;
+use App\Models\Dispatch;
 use App\Models\Food;
 use App\Models\MajorCategory;
 use App\Models\Order;
 use App\Models\Restaurant;
 use App\Models\Review;
+use App\Models\Rider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -23,7 +26,48 @@ class RestaurantController extends Controller
         $restaurant = Auth::guard('restaurant')->user();
         $totalcategories=Category::where('restaurant_id', $restaurant->id)->count();
         $totalfood=Food::where('restaurant_id', $restaurant->id)->count();
-        return view('restaurant.index', compact('restaurant', 'totalcategories', 'totalfood'));
+        $totalorders=order::where('restaurant_id', $restaurant->id)->count();
+        $totalrevenue=order::where('restaurant_id', $restaurant->id)->where('payment_status', 'paid')->sum('total_amount');
+
+        // Fetch count of categories, food, and orders for each month
+        $categoryData = DB::table('categories')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+            ->where('restaurant_id', $restaurant->id)
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->get();
+
+        $foodData = DB::table('food')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+            ->where('restaurant_id', $restaurant->id)
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->get();
+
+        $orderData = DB::table('orders')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+            ->where('restaurant_id', $restaurant->id)
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->get();
+
+         // If there is no data for a month, add it with count 0
+         $months = range(1, 12);
+         $categoryCounts = $categoryData->pluck('count', 'month')->toArray();
+         $foodCounts = $foodData->pluck('count', 'month')->toArray();
+         $orderCounts = $orderData->pluck('count', 'month')->toArray();
+ 
+         $categoryMonthlyData = array_map(function ($month) use ($categoryCounts) {
+             return $categoryCounts[$month] ?? 0;
+         }, $months);
+ 
+         $foodMonthlyData = array_map(function ($month) use ($foodCounts) {
+             return $foodCounts[$month] ?? 0;
+         }, $months);
+ 
+         $orderMonthlyData = array_map(function ($month) use ($orderCounts) {
+             return $orderCounts[$month] ?? 0;
+         }, $months);
+
+        return view('restaurant.index',
+        compact('restaurant', 'totalcategories', 'totalfood', 'totalorders', 'totalrevenue',  'categoryMonthlyData', 'foodMonthlyData', 'orderMonthlyData'));
     }
 
     public function restaurantsloginform()  {
@@ -136,7 +180,10 @@ class RestaurantController extends Controller
     }
     public function dispatch()  {
         $restaurant = Auth::guard('restaurant')->user();
-        return view('restaurant.dispatch', compact('restaurant'));
+        $dispatches=Dispatch::where('restaurant_id', $restaurant->id)->get();
+        $orders=Order::all();
+        $riders=Rider::all();
+        return view('restaurant.dispatch', compact('restaurant', 'dispatches', 'orders', 'riders'));
     }
 
     public function createcategory(Request $request)

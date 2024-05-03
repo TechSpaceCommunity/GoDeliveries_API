@@ -39,6 +39,7 @@
                       <th>Payment Status</th>
                       <th>Status</th>
                       <th>Date</th>
+                      <th>Order Description</th>
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone</th>
@@ -62,6 +63,7 @@
                       <th>Payment Status</th>
                       <th>Status</th>
                       <th>Date</th>
+                      <th>Order Description</th>
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone</th>
@@ -105,6 +107,7 @@
                                 @endif
                             </td>
                             <td>{{$order->created_at}}</td>
+                            <td>{{$order->description}}</td>
                             <td>{{$order->name}}</td>
                             <td>{{$order->email}}</td>
                             <td>{{$order->phone}}</td>

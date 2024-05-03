@@ -95,8 +95,15 @@ Route::delete('/zones/{id}', [AdminController::class, 'destroyzone'])->name('des
 /* dispatch */
 Route::get('/admindispatch', [AdminController::class, 'admindispatch'])->name('admindispatch');
 
+/* withdrawal requests */
 Route::get('/withdrawals', [AdminController::class, 'withdrawals'])->name('withdrawals');
+
+/* commsion rates */
 Route::get('/commissionrates', [AdminController::class, 'commissionrates'])->name('commissionrates');
+Route::post('/commissionrates', [AdminController::class, 'createcommissionrate'])->name('createcommissionrate');
+Route::get('/editcommissionrate/{id}', [AdminController::class, 'editcommissionrate'])->name('editcommissionrate');
+Route::post('/editcommissionrate/{id}', [AdminController::class, 'updatecommissionrate'])->name('updatecommissionrate');
+Route::delete('/commissionrates/{id}', [AdminController::class, 'destroycommissionrate'])->name('destroycommissionrate');
 
 });
 

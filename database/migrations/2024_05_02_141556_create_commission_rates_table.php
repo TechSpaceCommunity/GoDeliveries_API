@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('commission_rates', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('restaurant_id');
+            $table->float('rate');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
+            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('CASCADE');
         });
     }
 
