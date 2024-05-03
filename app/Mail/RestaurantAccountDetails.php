@@ -30,7 +30,7 @@ class RestaurantAccountDetails extends Mailable
      */
     public function build()
     {
-        $loginUrl = config('app.url') . '/restaurantslogin';
+        $loginUrl = config('app.url') . 'restaurantslogin';
 
         return $this->subject('Restaurant Account Details')
                     ->view('emails.restaurant-account-creation')
