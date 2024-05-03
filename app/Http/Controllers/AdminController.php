@@ -348,7 +348,6 @@ class AdminController extends Controller
 
          $user= new Rider();
          $user->name=$request->input('name');
-         $user->username=$request->input('name');
          $user->email=$request->input('email');
          $user->number=$request->input('number');
          $user->id_number=$request->input('id_number');
