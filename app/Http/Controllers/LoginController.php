@@ -145,5 +145,36 @@ class LoginController extends Controller
             return response()->json(['message' => 'Invalid credentials. Please try again.'], 401);
         }
     }
+
+    public function RiderAvailability(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|exists:riders,id',
+            'is_available' => 'required|boolean',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+    
+        $user = Rider::find($request->user_id);
+    
+        if (!$user) {
+            return response()->json(['message' => 'Rider not found.'], 404);
+        }
+    
+        $status = $request->is_available ? 1 : 0;
+
+        Log::info('Rider availability status: ' . $status);
+    
+        $user->status = $status;
+        $user->save();
+    
+        return response()->json([
+            'message' => 'Rider availability updated successfully.',
+            'user' => $user 
+        ], 200);
+    }    
+
     
 }

@@ -167,6 +167,7 @@ Route::prefix('api')->group(function () {
     Route::get('/auth/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
 
     Route::post('/auth/rider/login', [LoginController::class, 'RiderLogin']);
+    Route::post('/rideravailability', [LoginController::class, 'RiderAvailability']);
 
     Route::get('/getrestaurants', [ApiController::class, 'getRestaurants']);
     Route::get('/getcategories', [ApiController::class, 'getAllCategories']);
