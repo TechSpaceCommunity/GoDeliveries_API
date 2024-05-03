@@ -119,24 +119,31 @@ class LoginController extends Controller
 
     public function RiderLogin(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
-        $rider = Rider::where('email', $request->email)->first();
-
-        if ($rider && password_verify($request->password, $rider->password)) {
-            return response()->json([
-                'success' => true,
-                'rider' => $rider,
-            ]);
+        
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'Invalid email or password.',
-        ], 401);
+        $user = Rider::where('email', $request->email)->first();
+    
+        if (!$user) {
+            return response()->json(['message' => 'Invalid credentials. Please try again.'], 401);
+        }
+        // check if $request->password and  $user->password match
+        if ($user->password == $request->password) {
+            // generate api_token and add it to user
+
+            $user->api_token = Str::random(60);
+
+            $user->save();
+            return response()->json(['message' => 'User logged in successfully', 'user' => $user]);
+        } else {
+            return response()->json(['message' => 'Invalid credentials. Please try again.'], 401);
+        }
     }
     
 }
