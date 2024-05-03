@@ -17,6 +17,6 @@
     <p>You can now use these credentials to log in to your Restaurant account.</p>
     <p>Thank you!</p>
 
-    <p>If you want to login now, <a href="{{ appUrl }}/restaurantslogin" style="color: orange;">click here</a>.</p>
+    <p>If you want to login now, <a href="{{ $loginUrl }}" style="color: orange;">click here</a>.</p>
 </body>
 </html>
