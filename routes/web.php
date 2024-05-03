@@ -6,12 +6,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignUpController;
-
-use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-
 
 Route::get('/', function () {
     return view('welcome');
