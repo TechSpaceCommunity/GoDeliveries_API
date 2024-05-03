@@ -52,13 +52,7 @@
 
                                     <div class="col-6">    
                                         <div class="col-md-12">
-                                            <input id="password" type="password" class="form-control rounded-pill @error('password') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="Restaurant's password">
-            
-                                            @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <input id="password" type="password" class="form-control rounded-pill @error('password') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="Restaurant's password" readonly>
                                         </div>
                                     </div>
                                 </div>
