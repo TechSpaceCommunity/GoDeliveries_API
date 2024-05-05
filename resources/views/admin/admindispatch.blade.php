@@ -75,6 +75,13 @@
                             <td>{{$dispatch->rider_amount}}</td>
                             <td>{{$dispatch->order_amount}}</td>
                             <td>
+                              @foreach ($restaurants as $restaurant)
+                                  @if ($restaurant->id == $dispatch->restaurant_id)
+                                      {{$restaurant->name}}
+                                  @endif
+                              @endforeach
+                            </td>
+                            <td>
                               @if($dispatch->status=='delivered')
                                     <span class="fw-bold text-success">{{$dispatch->status}}</span>
                                 @else
@@ -82,7 +89,7 @@
                                 @endif
                               </td>
                     
-                            <td>{{$dispatch->created_at}}</td>
+                            
                         </tr>
                     @endforeach
                   </tbody>

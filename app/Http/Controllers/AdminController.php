@@ -154,7 +154,8 @@ class AdminController extends Controller
         $dispatches=Dispatch::all();
         $orders=Order::all();
         $riders=Rider::all();
-        return view('admin.admindispatch', compact('dispatches', 'orders', 'riders'));
+        $restaurants=Restaurant::all();
+        return view('admin.admindispatch', compact('dispatches', 'orders', 'riders', 'restaurants'));
     }
 
     public function withdrawals()

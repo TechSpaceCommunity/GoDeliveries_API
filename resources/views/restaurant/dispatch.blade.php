@@ -34,8 +34,8 @@
                         <th scope="col">Address</th>
                         <th scope="col">Rider Amount</th>
                         <th scope="col">Order Amount</th>
-                        <th scope="col">Restaurant</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Date</th>
                     </tr>
                   </thead>
                   <tfoot class="bg-dark text-white">
@@ -46,8 +46,8 @@
                         <th scope="col">Address</th>
                         <th scope="col">Rider Amount</th>
                         <th scope="col">Order Amount</th>
-                        <th scope="col">Restaurant</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Date</th>
                     </tr>
                   </tfoot>
                   <tbody>

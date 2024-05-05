@@ -155,6 +155,22 @@ class RestaurantController extends Controller
         $orders=Order::where('restaurant_id', $restaurant->id)->get();
         return view('restaurant.orders', compact('restaurant','orders'));
     }
+    public function showorder($id) {
+        $restaurant = Auth::guard('restaurant')->user();
+        $order = Order::where('restaurant_id', $restaurant->id)
+                      ->where('id', $id)
+                      ->firstOrFail();
+    
+        // Return the order details as JSON
+        return response()->json($order);
+    }
+    
+    /* public function showorder($id){
+        $restaurant = Auth::guard('restaurant')->user();
+        $orders=Order::where('restaurant_id', $restaurant->id)->get();
+        $order=Order::findOrFail($id);
+        return view('restaurant.showorder', compact('order', 'orders', 'restaurant'));
+    } */
     public function ratings()  {
         $restaurant = Auth::guard('restaurant')->user();
         $reviews=Review::where('restaurant_id', $restaurant->id)->get();
@@ -177,6 +193,15 @@ class RestaurantController extends Controller
         $restaurant = Auth::guard('restaurant')->user();
         $payments=Order::where('restaurant_id', $restaurant->id)->get();
         return view('restaurant.payment', compact('restaurant', 'payments'));
+    }
+    public function showpayment($id) {
+        $restaurant = Auth::guard('restaurant')->user();
+        $payment = Order::where('restaurant_id', $restaurant->id)
+                      ->where('id', $id)
+                      ->firstOrFail();
+    
+        // Return the order details as JSON
+        return response()->json($payment);
     }
     public function dispatch()  {
         $restaurant = Auth::guard('restaurant')->user();

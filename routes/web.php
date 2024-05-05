@@ -134,6 +134,7 @@ Route::delete('/category/{id}', [RestaurantController::class, 'destroycategory']
 
 //orders
 Route::get('/orders', [RestaurantController::class, 'orders'])->name('orders');
+Route::get('/orders/{id}', [RestaurantController::class, 'showorder'])->name('showorder');
 Route::delete('/order/{id}', [RestaurantController::class, 'destroyorder'])->name('order.destroy');
 
 /* ratings */
@@ -148,6 +149,7 @@ Route::delete('/addons/{id}', [RestaurantController::class, 'destroyaddon'])->na
 
 /* restaurant payments */
 Route::get('/payment', [RestaurantController::class, 'paymnent'])->name('payment');
+Route::get('/payment/{id}', [RestaurantController::class, 'showpayment'])->name('showpayment');
 Route::delete('/payment/{id}', [RestaurantController::class, 'destroypayment'])->name('payment.destroy');
 
 Route::get('/dispatch', [RestaurantController::class, 'dispatch'])->name('dispatch');
