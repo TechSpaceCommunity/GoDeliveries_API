@@ -26,6 +26,7 @@
               <div class="table-responsive">
                 @if(count($payments)>0)
                 <table class="table table-hover" id="banner-dataTable" width="100%" cellspacing="0">
+                  <h6 class="text-success fw-bold"> &longmapsto; Click the Customer Email to view the Payment Details -</h6>
                   <thead class="bg-dark text-white">
                     <tr>
                       <th><i class="bi bi-stop fw-bolder fs-5"></th>
