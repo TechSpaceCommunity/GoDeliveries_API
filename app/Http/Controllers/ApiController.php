@@ -24,6 +24,16 @@ class ApiController extends Controller
         return response()->json($categories);
     }
 
+    public function getCategoriesByRestaurant($id)
+    {
+        try {
+            $categories = Category::where('restaurant_id', $id)->get();
+            return response()->json($categories);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch categories'], 500);
+        }
+    }
+
     public function getAllFoods()
     {
         $categories = Food::all();

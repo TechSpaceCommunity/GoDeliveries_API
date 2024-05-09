@@ -176,6 +176,7 @@ Route::prefix('api')->group(function () {
 
     Route::get('/getrestaurants', [ApiController::class, 'getRestaurants']);
     Route::get('/getcategories', [ApiController::class, 'getAllCategories']);
+    Route::get('/getcategories/{restaurant_id}', [ApiController::class, 'getCategoriesByRestaurant']);
     Route::get('/getfoods', [ApiController::class, 'getAllFoods']);
 });
 
