@@ -38,7 +38,7 @@ class ApiController extends Controller
     public function getFoodsByCategory($id)
     {
         try{
-            $foods = Food::where('category_id', $id)->get();
+            $foods = Food::where('child_cat_id', $id)->get();
             return response()->json($foods);
         }catch(\Exception $e){
             return response()->json(['error' => 'Failed to fetch foods'], 500);
