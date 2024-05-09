@@ -178,6 +178,7 @@ Route::prefix('api')->group(function () {
     Route::get('/getcategories', [ApiController::class, 'getAllCategories']);
     Route::get('/getcategories/{restaurant_id}', [ApiController::class, 'getCategoriesByRestaurant']);
     Route::get('/getfoods', [ApiController::class, 'getAllFoods']);
+    Route::get('getfood/{category_id}', [ApiController::class, 'getFoodsByCategory']);
 });
 
 Route::get('/redirect-to-app', function () {
